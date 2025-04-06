@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Startups | Innovation Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .blue-700 {
+            background-color: #1d4ed8;
+        }
+        
+        .text-blue-700 {
+            color: #1d4ed8;
+        }
+        
+        .border-blue-700 {
+            border-color: #1d4ed8;
+        }
+        
+        .startup-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .startup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.3);
+        }
+        
+        .startup-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(29, 78, 216, 0) 0%, rgba(29, 78, 216, 0.05) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .startup-card:hover::before {
+            opacity: 1;
+        }
+        
+        .startup-logo-container {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .startup-logo {
+            max-height: 80px;
+            max-width: 80%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .startup-card:hover .startup-logo {
+            transform: scale(1.1);
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(29, 78, 216, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(29, 78, 216, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flex items-center justify-between px-8 py-4 bg-white shadow-md">
+        <div class="flex items-center">
+            <img src="/assets/logo.png" alt="Logo" class="h-8 w-auto">
+        </div>
+        <div class="flex items-center space-x-6">
+            <a href="/index.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Home</a>
+            <a href="/pages/whatwedo.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">What we do</a>
+            <a href="#" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Programs</a>
+            <a href="#" class="text-white hover:text-gray-700 bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Startups</a>
+            <a href="/pages/about.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">About us</a>
+            <a href="#" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Contact</a>
+            <a href="#" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">NiiH Posts</a>
+            <a href="/pages/login.html" class="px-4 py-2 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400">Join the hub</a>
+        </div>
+    </div>
+
+
+    <!-- Hero Section -->
+    <header class="blue-700 text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 grid-pattern"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__fadeInDown">Our Startup Portfolio</h1>
+            <p class="text-xl max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
+                Discover the innovative startups currently thriving in our ecosystem
+            </p>
+        </div>
+    </header>
+
+    <!-- Startups Grid -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-700">Current Startups</h2>
+                <div class="relative">
+                    <input type="text" placeholder="Search startups..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+                <!-- Startup 1 -->
+                <a href="https://techsavvy.ai" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/techsavvy.ai" alt="TechSavvy AI" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=TechSavvy+AI'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">TechSavvy AI</h3>
+                        <p class="text-gray-500 text-sm">AI-powered business analytics</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 2 -->
+                <a href="https://greenfuture.eco" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/greenfuture.eco" alt="GreenFuture" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=GreenFuture'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">GreenFuture</h3>
+                        <p class="text-gray-500 text-sm">Sustainable energy solutions</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 3 -->
+                <a href="https://healthtrack.io" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/healthtrack.io" alt="HealthTrack" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=HealthTrack'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">HealthTrack</h3>
+                        <p class="text-gray-500 text-sm">Wearable health monitoring</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 4 -->
+                <a href="https://edunova.com" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/edunova.com" alt="EduNova" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=EduNova'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">EduNova</h3>
+                        <p class="text-gray-500 text-sm">EdTech learning platform</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 5 -->
+                <a href="https://farmconnect.ag" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/farmconnect.ag" alt="FarmConnect" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=FarmConnect'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">FarmConnect</h3>
+                        <p class="text-gray-500 text-sm">Agricultural supply chain</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 6 -->
+                <a href="https://finova.io" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/finova.io" alt="Finova" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=Finova'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">Finova</h3>
+                        <p class="text-gray-500 text-sm">Digital banking solutions</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 7 -->
+                <a href="https://smartlogix.co" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/smartlogix.co" alt="SmartLogix" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=SmartLogix'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">SmartLogix</h3>
+                        <p class="text-gray-500 text-sm">IoT logistics tracking</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 8 -->
+                <a href="https://medivolve.health" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/medivolve.health" alt="Medivolve" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=Medivolve'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">Medivolve</h3>
+                        <p class="text-gray-500 text-sm">Telemedicine platform</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 9 -->
+                <a href="https://urbantech.build" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/urbantech.build" alt="UrbanTech" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=UrbanTech'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">UrbanTech</h3>
+                        <p class="text-gray-500 text-sm">Smart city solutions</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 10 -->
+                <a href="https://foodprint.app" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/foodprint.app" alt="FoodPrint" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=FoodPrint'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">FoodPrint</h3>
+                        <p class="text-gray-500 text-sm">Food waste reduction</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 11 -->
+                <a href="https://cleancarbon.tech" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/cleancarbon.tech" alt="CleanCarbon" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=CleanCarbon'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">CleanCarbon</h3>
+                        <p class="text-gray-500 text-sm">Carbon capture technology</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 12 -->
+                <a href="https://skillbridge.io" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/skillbridge.io" alt="SkillBridge" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=SkillBridge'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">SkillBridge</h3>
+                        <p class="text-gray-500 text-sm">Workforce upskilling</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 13 -->
+                <a href="https://safetrek.tech" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/safetrek.tech" alt="SafeTrek" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=SafeTrek'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">SafeTrek</h3>
+                        <p class="text-gray-500 text-sm">Personal safety devices</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 14 -->
+                <a href="https://aquaflow.tech" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/aquaflow.tech" alt="AquaFlow" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=AquaFlow'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">AquaFlow</h3>
+                        <p class="text-gray-500 text-sm">Water purification systems</p>
+                    </div>
+                </a>
+                
+                <!-- Startup 15 -->
+                <a href="https://retailai.shop" target="_blank" class="startup-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="startup-logo-container">
+                        <img src="https://logo.clearbit.com/retailai.shop" alt="RetailAI" class="startup-logo" onerror="this.src='https://via.placeholder.com/150x60?text=RetailAI'">
+                    </div>
+                    <div class="p-4 border-t border-gray-100">
+                        <h3 class="font-semibold text-lg text-gray-800">RetailAI</h3>
+                        <p class="text-gray-500 text-sm">AI for retail optimization</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <button class="bg-blue-700 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-800 transition-colors duration-300 inline-flex items-center">
+                    Load More Startups
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="blue-700 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="animate__animated animate__fadeIn">
+                    <div class="text-4xl font-bold mb-2">50+</div>
+                    <div class="text-sm uppercase tracking-wider">Startups Supported</div>
+                </div>
+                <div class="animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="text-4xl font-bold mb-2">$10M+</div>
+                    <div class="text-sm uppercase tracking-wider">Funding Raised</div>
+                </div>
+                <div class="animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="text-4xl font-bold mb-2">120+</div>
+                    <div class="text-sm uppercase tracking-wider">Jobs Created</div>
+                </div>
+                <div class="animate__animated animate__fadeIn animate__delay-3s">
+                    <div class="text-4xl font-bold mb-2">15</div>
+                    <div class="text-sm uppercase tracking-wider">Industries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-blue-900 text-white px-16 py-12 m-10 mx-20 rounded-2xl relative overflow-hidden">
+        <!-- Watermark -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+            <span class="text-[200px] font-bold text-white transform rotate-[0deg]">NiiH</span>
+        </div>
+        
+        <div class="grid grid-cols-4 gap-8 relative z-10">
+            <div>
+                <img src="/assets/logo-white.png" alt="NiiH Logo" class="h-8 mb-4">
+                <p class="text-sm text-gray-300">
+                    Empowering innovators to transform ideas into reality.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                    <li><a href="#" class="hover:text-white">Services</a></li>
+                    <li><a href="#" class="hover:text-white">Projects</a></li>
+                    <li><a href="#" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white">Blog</a></li>
+                    <li><a href="#" class="hover:text-white">Documentation</a></li>
+                    <li><a href="#" class="hover:text-white">Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-700 text-sm text-gray-300 text-center relative z-10">
+            <p>&copy; 2024 NiiH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.getAttribute('class').match(/animate__\w+/g).find(cls => cls !== 'animate__animated');
+                        entry.target.classList.add(animation);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Fallback for logos that don't load
+            document.querySelectorAll('.startup-logo').forEach(img => {
+                img.onerror = function() {
+                    const altText = this.alt || 'Startup Logo';
+                    this.parentElement.innerHTML = `
+                        <div class="w-full h-full flex items-center justify-center bg-blue-50 rounded-lg">
+                            <span class="text-blue-700 font-medium">${altText}</span>
+                        </div>
+                    `;
+                };
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .blue-700 {
+            background-color: #1d4ed8;
+        }
+        
+        .text-blue-700 {
+            color: #1d4ed8;
+        }
+        
+        .border-blue-700 {
+            border-color: #1d4ed8;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .value-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #1d4ed8;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-card {
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .glow {
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px rgba(29, 78, 216, 0.5);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(29, 78, 216, 0.8);
+            }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flex items-center justify-between px-8 py-4 bg-white shadow-md">
+        <div class="flex items-center">
+            <img src="/assets/logo.png" alt="Logo" class="h-8 w-auto">
+        </div>
+        <div class="flex items-center space-x-6">
+            <a href="/index.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Home</a>
+            <a href="/pages/whatwedo.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">What we do</a>
+            <a href="#" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Programs</a>
+            <a href="/pages/startups.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Startups</a>
+            <a href="#" class="text-white hover:text-gray-700 bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">About us</a>
+            <a href="#" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Contact</a>
+            <a href="#" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">NiiH Posts</a>
+            <a href="/pages/login.html" class="px-4 py-2 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400">Join the hub</a>
+        </div>
+    </div>
+
+    <!-- <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8">About Us</h1>
+        
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <p class="text-gray-600 mb-6">
+                NiiH is a leading innovation hub dedicated to empowering entrepreneurs and innovators. We provide a comprehensive ecosystem of support, resources, and opportunities to help turn groundbreaking ideas into successful ventures.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Our Mission</h2>
+                    <p class="text-gray-600">To foster innovation and entrepreneurship by providing a supportive environment where ideas can flourish and transform into impactful solutions.</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Our Vision</h2>
+                    <p class="text-gray-600">To be the premier destination for innovators and entrepreneurs, driving technological advancement and economic growth in our community.</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Header -->
+    <header class="relative text-white py-20">
+        <div class="absolute inset-0 bg-[url('/assets/NIIH-Building.jpeg')] bg-cover bg-center bg-no-repeat opacity-99"></div>
+        <div class="absolute inset-0 bg-blue-900/40"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__fadeInDown">About Us</h1>
+            <p class="text-xl max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
+                Driving innovation and economic development through collaborative solutions
+            </p>
+        </div>
+    </header>
+
+    <!-- About the Hub Section -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <!-- Content -->
+                <div class="md:w-1/2 animate__animated animate__fadeInLeft">
+                    <div class="relative">
+                        <div class="absolute -left-4 -top-4 w-20 h-20 bg-blue-100 rounded-full opacity-50"></div>
+                        <div class="absolute -right-4 -bottom-4 w-32 h-32 bg-lime-100 rounded-full opacity-50"></div>
+                        <div class="relative bg-white p-8 rounded-2xl shadow-lg backdrop-blur-sm border border-gray-100">
+                            <h2 class="text-3xl font-bold text-blue-700 mb-6 leading-tight">
+                                About the National ICT Innovation Hub
+                            </h2>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                The Hub is located inside the Uganda Institute of Information and Communications Technology (UICT) Nakawa Campus and creates an environment for ICT innovators facing challenges with workspace, limited internet connectivity and searching for creative spaces that spur thinking.
+                            </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                The Hub seeks to become the "Home of ICT Innovation" with the ability to house and support the local innovation ecosystem in Uganda, harnessing the true concept of Nationalism (home-grown potential).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="md:w-1/2 animate__animated animate__fadeInRight">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-lime-500/10 rounded-3xl transform rotate-3"></div>
+                        <div class="relative overflow-hidden rounded-3xl shadow-2xl">
+                            <img 
+                                src="/assets/NIIH-Building.jpeg" 
+                                alt="National ICT Innovation Hub Building" 
+                                class="w-full h-[500px] object-cover transform hover:scale-105 transition-transform duration-500"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-100 rounded-full opacity-50 z-0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="py-16 px-6 bg-gradient-to-r from-blue-50 to-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate__animated animate__fadeInLeft">
+                    <div class="relative">
+                        <div class="w-32 h-32 rounded-full bg-blue-700 opacity-10 absolute -top-10 -left-10"></div>
+                        <div class="w-32 h-32 rounded-full bg-blue-700 opacity-10 absolute -bottom-10 -right-10"></div>
+                        <div class="relative p-8 bg-white rounded-xl shadow-lg glow">
+                            <h2 class="text-3xl font-bold text-blue-700 mb-4">Our Vision</h2>
+                            <p class="text-gray-700 text-lg">A competitive, solutions-based innovation ecosystem</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12 animate__animated animate__fadeInRight">
+                    <div class="p-8 bg-white rounded-xl shadow-lg">
+                        <h2 class="text-3xl font-bold text-blue-700 mb-4">Our Mission</h2>
+                        <p class="text-gray-700 text-lg">Home of innovation that catalyzes social economic development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center text-blue-700 mb-12 animate__animated animate__fadeIn">Our Core Values</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="value-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="w-16 h-16 blue-700 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-2">Collaboration</h3>
+                    <p class="text-gray-600">Working together to achieve shared innovation goals</p>
+                </div>
+                
+                <div class="value-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="w-16 h-16 blue-700 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-2">Mentorship</h3>
+                    <p class="text-gray-600">Guiding the next generation of innovators</p>
+                </div>
+                
+                <div class="value-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="w-16 h-16 blue-700 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-2">Excellence</h3>
+                    <p class="text-gray-600">Striving for the highest quality in all we do</p>
+                </div>
+                
+                <div class="value-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="w-16 h-16 blue-700 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-2">Sustainability</h3>
+                    <p class="text-gray-600">Creating solutions that last and benefit future generations</p>
+                </div>
+                
+                <div class="value-card bg-white p-6 rounded-lg shadow-md animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="w-16 h-16 blue-700 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-2">Home Grown Solutions</h3>
+                    <p class="text-gray-600">Developing innovations tailored to our local context</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership -->
+    <section class="py-16 px-6 bg-gradient-to-r from-white to-blue-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center text-blue-700 mb-12 animate__animated animate__fadeIn">Our Leadership</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Leader 1 -->
+                <div class="team-card bg-white p-6 rounded-xl shadow-lg text-center animate__animated animate__fadeInUp">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-700">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Leader 1" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-700">Jane Smith</h3>
+                    <p class="text-gray-600 mb-2">Director of Innovation</p>
+                    <p class="text-gray-500 text-sm">Visionary leader with 15+ years in tech innovation</p>
+                </div>
+                
+                <!-- Leader 2 -->
+                <div class="team-card bg-white p-6 rounded-xl shadow-lg text-center animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-700">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Leader 2" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-700">John Doe</h3>
+                    <p class="text-gray-600 mb-2">Head of Operations</p>
+                    <p class="text-gray-500 text-sm">Expert in scaling innovative solutions</p>
+                </div>
+                
+                <!-- Leader 3 -->
+                <div class="team-card bg-white p-6 rounded-xl shadow-lg text-center animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-700">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Leader 3" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-700">Sarah Johnson</h3>
+                    <p class="text-gray-600 mb-2">Chief Technology Officer</p>
+                    <p class="text-gray-500 text-sm">Tech strategist and innovation catalyst</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hub Team -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center text-blue-700 mb-12 animate__animated animate__fadeIn">Our Hub Team</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-card bg-white p-6 rounded-xl shadow-lg text-center animate__animated animate__fadeIn hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative w-full h-64 mx-auto mb-4 overflow-hidden">
+                        <!-- Futuristic frame with corner accents -->
+                        <div class="absolute inset-0 border-2 border-blue-700 rounded-lg">
+                            <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-blue-700"></div>
+                            <div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-blue-700"></div>
+                            <div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-blue-700"></div>
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-blue-700"></div>
+                        </div>
+                        <!-- Image with futuristic overlay effect -->
+                        <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Team Member 1" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <!-- Glow effect on hover -->
+                        <div class="absolute inset-0 bg-blue-700 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-700 mt-4">Alex Turner</h3>
+                    <p class="text-gray-600">Innovation Specialist</p>
+                    <p class="text-gray-500 text-sm mt-2">Specializes in fostering innovative solutions and guiding startup growth</p>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-card bg-white p-6 rounded-xl shadow-lg text-center animate__animated animate__fadeIn animate__delay-1s hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative w-full h-64 mx-auto mb-4 overflow-hidden">
+                        <!-- Futuristic frame with corner accents -->
+                        <div class="absolute inset-0 border-2 border-blue-700 rounded-lg">
+                            <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-blue-700"></div>
+                            <div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-blue-700"></div>
+                            <div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-blue-700"></div>
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-blue-700"></div>
+                        </div>
+                        <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Team Member 2" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-blue-700 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-700 mt-4">Maria Garcia</h3>
+                    <p class="text-gray-600">Project Manager</p>
+                    <p class="text-gray-500 text-sm mt-2">Expert in managing complex innovation projects and team coordination</p>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-card bg-white p-6 rounded-xl shadow-lg text-center animate__animated animate__fadeIn animate__delay-2s hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative w-full h-64 mx-auto mb-4 overflow-hidden">
+                        <!-- Futuristic frame with corner accents -->
+                        <div class="absolute inset-0 border-2 border-blue-700 rounded-lg">
+                            <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-blue-700"></div>
+                            <div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-blue-700"></div>
+                            <div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-blue-700"></div>
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-blue-700"></div>
+                        </div>
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Team Member 3" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-blue-700 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-700 mt-4">David Kim</h3>
+                    <p class="text-gray-600">Tech Lead</p>
+                    <p class="text-gray-500 text-sm mt-2">Leading technical development and innovation infrastructure</p>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-card bg-white p-6 rounded-xl shadow-lg text-center animate__animated animate__fadeIn animate__delay-3s hover:shadow-2xl transition-all duration-300 group">
+                    <div class="relative w-full h-64 mx-auto mb-4 overflow-hidden">
+                        <!-- Futuristic frame with corner accents -->
+                        <div class="absolute inset-0 border-2 border-blue-700 rounded-lg">
+                            <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-blue-700"></div>
+                            <div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-blue-700"></div>
+                            <div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-blue-700"></div>
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-blue-700"></div>
+                        </div>
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Team Member 4" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-blue-700 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-700 mt-4">Lisa Wong</h3>
+                    <p class="text-gray-600">Design Lead</p>
+                    <p class="text-gray-500 text-sm mt-2">Driving user experience and design innovation across projects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- <footer class="blue-700 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-lg">Innovation Hub - Catalyzing Social Economic Development</p>
+            <p class="mt-2 text-blue-200">© 2023 All Rights Reserved</p>
+        </div>
+    </footer> -->
+
+    <footer class="bg-blue-900 text-white px-16 py-12 m-10 mx-20 rounded-2xl relative overflow-hidden">
+        <!-- Watermark -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+            <span class="text-[200px] font-bold text-white transform rotate-[0deg]">NiiH</span>
+        </div>
+        
+        <div class="grid grid-cols-4 gap-8 relative z-10">
+            <div>
+                <img src="/assets/logo-white.png" alt="NiiH Logo" class="h-8 mb-4">
+                <p class="text-sm text-gray-300">
+                    Empowering innovators to transform ideas into reality.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                    <li><a href="#" class="hover:text-white">Services</a></li>
+                    <li><a href="#" class="hover:text-white">Projects</a></li>
+                    <li><a href="#" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white">Blog</a></li>
+                    <li><a href="#" class="hover:text-white">Documentation</a></li>
+                    <li><a href="#" class="hover:text-white">Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-700 text-sm text-gray-300 text-center relative z-10">
+            <p>&copy; 2024 NiiH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.getAttribute('class').match(/animate__\w+/g).find(cls => cls !== 'animate__animated');
+                        entry.target.classList.add(animation);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
