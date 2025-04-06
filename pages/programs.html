@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Programs | Innovation Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .blue-700 {
+            background-color: #1d4ed8;
+        }
+        
+        .text-blue-700 {
+            color: #1d4ed8;
+        }
+        
+        .border-blue-700 {
+            border-color: #1d4ed8;
+        }
+        
+        .program-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.3);
+        }
+        
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(29, 78, 216, 0) 0%, rgba(29, 78, 216, 0.05) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .program-card:hover::before {
+            opacity: 1;
+        }
+        
+        .program-image {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .program-card:hover .program-image {
+            transform: scale(1.05);
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(29, 78, 216, 0.9);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(29, 78, 216, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(29, 78, 216, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #1d4ed8;
+            border: 4px solid #bfdbfe;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% - 25px);
+            background-color: #bfdbfe;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .hexagon {
+            position: relative;
+            width: 100px;
+            height: 57.74px;
+            background-color: #1d4ed8;
+            margin: 28.87px 0;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .hexagon::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: white;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flex items-center justify-between px-8 py-4 bg-white shadow-md">
+        <div class="flex items-center">
+            <img src="/assets/logo.png" alt="Logo" class="h-8 w-auto">
+        </div>
+        <div class="flex items-center space-x-6">
+            <a href="/index.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Home</a>
+            <a href="/pages/whatwedo.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">What we do</a>
+            <a href="#" class="text-white bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Programs</a>
+            <a href="/pages/startups.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Startups</a>
+            <a href="/pages/about.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">About us</a>
+            <a href="/pages/contactus.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Contact</a>
+            <a href="/pages/posts.html" class="text-gray-white hover:text-white-700 bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">NiiH Posts</a>
+            <a href="/pages/login.html" class="px-4 py-2 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400">Join the hub</a>
+        </div>
+    </div>
+
+
+    <!-- Hero Section -->
+    <header class="blue-700 text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 grid-pattern"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__fadeInDown">Our Programs</h1>
+            <p class="text-xl max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
+                Empowering innovators through comprehensive programs at every stage of their journey
+            </p>
+        </div>
+    </header>
+
+    <!-- Programs Section -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-blue-700 mb-4 animate__animated animate__fadeIn">Innovation Programs</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
+                    From ideation to scaling, we have programs designed to support your innovation journey
+                </p>
+            </div>
+            
+            <!-- Programs Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="program-card bg-white shadow-md animate__animated animate__fadeIn">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Ideation Bootcamp" class="w-full program-image">
+                        <span class="category-badge">Bootcamp</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">Ongoing</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">4 Weeks</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Ideation Bootcamp</h3>
+                        <p class="text-gray-600 text-sm mb-4">Transform your ideas into viable concepts through our intensive 4-week ideation program.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-700">Free</span>
+                            <a href="#" class="text-blue-700 font-medium flex items-center">
+                                Learn More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 2 -->
+                <div class="program-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Incubation Program" class="w-full program-image">
+                        <span class="category-badge">Incubation</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">Cohort 5</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">6 Months</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Startup Incubation Program</h3>
+                        <p class="text-gray-600 text-sm mb-4">Our flagship 6-month program providing mentorship, resources, and funding opportunities.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-700">KSh 25,000/mo</span>
+                            <a href="#" class="text-blue-700 font-medium flex items-center">
+                                Learn More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 3 -->
+                <div class="program-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Accelerator Program" class="w-full program-image">
+                        <span class="category-badge">Acceleration</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">Starts Aug 2023</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">3 Months</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Growth Accelerator</h3>
+                        <p class="text-gray-600 text-sm mb-4">For established startups ready to scale, with investor connections and growth strategies.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-700">Equity-based</span>
+                            <a href="#" class="text-blue-700 font-medium flex items-center">
+                                Learn More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 4 -->
+                <div class="program-card bg-white shadow-md animate__animated animate__fadeIn">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Tech Training" class="w-full program-image">
+                        <span class="category-badge">Training</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">Monthly</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">2 Weeks</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Tech Skills Training</h3>
+                        <p class="text-gray-600 text-sm mb-4">Hands-on training in emerging technologies like AI, Blockchain, and IoT.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-700">KSh 15,000</span>
+                            <a href="#" class="text-blue-700 font-medium flex items-center">
+                                Learn More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 5 -->
+                <div class="program-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Women in Tech" class="w-full program-image">
+                        <span class="category-badge">Women in Tech</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">Quarterly</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">3 Months</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Women in Tech Fellowship</h3>
+                        <p class="text-gray-600 text-sm mb-4">Dedicated program supporting female entrepreneurs in technology fields.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-700">Sponsored</span>
+                            <a href="#" class="text-blue-700 font-medium flex items-center">
+                                Learn More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 6 -->
+                <div class="program-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Corporate Innovation" class="w-full program-image">
+                        <span class="category-badge">Corporate</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">Custom</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">Tailored</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Corporate Innovation Lab</h3>
+                        <p class="text-gray-600 text-sm mb-4">Helping established companies innovate through startup collaborations.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-700">Contact Us</span>
+                            <a href="#" class="text-blue-700 font-medium flex items-center">
+                                Learn More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <button class="bg-blue-700 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-800 transition-colors duration-300 inline-flex items-center">
+                    View All Programs
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Journey -->
+    <section class="py-16 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-blue-700 mb-4">Innovation Journey</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Our programs are designed to support you at every stage of your innovation journey</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="hexagon flex items-center justify-center mx-auto hover-glow transition-all duration-300 mb-8 lg:mb-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-700 z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Ideation Stage</h3>
+                            <p class="text-gray-600">Validate your concept through our Ideation Bootcamp and workshops</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Prototyping</h3>
+                            <p class="text-gray-600">Access our maker space and tech labs to build your MVP</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Incubation</h3>
+                            <p class="text-gray-600">6-month intensive program with mentorship and seed funding</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Acceleration</h3>
+                            <p class="text-gray-600">Growth program with investor connections and scaling strategies</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Scale & Impact</h3>
+                            <p class="text-gray-600">Ongoing support through our alumni network and corporate partnerships</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-blue-700 mb-4">What Our Participants Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Hear from innovators who have gone through our programs</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-6">"The incubation program transformed my idea into a viable business. The mentorship and resources were invaluable."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonial" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Sarah K.</h4>
+                            <p class="text-sm text-gray-500">Founder, GreenTech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-6">"The accelerator helped us secure our first major investment. The network and guidance were game-changing."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Testimonial" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">David M.</h4>
+                            <p class="text-sm text-gray-500">CEO, FarmConnect</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-6">"The Women in Tech Fellowship gave me the confidence and skills to launch my startup successfully."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Testimonial" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Amina W.</h4>
+                            <p class="text-sm text-gray-500">Founder, EduTech Africa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="blue-700 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Join Our Programs?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Take the first step towards turning your innovative ideas into reality
+            </p>
+            <button class="bg-white text-blue-700 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors duration-300">
+                Apply Now
+            </button>
+        </div>
+    </section>
+
+
+    <footer class="bg-blue-900 text-white px-16 py-12 m-10 mx-20 rounded-2xl relative overflow-hidden">
+        <!-- Watermark -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+            <span class="text-[200px] font-bold text-white transform rotate-[0deg]">NiiH</span>
+        </div>
+        
+        <div class="grid grid-cols-4 gap-8 relative z-10">
+            <div>
+                <img src="/assets/logo-white.png" alt="NiiH Logo" class="h-8 mb-4">
+                <p class="text-sm text-gray-300">
+                    Empowering innovators to transform ideas into reality.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                    <li><a href="#" class="hover:text-white">Services</a></li>
+                    <li><a href="#" class="hover:text-white">Projects</a></li>
+                    <li><a href="#" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white">Blog</a></li>
+                    <li><a href="#" class="hover:text-white">Documentation</a></li>
+                    <li><a href="#" class="hover:text-white">Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-700 text-sm text-gray-300 text-center relative z-10">
+            <p>&copy; 2024 NiiH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.getAttribute('class').match(/animate__\w+/g).find(cls => cls !== 'animate__animated');
+                        entry.target.classList.add(animation);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
