@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Posts | Innovation Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .blue-700 {
+            background-color: #1d4ed8;
+        }
+        
+        .text-blue-700 {
+            color: #1d4ed8;
+        }
+        
+        .border-blue-700 {
+            border-color: #1d4ed8;
+        }
+        
+        .post-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.3);
+        }
+        
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(29, 78, 216, 0) 0%, rgba(29, 78, 216, 0.05) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .post-card:hover::before {
+            opacity: 1;
+        }
+        
+        .post-image {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .post-card:hover .post-image {
+            transform: scale(1.05);
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(29, 78, 216, 0.9);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(29, 78, 216, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(29, 78, 216, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flex items-center justify-between px-8 py-4 bg-white shadow-md">
+        <div class="flex items-center">
+            <img src="/assets/logo.png" alt="Logo" class="h-8 w-auto">
+        </div>
+        <div class="flex items-center space-x-6">
+            <a href="/index.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Home</a>
+            <a href="/pages/whatwedo.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">What we do</a>
+            <a href="/pages/programs.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Programs</a>
+            <a href="/pages/startups.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Startups</a>
+            <a href="/pages/about.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">About us</a>
+            <a href="/pages/contactus.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">Contact</a>
+            <a href="#" class="text-white hover:text-gray-700 bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200">NiiH Posts</a>
+            <a href="/pages/login.html" class="px-4 py-2 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400">Join the hub</a>
+        </div>
+    </div>
+
+
+    <!-- Hero Section -->
+    <header class="blue-700 text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 grid-pattern"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__fadeInDown">Hub Posts & News</h1>
+            <p class="text-xl max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
+                Stay updated with the latest news, events, and insights from our innovation ecosystem
+            </p>
+        </div>
+    </header>
+
+    <!-- Posts Section -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+                <h2 class="text-3xl font-bold text-blue-700">Latest Posts</h2>
+                <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                    <div class="relative flex-1 md:w-64">
+                        <input type="text" placeholder="Search posts..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <select class="bg-white border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent">
+                        <option>All Categories</option>
+                        <option>News</option>
+                        <option>Events</option>
+                        <option>Success Stories</option>
+                        <option>Tech Insights</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Featured Post -->
+            <div class="post-card bg-white shadow-lg mb-16 overflow-hidden animate__animated animate__fadeIn">
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/2 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Featured Post" class="w-full h-full object-cover post-image">
+                        <span class="category-badge">Featured</span>
+                    </div>
+                    <div class="lg:w-1/2 p-8">
+                        <div class="flex items-center mb-4">
+                            <span class="text-sm text-blue-700 font-medium">June 15, 2023</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-sm text-gray-500">5 min read</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Announcing Our New Innovation Challenge Winners</h3>
+                        <p class="text-gray-600 mb-6">We're thrilled to announce the winners of our annual innovation challenge. After months of rigorous competition, these five startups stood out with their groundbreaking solutions to pressing social and economic challenges.</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Author" class="author-avatar mr-3">
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">Sarah Johnson</p>
+                                <p class="text-xs text-gray-500">Hub Director</p>
+                            </div>
+                            <a href="#" class="ml-auto text-blue-700 font-medium flex items-center">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Posts Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Post 1 -->
+                <div class="post-card bg-white shadow-md animate__animated animate__fadeIn">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Workshop Announcement" class="w-full h-48 object-cover post-image">
+                        <span class="category-badge">Event</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">June 10, 2023</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">3 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Upcoming Workshop: Design Thinking for Startups</h3>
+                        <p class="text-gray-600 text-sm mb-4">Join us for an intensive workshop on applying design thinking principles to your startup challenges. Limited seats available!</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" class="author-avatar mr-3">
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">John Doe</p>
+                                <p class="text-xs text-gray-500">Program Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Post 2 -->
+                <div class="post-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Startup Success" class="w-full h-48 object-cover post-image">
+                        <span class="category-badge">Success Story</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">May 28, 2023</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">4 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">How GreenFuture Raised $2M in Seed Funding</h3>
+                        <p class="text-gray-600 text-sm mb-4">The inspiring journey of one of our incubated startups from concept to successful funding round.</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Author" class="author-avatar mr-3">
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">Lisa Chen</p>
+                                <p class="text-xs text-gray-500">Community Lead</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Post 3 -->
+                <div class="post-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Tech Insights" class="w-full h-48 object-cover post-image">
+                        <span class="category-badge">Tech Insights</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">May 15, 2023</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">6 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Emerging Trends in AI for Social Impact</h3>
+                        <p class="text-gray-600 text-sm mb-4">Exploring how artificial intelligence is being leveraged to solve pressing social challenges in our region.</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Author" class="author-avatar mr-3">
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">David Kim</p>
+                                <p class="text-xs text-gray-500">Tech Advisor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Post 4 -->
+                <div class="post-card bg-white shadow-md animate__animated animate__fadeIn">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="New Partnership" class="w-full h-48 object-cover post-image">
+                        <span class="category-badge">News</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">May 5, 2023</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">3 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Hub Partners With Tech Giant for Innovation Program</h3>
+                        <p class="text-gray-600 text-sm mb-4">We're excited to announce a new partnership that will bring cutting-edge resources to our startups.</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Author" class="author-avatar mr-3">
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">Maria Garcia</p>
+                                <p class="text-xs text-gray-500">Partnerships</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Post 5 -->
+                <div class="post-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Mentor Spotlight" class="w-full h-48 object-cover post-image">
+                        <span class="category-badge">Community</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">April 28, 2023</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">5 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Mentor Spotlight: Interview With Tech Entrepreneur</h3>
+                        <p class="text-gray-600 text-sm mb-4">Learn from the experiences of one of our most active mentors and serial entrepreneur.</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Author" class="author-avatar mr-3">
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">James Wilson</p>
+                                <p class="text-xs text-gray-500">Community Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Post 6 -->
+                <div class="post-card bg-white shadow-md animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Research Findings" class="w-full h-48 object-cover post-image">
+                        <span class="category-badge">Research</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs text-blue-700 font-medium">April 15, 2023</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <span class="text-xs text-gray-500">7 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">New Report: State of Innovation in Our Region</h3>
+                        <p class="text-gray-600 text-sm mb-4">Key findings from our annual innovation ecosystem report and what they mean for startups.</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Author" class="author-avatar mr-3">
+                            <div>
+                                <p class="text-sm font-medium text-gray-800">Lisa Wong</p>
+                                <p class="text-xs text-gray-500">Research Lead</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <button class="bg-blue-700 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-800 transition-colors duration-300 inline-flex items-center">
+                    Load More Posts
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="blue-700 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Stay Updated With Our Hub</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Subscribe to our newsletter for the latest news, events, and opportunities
+            </p>
+            <div class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-l-full focus:outline-none text-gray-800">
+                <button class="bg-white text-blue-700 font-bold py-3 px-6 rounded-r-full hover:bg-gray-100 transition-colors duration-300">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-blue-900 text-white px-16 py-12 m-10 mx-20 rounded-2xl relative overflow-hidden">
+        <!-- Watermark -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+            <span class="text-[200px] font-bold text-white transform rotate-[0deg]">NiiH</span>
+        </div>
+        
+        <div class="grid grid-cols-4 gap-8 relative z-10">
+            <div>
+                <img src="/assets/logo-white.png" alt="NiiH Logo" class="h-8 mb-4">
+                <p class="text-sm text-gray-300">
+                    Empowering innovators to transform ideas into reality.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                    <li><a href="#" class="hover:text-white">Services</a></li>
+                    <li><a href="#" class="hover:text-white">Projects</a></li>
+                    <li><a href="#" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white">Blog</a></li>
+                    <li><a href="#" class="hover:text-white">Documentation</a></li>
+                    <li><a href="#" class="hover:text-white">Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-blue-400">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-700 text-sm text-gray-300 text-center relative z-10">
+            <p>&copy; 2024 NiiH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.getAttribute('class').match(/animate__\w+/g).find(cls => cls !== 'animate__animated');
+                        entry.target.classList.add(animation);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
