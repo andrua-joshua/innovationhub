@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        
         <style>
             .fade-in {
                 animation: fadeIn 1s ease-in;
@@ -24,6 +25,26 @@
             
             .float {
                 animation: float 3s ease-in-out infinite;
+            }
+
+            .pulse {
+                animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+
+            .slide-in-top {
+                animation: slideInTop 0.8s ease-out;
+            }
+
+            .slide-in-bottom {
+                animation: slideInBottom 0.8s ease-out;
+            }
+
+            .zoom-in {
+                animation: zoomIn 0.8s ease-out;
+            }
+
+            .rotate-in {
+                animation: rotateIn 1s ease-out;
             }
             
             @keyframes fadeIn {
@@ -53,6 +74,31 @@
                 50% { transform: translateY(-20px); }
                 100% { transform: translateY(0px); }
             }
+
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.5; }
+            }
+
+            @keyframes slideInTop {
+                from { transform: translateY(-100%); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+
+            @keyframes slideInBottom {
+                from { transform: translateY(100%); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+
+            @keyframes zoomIn {
+                from { transform: scale(0); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
+
+            @keyframes rotateIn {
+                from { transform: rotate(-180deg) scale(0); opacity: 0; }
+                to { transform: rotate(0) scale(1); opacity: 1; }
+            }
             
             .hover-scale {
                 transition: transform 0.3s ease;
@@ -61,26 +107,103 @@
             .hover-scale:hover {
                 transform: scale(1.05);
             }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+            
+            .partner-scroll {
+                animation: scroll 30s linear infinite;
+            }
+            
+            .partner-scroll:hover {
+                animation-play-state: paused;
+            }
+
+            /* Mobile menu styles */
+            .mobile-menu {
+                transition: transform 0.3s ease-in-out;
+                transform: translateY(-100%);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 50;
+            }
+            
+            .mobile-menu.open {
+                transform: translateY(0);
+            }
+            
+            /* Hamburger menu animation */
+            .hamburger-line {
+                transition: all 0.3s ease-in-out;
+            }
+            
+            .hamburger.open .hamburger-line:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.open .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.open .hamburger-line:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
         </style>
     </head>
     <body class="bg-gray-100">
-       <div class="flex items-center justify-between px-8 py-4 bg-white shadow-md slide-in-top">
-            <div class="flex items-center">
-                <img src="/assets/logo.png" alt="Logo" class="h-8 w-auto hover-scale">
+       <div class="relative bg-white shadow-md slide-in-top">
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center justify-between px-8 py-4">
+                <div class="flex items-center">
+                    <img src="/assets/logo.png" alt="Logo" class="h-6 w-auto hover-scale">
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-sm text-white bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Home</a>
+                    <a href="/pages/whatwedo.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">What we do</a>
+                    <a href="/pages/programs.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Programs</a>
+                    <a href="/pages/startups.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Startups</a>
+                    <a href="/pages/about.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">About us</a>
+                    <a href="/pages/contactus.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Contact</a>
+                    <a href="/pages/login.html" class="text-sm px-3 py-1.5 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400 hover-scale">Join the hub</a>
+                </div>
             </div>
-            <div class="flex items-center space-x-6">
-                <a href="#" class="text-white bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200 hover-scale">Home</a>
-                <a href="/pages/whatwedo.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200 hover-scale">What we do</a>
-                <a href="/pages/programs.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200 hover-scale">Programs</a>
-                <a href="/pages/startups.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200 hover-scale">Startups</a>
-                <a href="/pages/about.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200 hover-scale">About us</a>
-                <a href="/pages/contactus.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200 hover-scale">Contact</a>
-                <a href="/pages/posts.html" class="text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-4 py-2 transition-colors duration-200 hover-scale">NiiH Posts</a>
-                <a href="/pages/login.html" class="px-4 py-2 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400 hover-scale">Join the hub</a>
+            
+            <!-- Mobile Navigation -->
+            <div class="block md:hidden">
+                <div class="flex items-center justify-between px-4 py-4">
+                    <div class="flex items-center">
+                        <img src="/assets/logo.png" alt="Logo" class="h-6 w-auto hover-scale">
+                    </div>
+                    <button id="mobile-menu-button" class="hamburger p-2 focus:outline-none">
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800"></div>
+                    </button>
+                </div>
+                
+                <div id="mobile-menu" class="mobile-menu bg-white shadow-lg">
+                    <div class="flex flex-col p-4 space-y-3">
+                        <a href="#" class="text-sm text-white bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">Home</a>
+                        <a href="/pages/whatwedo.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">What we do</a>
+                        <a href="/pages/programs.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">Programs</a>
+                        <a href="/pages/startups.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">Startups</a>
+                        <a href="/pages/about.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">About us</a>
+                        <a href="/pages/contactus.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">Contact</a>
+                        <a href="/pages/login.html" class="text-sm px-3 py-1.5 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400 hover-scale text-center">Join the hub</a>
+                    </div>
+                </div>
             </div>
        </div>
 
-       <div class="relative flex items-center justify-between px-16 py-12">
+       <div class="relative flex flex-col md:flex-row items-center justify-between px-4 md:px-16 py-8 md:py-12">
             <!-- Glass morphism background -->
             <div class="absolute inset-0">
                 <div class="absolute inset-0 bg-blue-50/30 backdrop-blur-sm rounded-3xl"></div>
@@ -90,12 +213,12 @@
                 <div class="absolute bottom-1/3 right-1/3 w-24 h-24 bg-white/30 rounded-full blur-2xl"></div>
             </div>
             
-            <div class="relative w-1/2 space-y-6 slide-in-left">
-                <h1 class="text-5xl font-bold text-gray-800 animate__animated animate__fadeInDown">
+            <div class="relative w-full md:w-1/2 space-y-6 slide-in-left mb-8 md:mb-0">
+                <h1 class="text-3xl md:text-5xl font-bold text-gray-800 animate__animated animate__fadeInDown">
                     Empowering Innovators, <br /> 
-                    <span class="text-lime-500">Transforming Ideas</span>
+                    <span class="text-lime-500 pulse">Transforming Ideas</span>
                 </h1>
-                <p class="text-gray-600 text-lg animate__animated animate__fadeIn animate__delay-1s">
+                <p class="text-gray-600 text-base md:text-lg animate__animated animate__fadeIn animate__delay-1s">
                     Welcome to the intersection of innovation and imagination, <br />where your digital aspirations come to life
                 </p>
                 <div class="space-x-4">
@@ -106,136 +229,97 @@
                         </svg>
                     </button>
                 </div>
-                <div class="flex space-x-4">
-                    <div class="group relative w-48 h-48 hover:w-48 transition-all duration-300 ease-in-out overflow-hidden rounded-lg cursor-pointer hover-scale">
+                <div class="flex flex-wrap justify-center md:justify-start space-x-4">
+                    <div class="group relative w-36 md:w-48 h-36 md:h-48 hover:w-48 transition-all duration-300 ease-in-out overflow-hidden rounded-lg cursor-pointer hover-scale mb-4">
                         <div class="absolute inset-0 bg-[url('/assets/Frame26.png')] bg-cover bg-center opacity-70"></div>
                         <div class="absolute inset-0 bg-black bg-opacity-60 transition-all duration-300"></div>
                         <div class="relative p-4 text-white mt-12">
-                            <h3 class="text-xl font-bold whitespace-nowrap">HACKATHON</h3>
+                            <h3 class="text-lg font-bold whitespace-nowrap">HACKATHON</h3>
                             <p class="hidden group-hover:block mt-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Join exciting coding challenges</p>
                         </div>
                     </div>
                     
-                    <div class="group relative w-20 h-48 hover:w-48 transition-all duration-300 ease-in-out overflow-hidden rounded-lg cursor-pointer hover-scale">
+                    <div class="group relative w-20 md:w-20 h-36 md:h-48 hover:w-48 transition-all duration-300 ease-in-out overflow-hidden rounded-lg cursor-pointer hover-scale mb-4">
                         <div class="absolute inset-0 bg-[url('/assets/idea-garage.jpg')] bg-cover bg-center opacity-70"></div>
                         <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300"></div>
                         <div class="relative p-4 text-white rotate-[-90deg] group-hover:rotate-0 transition-all duration-300 group-hover:mt-12">
-                            <h3 class="text-xl font-bold whitespace-nowrap">IDEA GARAGE</h3>
+                            <h3 class="text-lg font-bold whitespace-nowrap">IDEA GARAGE</h3>
                             <p class="hidden group-hover:block mt-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Develop your innovative concepts</p>
                         </div>
                     </div>
 
-                    <div class="group relative w-20 h-48 hover:w-48 transition-all duration-300 ease-in-out overflow-hidden rounded-lg cursor-pointer hover-scale">
+                    <div class="group relative w-20 md:w-20 h-36 md:h-48 hover:w-48 transition-all duration-300 ease-in-out overflow-hidden rounded-lg cursor-pointer hover-scale mb-4">
                         <div class="absolute inset-0 bg-[url('/assets/basecamp.jpg')] bg-cover bg-center opacity-70"></div>
                         <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300"></div>
                         <div class="relative p-4 text-white rotate-[-90deg] group-hover:rotate-0 transition-all duration-300 group-hover:mt-12">
-                            <h3 class="text-xl font-bold whitespace-nowrap">BASECAMP</h3>
+                            <h3 class="text-lg font-bold whitespace-nowrap">BASECAMP</h3>
                             <p class="hidden group-hover:block mt-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Start your innovation journey</p>
                         </div>
                     </div>
 
-                    <div class="group relative w-20 h-48 hover:w-48 transition-all duration-300 ease-in-out overflow-hidden rounded-lg cursor-pointer hover-scale">
+                    <div class="group relative w-20 md:w-20 h-36 md:h-48 hover:w-48 transition-all duration-300 ease-in-out overflow-hidden rounded-lg cursor-pointer hover-scale mb-4">
                         <div class="absolute inset-0 bg-[url('/assets/corporate.jpg')] bg-cover bg-center opacity-70"></div>
                         <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300"></div>
                         <div class="relative p-4 text-white rotate-[-90deg] group-hover:rotate-0 transition-all duration-300 group-hover:mt-12">
-                            <h3 class="text-xl font-bold whitespace-nowrap">CORPORATE HACKATHONS</h3>
+                            <h3 class="text-lg font-bold whitespace-nowrap">CORPORATE HACKATHONS</h3>
                             <p class="hidden group-hover:block mt-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Custom innovation programs</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="relative w-1/2 flex justify-center slide-in-right">
+            <div class="relative w-full md:w-1/2 flex justify-center slide-in-right">
                 <img src="assets/illustrativ.png" alt="Innovation Illustration" class="w-4/5 relative z-10 float">
             </div>
         </div>
 
         <!-- Partner Logos Section -->
-        <div class="px-16 py-12 fade-in">
-            <div class="flex items-center justify-center space-x-12">
-                <img src="/assets/MTN-Logo1.png" alt="MTC" class="h-8 hover-scale">
-                <img src="/assets/Huawei-Symbol1.png" alt="Huawei" class="h-8 hover-scale">
-                <img src="/assets/SDA 1.png" alt="Meta" class="h-8 hover-scale">
-                <img src="/assets/logo-70.png" alt="Google" class="h-8 hover-scale">
-                <img src="/assets/logo-35.png" alt="Singularity" class="h-8 hover-scale">
+        <div class="px-4 md:px-16 py-8 md:py-12 fade-in">
+            <div class="flex flex-wrap items-center justify-center space-x-4 md:space-x-12">
+                <img src="/assets/MTN-Logo1.png" alt="MTC" class="h-6 md:h-8 hover-scale zoom-in mb-4">
+                <img src="/assets/Huawei-Symbol1.png" alt="Huawei" class="h-6 md:h-8 hover-scale zoom-in mb-4">
+                <img src="/assets/SDA 1.png" alt="Meta" class="h-6 md:h-8 hover-scale zoom-in mb-4">
+                <img src="/assets/logo-70.png" alt="Google" class="h-6 md:h-8 hover-scale zoom-in mb-4">
+                <img src="/assets/logo-35.png" alt="Singularity" class="h-6 md:h-8 hover-scale zoom-in mb-4">
             </div>
         </div>
 
         <!-- Journey Section -->
-        <div class="relative px-16 py-12 mx-20 my-20 bg-blue-100 rounded-2xl bounce-in">
-            <div class="absolute inset-0">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-400/40 via-purple-300/40 to-white/50 rounded-2xl blur-xl"></div>
-                <div class="absolute inset-0 bg-white/50 rounded-2xl blur-2xl opacity-80"></div>
-                <div class="absolute top-1/4 left-1/4 w-20 h-20 bg-purple-200/60 rounded-full blur-xl"></div>
-                <div class="absolute bottom-1/3 right-1/3 w-24 h-24 bg-blue-200/50 rounded-full blur-xl"></div>
-            </div>
-            <h1 class="text-5xl text-blue-700 text-center mb-12 animate__animated animate__fadeInDown"><span class="font-bold">Your Journey</span> Starts Here</h1>
-            <div class="relative grid grid-cols-4 gap-8">
-
-                <!-- Journey Cards -->
-                <div class="relative backdrop-blur-sm p-6 rounded-xl bg-lime-300 hover-scale">
-                    <h3 class="text-xl font-semibold mb-3">Ideation</h3>
-                    <div class="p-4 bg-blue-600 from-blue-50 to-blue-100/50 rounded-xl flex flex-col justify-center items-center">
-                        <p class="text-white">A startup at the desing stage is in its earliest development phase where founders identify the problem and the solution and validate the idea</p>
-                    </div>
-                </div>
-                <div class="relative bg-white/80 backdrop-blur-sm p-3 rounded-xl h-[240px] hover-scale">
-                    <div class="p-4 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl border-4 border-dotted border-lime-300 h-full flex flex-col justify-center items-center text-center">
-                        <h3 class="text-xl font-bold mb-3 text-blue-700">Incubation</h3>
-                        <p class="text-gray-600">Build a marketable product</p>
-                    </div>
-                </div>
-                <div class="relative bg-white/80 backdrop-blur-sm p-3 rounded-xl h-[240px] hover-scale">
-                    <div class="p-4 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl border-4 border-dotted border-lime-300 h-full flex flex-col justify-center items-center text-center">
-                        <h3 class="text-xl font-bold mb-3 text-blue-700">Acceleration</h3>
-                        <p class="text-gray-600">Scale Your Business</p>
-                    </div>
-                </div>
-
-                <div class="relative bg-white/80 backdrop-blur-sm p-3 rounded-xl h-[240px] hover-scale">
-                    <div class="p-4 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl border-4 border-dotted border-lime-300 h-full flex flex-col justify-center items-center text-center">
-                        <h3 class="text-xl font-bold mb-3 text-blue-700">Tech SME</h3>
-                        <p class="text-gray-600">Expand with support</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
+        
         <!-- Statistics Section -->
-        <div class="relative px-16 py-12 overflow-hidden flex fade-in">
-            <div class="relative mt-12 text-2xl font-bold bg-blue-900 text-white p-12 py-20 rounded-2xl flex-2 hover-scale">
-                <h1 class="text-4xl">Recognize your <br /><span class="text-yellow-400">success</span> and keep<br>
+        <div class="relative px-4 md:px-16 py-8 md:py-12 overflow-hidden flex flex-col md:flex-row fade-in">
+            <div class="relative mt-6 md:mt-12 text-xl md:text-2xl font-bold bg-blue-900 text-white p-6 md:p-12 py-10 md:py-20 rounded-2xl flex-2 hover-scale slide-in-bottom mb-8 md:mb-0">
+                <h1 class="text-2xl md:text-4xl">Recognize your <br /><span class="text-yellow-400">success</span> and keep<br>
                 working to accomplish<br/>more.</h1>
             </div>
 
-            <div class="flex-1 ml-10">
-                <div class="relative grid grid-cols-2 gap-8">
-                    <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
-                        <div class="text-4xl font-bold text-blue-700">$812+</div>
-                        <div class="text-sm mt-2 text-blue-400">Million Raised</div>
-                        <p class="text-gray-600">Total amount of money raused to a result of working with Walk Studio</p>
+            <div class="flex-1 ml-0 md:ml-10">
+                <div class="relative grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
+                    <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
+                        <div class="text-3xl md:text-4xl font-bold text-blue-700 counter" data-target="50">0</div>
+                        <div class="text-sm mt-2 text-blue-400">Startups Impacted</div>
+                        <p class="text-gray-600 text-sm md:text-base">Total number of startups that have managed to strive through our eco-system.</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
-                        <div class="text-4xl font-bold text-blue-700">12+</div>
-                        <div class="text-sm mt-2 text-blue-400">Unicorn Award</div>
-                        <p class="text-gray-600">We have received various awards with prayers and effrorts</p>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
+                        <div class="text-3xl md:text-4xl font-bold text-blue-700 counter" data-target="500">0</div>
+                        <div class="text-sm mt-2 text-blue-400">Events Hosted</div>
+                        <p class="text-gray-600 text-sm md:text-base">We have managed to host over more than 500 Tech-Events over the past few years</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
-                        <div class="text-4xl font-bold text-blue-700">400+</div>
-                        <div class="text-sm mt-2 text-blue-400">Our Client</div>
-                        <p class="text-gray-600">Total of all clients arounf the world who have collaborated with us</p>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
+                        <div class="text-3xl md:text-4xl font-bold text-blue-700 counter" data-target="1000">0</div>
+                        <div class="text-sm mt-2 text-blue-400">Trainings</div>
+                        <p class="text-gray-600 text-sm md:text-base">Over 1000 Trainning have been hosted through the hub to develope the mind of Innovators that the economy needs.</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
-                        <div class="text-4xl font-bold text-blue-700">425+</div>
-                        <div class="text-sm mt-2 text-blue-400">Projects Completed</div>
-                        <p class="text-gray-600">Various kind of big projects that have been completed on time</p>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
+                        <div class="text-3xl md:text-4xl font-bold text-blue-700 counter" data-target="20">0</div>
+                        <div class="text-sm mt-2 text-blue-400">Programs</div>
+                        <p class="text-gray-600 text-sm md:text-base">Various kind of big programs that have been completed on time</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Why Choose NiiH Section -->
-        <div class="px-20 py-12 mx-20 bg-gradient-to-b from-blue-50/50 my-20 rounded-2xl relative overflow-hidden bounce-in">
+        <div class="px-4 md:px-20 py-8 md:py-12 mx-4 md:mx-20 bg-gradient-to-b from-blue-50/50 bg-blue-100 my-10 md:my-20 rounded-2xl relative overflow-hidden bounce-in">
             <!-- Glass morphism effects -->
             <div class="absolute inset-0">
                 <div class="absolute inset-0 bg-gradient-to-br from-blue-400/40 via-purple-300/40 to-white/50 rounded-2xl blur-xl"></div>
@@ -244,50 +328,50 @@
                 <div class="absolute bottom-1/3 right-1/3 w-24 h-24 bg-blue-200/50 rounded-full blur-xl"></div>
             </div>
 
-            <div class="relative flex flex items-center justify-between">
+            <div class="relative flex flex-col md:flex-row items-center justify-between">
                 
-                <div>
-                    <h2 class="text-4xl font-bold mb-8">Why Choose <span class="text-blue-600">NiiH</span></h2>
-                    <p class="text-gray-600 mb-12 max-w-2xl">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-8 slide-in-left">Why Choose <span class="text-blue-600 pulse">NiiH</span></h2>
+                    <p class="text-gray-600 mb-6 md:mb-12 max-w-2xl text-sm md:text-base">
                         The best platform and ecosystem for building and scaling innovative solutions. We provide comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.
                     </p>
                 </div>
                 
-                <div class="grid grid-cols-1 gap-8">
-                    <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm flex items-center justify-center hover-scale">
-                        <div class="mb-4 border-2 border-blue-600 rounded-md p-2 mr-5">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div class="grid grid-cols-1 gap-4 md:gap-8 w-full md:w-auto">
+                    <div class="bg-white/80 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-sm flex items-center justify-center hover-scale">
+                        <div class="mb-4 border-2 border-blue-600 rounded-md p-2 mr-3 md:mr-5">
+                            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                             </svg>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold mb-3">Conductive Co-working spaces</h3>
-                            <p class="text-gray-600">Total amount of money raused to a result of working with Walk Studio</p>
+                            <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Conductive Co-working spaces</h3>
+                            <p class="text-gray-600 text-sm md:text-base">Total amount of money raused to a result of working with Walk Studio</p>
                         </div>
                     </div>
 
                     
-                    <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm flex items-center justify-center hover-scale">
-                        <div class="mb-4 border-2 border-blue-600 rounded-md p-2 mr-5">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <div class="bg-white/80 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-sm flex items-center justify-center hover-scale">
+                        <div class="mb-4 border-2 border-blue-600 rounded-md p-2 mr-3 md:mr-5">
+                            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                             </svg>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold mb-3">Incubatution Suport Service</h3>
-                            <p class="text-gray-600">Total amount of money raused to a result of working with Walk Studio</p>
+                            <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Incubatution Suport Service</h3>
+                            <p class="text-gray-600 text-sm md:text-base">Total amount of money raused to a result of working with Walk Studio</p>
                         </div>
                     </div>
 
-                    <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm flex items-center justify-center hover-scale">
-                        <div class="mb-4 border-2 border-blue-600 rounded-md p-2 mr-5">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <div class="bg-white/80 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-sm flex items-center justify-center hover-scale">
+                        <div class="mb-4 border-2 border-blue-600 rounded-md p-2 mr-3 md:mr-5">
+                            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                             </svg>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold mb-3">Acceleration Support Service</h3>
-                            <p class="text-gray-600">Total amount of money raused to a result of working with Walk Studio</p>
+                            <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Acceleration Support Service</h3>
+                            <p class="text-gray-600 text-sm md:text-base">Total amount of money raused to a result of working with Walk Studio</p>
                         </div>
                     </div>
                     
@@ -296,150 +380,150 @@
         </div>
 
         <!-- Latest News Section -->
-        <div class="px-20 py-12 mx-10 fade-in">
-            <div class="text-center mb-12">
-                <span class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm">AI Robitics & Technology Website</span>
-                <h2 class="text-4xl font-bold mt-4">See Our Latest News!</h2>
+        <div class="px-4 md:px-20 py-8 md:py-12 mx-2 md:mx-10 fade-in">
+            <div class="text-center mb-6 md:mb-12 slide-in-top">
+                <span class="bg-blue-600 text-white px-3 md:px-4 py-1 rounded-full text-xs md:text-sm">AI Robitics & Technology Website</span>
+                <h2 class="text-2xl md:text-4xl font-bold mt-2 md:mt-4">See Our Latest News!</h2>
             </div>
 
-            <div class="grid grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
                 <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
-                    <img src="/assets/news.jpeg" alt="News 1" class="w-full h-[390px] object-cover">
-                    <div class="py-6">
-                        <h3 class="text-xl font-semibold mb-3">Explore New Era of Automation: AI & Robotics Technology</h3>
-                        <div class="flex items-center justify-between text-sm text-orange-500">
+                    <img src="/assets/news.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
+                    <div class="py-4 md:py-6">
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Explore New Era of Automation: AI & Robotics Technology</h3>
+                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
                             <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
                                 <span>Oct 15, 2023</span>
                             </div>
-                            <div class="flex items-center space-x-4">
+                            <div class="flex items-center space-x-2 md:space-x-4">
                                 <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                                     </svg>
                                     <span>42</span>
                                 </div>
                                 <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                                     </svg>
                                     <span>12</span>
                                 </div>
                             </div>
                         </div>
-                        <hr class="my-4">
-                        <p class="text-gray-600">From smart industrial robotics to AI-Powered systems, we offer comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.</p>
+                        <hr class="my-2 md:my-4">
+                        <p class="text-gray-600 text-sm md:text-base">From smart industrial robotics to AI-Powered systems, we offer comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.</p>
                     </div>
                 </div>
 
                 <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
-                    <img src="/assets/news.jpeg" alt="News 1" class="w-full h-[390px] object-cover">
-                    <div class="py-6">
-                        <h3 class="text-xl font-semibold mb-3">Explore New Era of Automation: AI & Robotics Technology</h3>
-                        <div class="flex items-center justify-between text-sm text-orange-500">
+                    <img src="/assets/news.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
+                    <div class="py-4 md:py-6">
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Explore New Era of Automation: AI & Robotics Technology</h3>
+                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
                             <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
                                 <span>Oct 15, 2023</span>
                             </div>
-                            <div class="flex items-center space-x-4">
+                            <div class="flex items-center space-x-2 md:space-x-4">
                                 <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                                     </svg>
                                     <span>42</span>
                                 </div>
                                 <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                                     </svg>
                                     <span>12</span>
                                 </div>
                             </div>
                         </div>
-                        <hr class="my-4">
-                        <p class="text-gray-600">From smart industrial robotics to AI-Powered systems, we offer comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.</p>
+                        <hr class="my-2 md:my-4">
+                        <p class="text-gray-600 text-sm md:text-base">From smart industrial robotics to AI-Powered systems, we offer comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.</p>
                     </div>
                 </div>
-
-
 
                 <div class="rounded-xl overflow-hidden shadow-sm">
-                    <img src="/assets/news.jpeg" alt="News 1" class="w-full h-[390px] object-cover">
-                    <div class="py-6">
-                        <h3 class="text-xl font-semibold mb-3">Explore New Era of Automation: AI & Robotics Technology</h3>
-                        <div class="flex items-center justify-between text-sm text-orange-500">
+                    <img src="/assets/news.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
+                    <div class="py-4 md:py-6">
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Explore New Era of Automation: AI & Robotics Technology</h3>
+                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
                             <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
                                 <span>Oct 15, 2023</span>
                             </div>
-                            <div class="flex items-center space-x-4">
+                            <div class="flex items-center space-x-2 md:space-x-4">
                                 <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                                     </svg>
                                     <span>42</span>
                                 </div>
                                 <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                                     </svg>
                                     <span>12</span>
                                 </div>
                             </div>
                         </div>
-                        <hr class="my-4">
-                        <p class="text-gray-600">From smart industrial robotics to AI-Powered systems, we offer comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.</p>
+                        <hr class="my-2 md:my-4">
+                        <p class="text-gray-600 text-sm md:text-base">From smart industrial robotics to AI-Powered systems, we offer comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.</p>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
 
         <!-- Startup Trust Section -->
-        <div class="px-16 py-20 bg-gradient-to-b from-blue-50/50 bg-blue-100 mx-20 rounded-2xl">
-            <h1 class="text-5xl font-bold text-center mb-12 text-blue-800">Startup's Trust Us</h1>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-                At <b>NiiH</b>, we invite you to embark on a visual journey through our must-see portfolio of startups. Each project encapsulates the essence of innovation and excellence, creativity and innovation.
+        <div class="px-4 md:px-16 py-8 md:py-20 bg-gradient-to-b from-blue-50/50 bg-blue-100 mx-4 md:mx-20 rounded-2xl slide-in-bottom">
+            <h1 class="text-3xl md:text-5xl font-bold text-center mb-6 md:mb-12 text-blue-800 animate__animated animate__pulse animate__infinite">Our Partners</h1>
+            <p class="text-center text-gray-600 mb-6 md:mb-12 max-w-2xl mx-auto text-sm md:text-base">
+                At <b>NiiH</b>, we collaborate with leading organizations to create an ecosystem of innovation and excellence. Our partners help us drive technological advancement and economic growth in Uganda.
             </p>
-            <div class="flex flex-wrap justify-center items-center gap-8 max-w-4xl mx-auto">
-                <img src="/assets/logo-35.png" alt="UZ" class="h-12">
-                <img src="/assets/MTN-Logo1.png" alt="Bidena" class="h-12">
-                <img src="/assets/Huawei-Symbol1.png" alt="Roar" class="h-12">
-                <img src="/assets/logo.png" alt="Lifeworks" class="h-12">
-                <img src="/assets/SDA 1.png" alt="Bidena" class="h-12">
-                <img src="/assets/Polygon 3.png" alt="Roar" class="h-12">
-                <img src="/assets/SDA 1.png" alt="Bidena" class="h-12">
-            </div>
-            <div class="flex flex-wrap justify-center items-center gap-8 max-w-4xl mx-auto mt-8">
-                <img src="/assets/logo-35.png" alt="UZ" class="h-12">
-                <img src="/assets/MTN-Logo1.png" alt="Bidena" class="h-12">
-                <img src="/assets/Huawei-Symbol1.png" alt="Roar" class="h-12">
+            <div class="overflow-hidden relative">
+                <div class="flex items-center space-x-4 md:space-x-8 partner-scroll">
+                    <img src="/assets/logo-35.png" alt="UZ" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/MTN-Logo1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/Huawei-Symbol1.png" alt="Roar" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/logo.png" alt="Lifeworks" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/SDA 1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/Polygon 3.png" alt="Roar" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/SDA 1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
+                    <!-- Duplicate logos for seamless scrolling -->
+                    <img src="/assets/logo-35.png" alt="UZ" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/MTN-Logo1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/Huawei-Symbol1.png" alt="Roar" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/logo.png" alt="Lifeworks" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/SDA 1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/Polygon 3.png" alt="Roar" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/SDA 1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
+                </div>
             </div>
         </div>
 
         <!-- Join Section -->
-        <div class="px-16 py-12 flex flex items-start justify-between my-20 px-14 py-12 bg-blue-100 rounded-2xl mx-20">
-            <div class="flex-3">
-                <h2 class="text-4xl mb-4">Join the <br/><span class="text-blue-800 font-bold">National&nbsp;ICT&nbsp;Innovation&nbsp;Hub</span></h2>
-                <h2 class="text-2xl mb-8 font-bold">and bring your ideas to life.</h2>
+        <div class="px-4 md:px-16 py-8 md:py-12 flex flex-col md:flex-row items-start justify-between my-10 md:my-20 px-4 md:px-14 py-6 md:py-12 bg-blue-100 rounded-2xl mx-4 md:mx-20 slide-in-bottom">
+            <div class="flex-3 mb-6 md:mb-0">
+                <h2 class="text-2xl md:text-4xl mb-2 md:mb-4">Join the <br/><span class="text-blue-800 font-bold pulse">National&nbsp;ICT&nbsp;Innovation&nbsp;Hub</span></h2>
+                <h2 class="text-xl md:text-2xl mb-4 md:mb-8 font-bold">and bring your ideas to life.</h2>
             </div>
-            <div class="ml-14 flex-2">
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+            <div class="ml-0 md:ml-14 flex-2 w-full md:w-auto">
+                <p class="text-gray-600 mb-4 md:mb-8 max-w-2xl mx-auto text-sm md:text-base">
                     Whether you're an entrepreneur, a startup or a tech enthusiast, we're here to help you bring your ideas to life.
                 </p>
                 <div class="flex relative max-w-2xl">
-                    <input type="email" placeholder="Enter your email" class="w-full px-6 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500">
-                    <button class="absolute right-2 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 font-semibold flex items-center">
+                    <input type="email" placeholder="Enter your email" class="w-full px-4 md:px-6 py-2 md:py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500">
+                    <button class="absolute right-2 px-4 md:px-8 py-2 md:py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 font-semibold flex items-center text-sm md:text-base">
                         Subscribe
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                         </svg>
                     </button>
@@ -448,60 +532,142 @@
         </div>
 
         <!-- Footer -->
-        <footer class="bg-blue-900 text-white px-16 py-12 m-10 mx-20 rounded-2xl relative overflow-hidden">
+        <footer class="bg-blue-900 text-white px-4 md:px-16 py-8 md:py-12 m-4 md:m-10 mx-4 md:mx-20 rounded-2xl relative overflow-hidden fade-in">
             <!-- Watermark -->
             <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-                <span class="text-[200px] font-bold text-white transform rotate-[0deg]">NiiH</span>
+                <span class="text-[100px] md:text-[200px] font-bold text-white transform rotate-[0deg]">NiiH</span>
             </div>
             
-            <div class="grid grid-cols-4 gap-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 relative z-10">
                 <div>
-                    <img src="/assets/logo-white.png" alt="NiiH Logo" class="h-8 mb-4">
-                    <p class="text-sm text-gray-300">
-                        Empowering innovators to transform ideas into reality.
+                    <img src="/assets/logo-white.png" alt="NiiH Logo" class="h-6 md:h-8 mb-2 md:mb-4">
+                    <p class="text-xs md:text-sm text-gray-300">
+                        The catalyst for homegrown digital solutions and digital employment across Uganda.
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><a href="#" class="hover:text-white">About Us</a></li>
-                        <li><a href="#" class="hover:text-white">Services</a></li>
-                        <li><a href="#" class="hover:text-white">Projects</a></li>
-                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    <h4 class="font-semibold mb-2 md:mb-4">Quick Links</h4>
+                    <ul class="space-y-1 md:space-y-2 text-xs md:text-sm text-gray-300">
+                        <li><a href="/pages/about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="/pages/programs.html" class="hover:text-white">Programs</a></li>
+                        <li><a href="#" class="hover:text-white">Hub Calendar</a></li>
+                        <li><a href="#" class="hover:text-white">Studio Calendar</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Resources</h4>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><a href="#" class="hover:text-white">Blog</a></li>
-                        <li><a href="#" class="hover:text-white">Documentation</a></li>
-                        <li><a href="#" class="hover:text-white">Support</a></li>
+                    <h4 class="font-semibold mb-2 md:mb-4">Use Policies</h4>
+                    <ul class="space-y-1 md:space-y-2 text-xs md:text-sm text-gray-300">
+                        <li><a href="#" class="hover:text-white">Privacy Notice</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Use Policy</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-blue-400">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="hover:text-blue-400">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="hover:text-blue-400">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-                            </svg>
-                        </a>
-                    </div>
+                    <h4 class="font-semibold mb-2 md:mb-4">Get in Touch</h4>
+                    <p class="text-xs md:text-sm text-gray-300 mb-1 md:mb-2">
+                        Kampala - Uganda<br>
+                        New Portbell Road<br>
+                        UICT - Nakawa Campus<br>
+                        P.O.BOX 7817
+                    </p>
+                    <p class="text-xs md:text-sm text-gray-300">
+                        innovationhub@ict.go.ug
+                    </p>
                 </div>
             </div>
-            <div class="mt-8 pt-8 border-t border-gray-700 text-sm text-gray-300 text-center relative z-10">
-                <p>&copy; 2024 NiiH. All rights reserved.</p>
+
+            <div class="mt-4 md:mt-8 pt-4 md:pt-8 border-t border-gray-700 text-xs md:text-sm text-gray-300 text-center relative z-10">
+                <p>&copy; 2024 National ICT Innovation Hub. All rights reserved.</p>
             </div>
         </footer>
+
+        <script>
+            // Intersection Observer for scroll animations
+            document.addEventListener('DOMContentLoaded', function() {
+                // Mobile menu toggle
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const hamburger = document.querySelector('.hamburger');
+                
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('open');
+                    hamburger.classList.toggle('open');
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    const isClickInside = mobileMenuButton.contains(event.target) || mobileMenu.contains(event.target);
+                    
+                    if (!isClickInside && mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                        hamburger.classList.remove('open');
+                    }
+                });
+                
+                // Animation observer
+                const animationObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate');
+                            animationObserver.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1
+                });
+
+                // Observe elements with animation classes
+                document.querySelectorAll('.fade-in, .fade-up, .fade-left, .fade-right, .scale-up, .slide-in-bottom, .slide-in-top').forEach(el => {
+                    animationObserver.observe(el);
+                });
+
+                // Add stagger delay to elements
+                document.querySelectorAll('.stagger-delay-1').forEach(el => {
+                    el.style.animationDelay = '0.2s';
+                });
+                document.querySelectorAll('.stagger-delay-2').forEach(el => {
+                    el.style.animationDelay = '0.4s';
+                });
+                document.querySelectorAll('.stagger-delay-3').forEach(el => {
+                    el.style.animationDelay = '0.6s';
+                });
+
+                // Counter animation observer
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            const target = parseInt(counter.getAttribute('data-target'));
+                            const duration = 2000; // 2 seconds
+                            const step = target / (duration / 16); // 60fps
+                            let current = 0;
+                            
+                            const updateCounter = () => {
+                                current += step;
+                                if (current < target) {
+                                    counter.textContent = Math.floor(current);
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    counter.textContent = target+"+";
+                                }
+                            };
+                            
+                            updateCounter();
+                            counterObserver.unobserve(counter);
+                        }
+                    });
+                }, {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.5
+                });
+
+                // Observe counter elements
+                document.querySelectorAll('.counter').forEach(counter => {
+                    counterObserver.observe(counter);
+                });
+            });
+        </script>
     </body>
 </html>
