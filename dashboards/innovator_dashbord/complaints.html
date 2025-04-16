@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            /* Custom styles for dropdowns and date inputs */
+            .custom-select {
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+                background-position: right 1rem center;
+                background-repeat: no-repeat;
+                background-size: 1.25em 1.25em;
+                padding-right: 2.5rem;
+                transition: all 0.2s ease;
+            }
+
+            .custom-select:hover {
+                border-color: #93C5FD;
+            }
+
+            .custom-select:focus {
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233B82F6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            }
+
+            .custom-select option {
+                padding: 0.75rem;
+                font-size: 0.875rem;
+            }
+
+            .custom-select option:hover {
+                background-color: #EFF6FF;
+            }
+
+            .custom-date {
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'%3E%3C/path%3E%3C/svg%3E");
+                background-position: right 1rem center;
+                background-repeat: no-repeat;
+                background-size: 1.25em 1.25em;
+                padding-right: 2.5rem;
+                transition: all 0.2s ease;
+            }
+
+            .custom-date:hover {
+                border-color: #93C5FD;
+            }
+
+            .custom-date:focus {
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233B82F6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'%3E%3C/path%3E%3C/svg%3E");
+            }
+
+            .custom-textarea {
+                min-height: 150px;
+                resize: vertical;
+            }
+
+            /* Style for the select wrapper to add a subtle background */
+            .select-wrapper {
+                position: relative;
+                background-color: #F9FAFB;
+                border-radius: 0.375rem;
+                transition: all 0.2s ease;
+            }
+
+            .select-wrapper:hover {
+                background-color: #F3F4F6;
+            }
+
+            .select-wrapper:focus-within {
+                background-color: #FFFFFF;
+            }
+
+            /* Style for the date input wrapper */
+            .date-wrapper {
+                position: relative;
+                background-color: #F9FAFB;
+                border-radius: 0.375rem;
+                transition: all 0.2s ease;
+            }
+
+            .date-wrapper:hover {
+                background-color: #F3F4F6;
+            }
+
+            .date-wrapper:focus-within {
+                background-color: #FFFFFF;
+            }
+        </style>
+    </head>
+
+    <body class="bg-gray-100">
+        <div class="flex h-screen">
+            <!-- Sidebar (Same as index.html) -->
+            <div class="bg-white w-64 shadow-lg">
+                <div class="p-4 border-b">
+                    <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
+                    <!-- <h1 class="text-2xl font-bold text-gray-800">NIIT Hub</h1> -->
+                </div>
+                
+                <nav class="mt-6">
+                    <div class="px-4 space-y-2">
+                        <a href="index.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-chart-line w-6"></i>
+                            <span class="ml-3">Dashboard</span>
+                        </a>
+                        <a href="myapplications.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">My Applications</span>
+                        </a>
+                        
+                        <div class="relative">
+                            <button onclick="toggleServiceDesk()" class="w-full flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-laptop w-6"></i>
+                                <span class="ml-3 flex-1 text-left">Service Desk</span>
+                                <i id="service-arrow" class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
+                            </button>
+                            <!-- Expandable Menu -->
+                            <div id="service-menu" class=" overflow-hidden transition-all duration-200">
+                                <div class="py-1 space-y-1">
+                                    <a href="service-request.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-clipboard-list w-4"></i>
+                                        <span class="ml-2">Service Request</span>
+                                    </a>
+                                    <a href="complaints.html" class="flex items-center px-4 py-2 text-sm text-blue-600 bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-exclamation-circle w-4"></i>
+                                        <span class="ml-2">Complaints</span>
+                                    </a>
+                                    <a href="bookings.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-calendar-check w-4"></i>
+                                        <span class="ml-2">Bookings</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <a href="pulse-check.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">Pulse Check</span>
+                        </a>
+                        <a href="calendar.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-calendar-alt w-6"></i>
+                            <span class="ml-3">Hub Calendar</span>
+                        </a>
+
+                        <a href="feedback.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-comments w-6"></i>
+                            <span class="ml-3">Feedback</span>
+                        </a>
+                        
+                    </div>
+                </nav>
+
+                <div class="absolute bottom-0 w-64 p-4 border-t">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate">User Name</p>
+                            <p class="text-xs text-gray-500 truncate">user@example.com</p>
+                        </div>
+                        <button class="p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 overflow-auto">
+                <header class="bg-white shadow-sm">
+                    <div class="px-6 py-4 pt-10">
+                        <h2 class="text-xl font-semibold text-gray-800">Complaints</h2>
+                    </div>
+                </header>
+
+                <main class="p-6">
+                    <!-- Filters and Add New Button -->
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="flex space-x-4">
+                            <div class="relative">
+                                <div class="flex space-x-2 bg-white rounded-lg shadow-sm p-1">
+                                    <button onclick="filterStatus('all')" id="filter-all" class="px-4 py-2 text-sm font-medium rounded-md text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors">
+                                        All
+                                    </button>
+                                    <button onclick="filterStatus('submitted')" id="filter-submitted" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                        Submitted
+                                    </button>
+                                    <button onclick="filterStatus('under_review')" id="filter-under_review" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                        Under Review
+                                    </button>
+                                    <button onclick="filterStatus('under_investigation')" id="filter-under_investigation" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                        Under Investigation
+                                    </button>
+                                    <button onclick="filterStatus('resolved')" id="filter-resolved" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                        Resolved
+                                    </button>
+                                    <button onclick="filterStatus('rejected')" id="filter-rejected" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                        Rejected
+                                    </button>
+                            </div>
+                            </div>
+                            </div>
+                        <button onclick="showNewComplaintForm()" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            <i class="fas fa-plus mr-2"></i>Add New Complaint
+                            </button>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reference Number</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date Submitted</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Complaint Details</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Supporting Information</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-001</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-15</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Network connectivity issues in Building A</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Under Review</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-002</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-16</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Air conditioning malfunction in Conference Room B</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Under Investigation</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-003</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-17</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Security system not working properly</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Resolved</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-004</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-18</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Elevator not functioning on 3rd floor</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Under Investigation</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-005</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-19</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Water leakage in restroom on 2nd floor</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Under Review</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-006</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-20</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Projector not working in Training Room</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Resolved</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-007</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-21</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Noisy HVAC system in Office Area</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Under Investigation</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-008</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-22</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Insufficient lighting in Parking Area</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Under Review</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-009</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-23</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Broken window in Meeting Room</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Resolved</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-010</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-24</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Internet connectivity issues in Building B</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Under Investigation</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-011</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-25</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Printer not working in Marketing Department</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Under Review</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-012</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-26</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Fire alarm system malfunction</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-red-100 text-red-800">Rejected</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-013</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-27</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Broken chair in Reception Area</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Resolved</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-014</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-28</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Water dispenser not working</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Under Investigation</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-015</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-29</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Loud noise from construction site</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Under Review</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-016</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-30</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Broken door handle in Restroom</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Resolved</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-017</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-31</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Power outage in Server Room</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Under Investigation</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-018</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-04-01</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Broken window blinds in Office Area</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Under Review</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-019</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-04-02</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Malfunctioning coffee machine</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Resolved</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">CMP-2024-020</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-04-03</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Broken lock on storage room</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900">
+                                                <i class="fas fa-paperclip"></i> View Attachments
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Under Investigation</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3"><i class="fas fa-eye"></i></button>
+                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                            <div class="flex-1 flex justify-between sm:hidden">
+                                <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    Previous
+                                </button>
+                                <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    Next
+                                </button>
+                            </div>
+                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                                    <div>
+                                    <p class="text-sm text-gray-700">
+                                        Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">20</span> results
+                                    </p>
+                                    </div>
+                                <div class="flex items-center space-x-4">
+                                    <select class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                        <option value="10">10 per page</option>
+                                        <option value="25">25 per page</option>
+                                        <option value="50">50 per page</option>
+                                        <option value="100">100 per page</option>
+                                    </select>
+                                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                        <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <span class="sr-only">Previous</span>
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                            1
+                                        </button>
+                                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                            2
+                                        </button>
+                                        <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <span class="sr-only">Next</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- New Complaint Modal -->
+        <div id="newComplaintModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+            <div class="relative top-20 mx-auto p-8 border w-3/4 shadow-lg rounded-md bg-white">
+                <div class="flex justify-between items-center pb-4 border-b">
+                    <h3 class="text-xl font-semibold text-gray-900">New Complaint</h3>
+                    <button onclick="closeNewComplaintModal()" class="text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form id="complaintForm" class="space-y-6 mt-6">
+                    <!-- Complaint Category -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Complaint Category <span class="text-red-500">*</span></label>
+                        <div class="select-wrapper">
+                            <select id="complaintCategory" class="custom-select w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-transparent" required>
+                                <option value="">Select Category</option>
+                                <option value="technical">Technical Issue</option>
+                                <option value="service">Service Quality</option>
+                                <option value="staff">Staff Behavior</option>
+                                <option value="facility">Facility Issue</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Complaint Details -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Complaint Details <span class="text-red-500">*</span></label>
+                        <div class="border rounded-md shadow-sm">
+                            <div class="bg-gray-50 px-4 py-3 border-b">
+                                <div class="flex space-x-3">
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-list-ul"></i>
+                                    </button>
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-list-ol"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="complaintDetails" class="custom-textarea w-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Supporting Document -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Supporting Document (Optional)</label>
+                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl"></i>
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                        <span>Upload a file</span>
+                                        <input id="file-upload" name="file-upload" type="file" class="sr-only" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                                    </label>
+                                    <p class="pl-1">or drag and drop</p>
+                                </div>
+                                <p class="text-xs text-gray-500">
+                                    PDF, DOC, DOCX, JPG, PNG up to 5MB
+                                </p>
+                            </div>
+                        </div>
+                        <div id="file-preview" class="hidden mt-2 p-2 bg-gray-50 rounded-md">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file text-blue-500 mr-2"></i>
+                                    <span id="file-name" class="text-sm text-gray-700">document.pdf</span>
+                                </div>
+                                <button type="button" onclick="removeFile()" class="text-red-500 hover:text-red-700">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirmation Checkbox -->
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="confirmation" name="confirmation" type="checkbox" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded" required>
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="confirmation" class="font-medium text-gray-700">I confirm that the information provided is accurate</label>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex justify-end space-x-4 pt-6 border-t">
+                        <button type="button" onclick="closeNewComplaintModal()" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Submit Complaint
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- View Complaint Modal -->
+        <div id="viewComplaintModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+            <div class="relative top-20 mx-auto p-8 border w-3/4 shadow-lg rounded-md bg-white">
+                <div class="flex justify-between items-center pb-4 border-b">
+                    <h3 class="text-xl font-semibold text-gray-900">View Complaint</h3>
+                    <button onclick="closeViewComplaintModal()" class="text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="mt-6 space-y-6">
+                    <!-- Complaint Header -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Reference Number</p>
+                            <p class="mt-1 text-lg font-semibold text-gray-900" id="view-ref-number">CMP-2024-001</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Date Submitted</p>
+                            <p class="mt-1 text-lg font-semibold text-gray-900" id="view-date-submitted">2024-03-15</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Status</p>
+                            <p class="mt-1">
+                                <span class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800" id="view-status">Under Review</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Submitted By</p>
+                            <p class="mt-1 text-lg font-semibold text-gray-900" id="view-submitted-by">John Doe</p>
+                        </div>
+                    </div>
+
+                    <!-- Complaint Category -->
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Complaint Category</p>
+                        <p class="mt-1 text-lg font-semibold text-gray-900" id="view-category">Technical Issue</p>
+                    </div>
+
+                    <!-- Complaint Details -->
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Complaint Details</p>
+                        <div class="mt-1 p-4 bg-gray-50 rounded-md">
+                            <p class="text-gray-900" id="view-details">Network connectivity issues in Building A. Unable to access the internet for the past 2 days. This is affecting our ability to complete critical tasks.</p>
+                        </div>
+                    </div>
+
+                    <!-- Supporting Documents -->
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Supporting Documents</p>
+                        <div class="mt-1" id="view-documents">
+                            <div class="flex items-center p-2 bg-gray-50 rounded-md">
+                                <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                <span class="text-sm text-gray-900">network_diagnostics.pdf</span>
+                                <button class="ml-auto text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center p-2 bg-gray-50 rounded-md mt-2">
+                                <i class="fas fa-file-image text-green-500 mr-2"></i>
+                                <span class="text-sm text-gray-900">error_screenshot.png</span>
+                                <button class="ml-auto text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resolution Timeline -->
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Resolution Timeline</p>
+                        <div class="mt-1">
+                            <div class="flow-root">
+                                <ul class="-mb-8">
+                                    <li>
+                                        <div class="relative pb-8">
+                                            <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                                            <div class="relative flex space-x-3">
+                                                <div>
+                                                    <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white">
+                                                        <i class="fas fa-file-alt text-white"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                                    <div>
+                                                        <p class="text-sm text-gray-500">Complaint submitted by <span class="font-medium text-gray-900">John Doe</span></p>
+                                                    </div>
+                                                    <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                                        <time datetime="2024-03-15">March 15, 2024</time>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="relative pb-8">
+                                            <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                                            <div class="relative flex space-x-3">
+                                                <div>
+                                                    <span class="h-8 w-8 rounded-full bg-yellow-500 flex items-center justify-center ring-8 ring-white">
+                                                        <i class="fas fa-tasks text-white"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                                    <div>
+                                                        <p class="text-sm text-gray-500">Complaint assigned to <span class="font-medium text-gray-900">IT Support Team</span></p>
+                                                    </div>
+                                                    <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                                        <time datetime="2024-03-16">March 16, 2024</time>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="relative">
+                                            <div class="relative flex space-x-3">
+                                                <div>
+                                                    <span class="h-8 w-8 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white">
+                                                        <i class="fas fa-clock text-white"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                                    <div>
+                                                        <p class="text-sm text-gray-500">Currently under review</p>
+                                                    </div>
+                                                    <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                                                        <time datetime="2024-03-17">March 17, 2024</time>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex justify-end space-x-4 pt-6 border-t">
+                        <button type="button" onclick="closeViewComplaintModal()" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Close
+                        </button>
+                        <button type="button" onclick="editComplaint()" class="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Edit Complaint
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Complaint Modal -->
+        <div id="editComplaintModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+            <div class="relative top-20 mx-auto p-8 border w-3/4 shadow-lg rounded-md bg-white">
+                <div class="flex justify-between items-center pb-4 border-b">
+                    <h3 class="text-xl font-semibold text-gray-900">Edit Complaint</h3>
+                    <button onclick="closeEditComplaintModal()" class="text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form id="editComplaintForm" class="space-y-6 mt-6">
+                    <!-- Complaint Header -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Reference Number</p>
+                            <p class="mt-1 text-lg font-semibold text-gray-900" id="edit-ref-number">CMP-2024-001</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Date Submitted</p>
+                            <p class="mt-1 text-lg font-semibold text-gray-900" id="edit-date-submitted">2024-03-15</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Status</label>
+                            <div class="mt-1">
+                                <select id="edit-status" class="custom-select w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-transparent">
+                                    <option value="submitted">Submitted</option>
+                                    <option value="under_review" selected>Under Review</option>
+                                    <option value="under_investigation">Under Investigation</option>
+                                    <option value="resolved">Resolved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Submitted By</p>
+                            <p class="mt-1 text-lg font-semibold text-gray-900" id="edit-submitted-by">John Doe</p>
+                        </div>
+                    </div>
+
+                    <!-- Complaint Category -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Complaint Category</label>
+                        <div class="select-wrapper">
+                            <select id="edit-category" class="custom-select w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-transparent">
+                                <option value="technical" selected>Technical Issue</option>
+                                <option value="service">Service Quality</option>
+                                <option value="staff">Staff Behavior</option>
+                                <option value="facility">Facility Issue</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Complaint Details -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Complaint Details</label>
+                        <div class="border rounded-md shadow-sm">
+                            <div class="bg-gray-50 px-4 py-3 border-b">
+                                <div class="flex space-x-3">
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-list-ul"></i>
+                                    </button>
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-list-ol"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="edit-details" class="custom-textarea w-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">Network connectivity issues in Building A. Unable to access the internet for the past 2 days. This is affecting our ability to complete critical tasks.</textarea>
+                        </div>
+                    </div>
+
+                    <!-- Supporting Documents -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Supporting Documents</label>
+                        <div class="mt-1 space-y-2" id="edit-documents">
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded-md">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                    <span class="text-sm text-gray-900">network_diagnostics.pdf</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button type="button" class="text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button type="button" class="text-red-600 hover:text-red-800">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-gray-50 rounded-md">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-image text-green-500 mr-2"></i>
+                                    <span class="text-sm text-gray-900">error_screenshot.png</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button type="button" class="text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button type="button" class="text-red-600 hover:text-red-800">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl"></i>
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="edit-file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                        <span>Upload a file</span>
+                                        <input id="edit-file-upload" name="edit-file-upload" type="file" class="sr-only" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                                    </label>
+                                    <p class="pl-1">or drag and drop</p>
+                                </div>
+                                <p class="text-xs text-gray-500">
+                                    PDF, DOC, DOCX, JPG, PNG up to 5MB
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resolution Notes -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Resolution Notes</label>
+                        <div class="border rounded-md shadow-sm">
+                            <div class="bg-gray-50 px-4 py-3 border-b">
+                                <div class="flex space-x-3">
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-list-ul"></i>
+                                    </button>
+                                    <button type="button" class="p-1.5 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded">
+                                        <i class="fas fa-list-ol"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="edit-resolution-notes" class="custom-textarea w-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">IT team has identified the issue as a faulty network switch. Replacement has been ordered and will be installed by March 20, 2024.</textarea>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex justify-end space-x-4 pt-6 border-t">
+                        <button type="button" onclick="closeEditComplaintModal()" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function toggleServiceDesk() {
+                const menu = document.getElementById('service-menu');
+                const arrow = document.getElementById('service-arrow');
+                menu.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180');
+            }
+
+            function filterStatus(status) {
+                // Remove active state from all buttons
+                const buttons = document.querySelectorAll('[id^="filter-"]');
+                buttons.forEach(button => {
+                    button.classList.remove('text-blue-600', 'bg-blue-50');
+                    button.classList.add('text-gray-600');
+                });
+
+                // Add active state to selected button
+                const selectedButton = document.getElementById(`filter-${status}`);
+                selectedButton.classList.remove('text-gray-600');
+                selectedButton.classList.add('text-blue-600', 'bg-blue-50');
+
+                // Get all table rows
+                const rows = document.querySelectorAll('tbody tr');
+                
+                // Show/hide rows based on status
+                rows.forEach(row => {
+                    const statusCell = row.querySelector('td:nth-child(5) span');
+                    const rowStatus = statusCell.textContent.trim().toLowerCase().replace(' ', '_');
+                    
+                    if (status === 'all' || rowStatus === status) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            // Initialize with 'all' filter active
+            document.addEventListener('DOMContentLoaded', function() {
+                filterStatus('all');
+            });
+
+            function showNewComplaintForm() {
+                const modal = document.getElementById('newComplaintModal');
+                modal.classList.remove('hidden');
+                // Reset form fields
+                document.getElementById('complaintForm').reset();
+                document.getElementById('file-preview').classList.add('hidden');
+            }
+
+            function closeNewComplaintModal() {
+                const modal = document.getElementById('newComplaintModal');
+                modal.classList.add('hidden');
+            }
+
+            function removeFile() {
+                document.getElementById('file-upload').value = '';
+                document.getElementById('file-preview').classList.add('hidden');
+            }
+
+            // File upload handling
+            document.getElementById('file-upload').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Check file size (5MB limit)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('File size exceeds 5MB limit. Please choose a smaller file.');
+                        this.value = '';
+                        return;
+                    }
+                    
+                    // Display file name
+                    document.getElementById('file-name').textContent = file.name;
+                    document.getElementById('file-preview').classList.remove('hidden');
+                }
+            });
+
+            // Form submission
+            document.getElementById('complaintForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                const category = document.getElementById('complaintCategory').value;
+                const details = document.getElementById('complaintDetails').value;
+                const confirmation = document.getElementById('confirmation').checked;
+                
+                if (!category || !details || !confirmation) {
+                    alert('Please fill in all required fields and confirm the information.');
+                    return;
+                }
+                
+                // Here you would typically send the form data to the server
+                // For now, we'll just show a success message and close the modal
+                alert('Complaint submitted successfully!');
+                closeNewComplaintModal();
+            });
+
+            // View complaint
+            function viewComplaint(refNumber) {
+                // In a real application, you would fetch the complaint data from the server
+                // For now, we'll use dummy data
+                const complaintData = {
+                    refNumber: refNumber,
+                    dateSubmitted: '2024-03-15',
+                    status: 'Under Review',
+                    submittedBy: 'John Doe',
+                    category: 'Technical Issue',
+                    details: 'Network connectivity issues in Building A. Unable to access the internet for the past 2 days. This is affecting our ability to complete critical tasks.',
+                    documents: [
+                        { name: 'network_diagnostics.pdf', type: 'pdf' },
+                        { name: 'error_screenshot.png', type: 'image' }
+                    ]
+                };
+                
+                // Populate the view modal with the complaint data
+                document.getElementById('view-ref-number').textContent = complaintData.refNumber;
+                document.getElementById('view-date-submitted').textContent = complaintData.dateSubmitted;
+                document.getElementById('view-status').textContent = complaintData.status;
+                document.getElementById('view-submitted-by').textContent = complaintData.submittedBy;
+                document.getElementById('view-category').textContent = complaintData.category;
+                document.getElementById('view-details').textContent = complaintData.details;
+                
+                // Show the view modal
+                const modal = document.getElementById('viewComplaintModal');
+                modal.classList.remove('hidden');
+            }
+
+            function closeViewComplaintModal() {
+                const modal = document.getElementById('viewComplaintModal');
+                modal.classList.add('hidden');
+            }
+
+            function editComplaint() {
+                // Close the view modal
+                closeViewComplaintModal();
+                
+                // In a real application, you would fetch the complaint data from the server
+                // For now, we'll use dummy data
+                const complaintData = {
+                    refNumber: 'CMP-2024-001',
+                    dateSubmitted: '2024-03-15',
+                    status: 'under_review',
+                    submittedBy: 'John Doe',
+                    category: 'technical',
+                    details: 'Network connectivity issues in Building A. Unable to access the internet for the past 2 days. This is affecting our ability to complete critical tasks.',
+                    documents: [
+                        { name: 'network_diagnostics.pdf', type: 'pdf' },
+                        { name: 'error_screenshot.png', type: 'image' }
+                    ],
+                    resolutionNotes: 'IT team has identified the issue as a faulty network switch. Replacement has been ordered and will be installed by March 20, 2024.'
+                };
+                
+                // Populate the edit modal with the complaint data
+                document.getElementById('edit-ref-number').textContent = complaintData.refNumber;
+                document.getElementById('edit-date-submitted').textContent = complaintData.dateSubmitted;
+                document.getElementById('edit-status').value = complaintData.status;
+                document.getElementById('edit-submitted-by').textContent = complaintData.submittedBy;
+                document.getElementById('edit-category').value = complaintData.category;
+                document.getElementById('edit-details').value = complaintData.details;
+                document.getElementById('edit-resolution-notes').value = complaintData.resolutionNotes;
+                
+                // Show the edit modal
+                const modal = document.getElementById('editComplaintModal');
+                modal.classList.remove('hidden');
+            }
+
+            function closeEditComplaintModal() {
+                const modal = document.getElementById('editComplaintModal');
+                modal.classList.add('hidden');
+            }
+
+            // Edit file upload handling
+            document.getElementById('edit-file-upload').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Check file size (5MB limit)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('File size exceeds 5MB limit. Please choose a smaller file.');
+                        this.value = '';
+                        return;
+                    }
+                    
+                    // In a real application, you would handle the file upload
+                    // For now, we'll just show a success message
+                    alert('File uploaded successfully!');
+                }
+            });
+
+            // Edit form submission
+            document.getElementById('editComplaintForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real application, you would send the form data to the server
+                // For now, we'll just show a success message and close the modal
+                alert('Complaint updated successfully!');
+                closeEditComplaintModal();
+            });
+
+            // Add click event listeners to the view buttons in the table
+            document.addEventListener('DOMContentLoaded', function() {
+                const viewButtons = document.querySelectorAll('button:has(i.fa-eye)');
+                viewButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const row = this.closest('tr');
+                        const refNumber = row.querySelector('td:first-child').textContent;
+                        viewComplaint(refNumber);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html> 

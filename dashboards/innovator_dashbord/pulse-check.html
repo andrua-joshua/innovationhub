@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            /* Custom styles for dropdowns and date inputs */
+            .custom-select {
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+                background-position: right 1rem center;
+                background-repeat: no-repeat;
+                background-size: 1.25em 1.25em;
+                padding-right: 2.5rem;
+                transition: all 0.3s ease;
+                border-radius: 0.5rem;
+                border: 2px solid #e5e7eb;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+
+            .custom-select:hover {
+                border-color: #93C5FD;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                transform: translateY(-1px);
+            }
+
+            .custom-select:focus {
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233B82F6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+                outline: none;
+            }
+
+            .custom-select option {
+                padding: 0.75rem;
+                font-size: 0.875rem;
+            }
+
+            .custom-select option:hover {
+                background-color: #EFF6FF;
+            }
+
+            .custom-date {
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'%3E%3C/path%3E%3C/svg%3E");
+                background-position: right 1rem center;
+                background-repeat: no-repeat;
+                background-size: 1.25em 1.25em;
+                padding-right: 2.5rem;
+                transition: all 0.3s ease;
+                border-radius: 0.5rem;
+                border: 2px solid #e5e7eb;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+
+            .custom-date:hover {
+                border-color: #93C5FD;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                transform: translateY(-1px);
+            }
+
+            .custom-date:focus {
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233B82F6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'%3E%3C/path%3E%3C/svg%3E");
+                outline: none;
+            }
+
+            .custom-textarea {
+                min-height: 150px;
+                resize: vertical;
+                border-radius: 0.5rem;
+                border: 2px solid #e5e7eb;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+            }
+
+            .custom-textarea:hover {
+                border-color: #93C5FD;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
+
+            .custom-textarea:focus {
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+                outline: none;
+            }
+
+            /* Style for the select wrapper to add a subtle background */
+            .select-wrapper {
+                position: relative;
+                background-color: #F9FAFB;
+                border-radius: 0.5rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+
+            .select-wrapper:hover {
+                background-color: #F3F4F6;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                transform: translateY(-1px);
+            }
+
+            .select-wrapper:focus-within {
+                background-color: #FFFFFF;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            }
+
+            /* Style for the date input wrapper */
+            .date-wrapper {
+                position: relative;
+                background-color: #F9FAFB;
+                border-radius: 0.5rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+
+            .date-wrapper:hover {
+                background-color: #F3F4F6;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                transform: translateY(-1px);
+            }
+
+            .date-wrapper:focus-within {
+                background-color: #FFFFFF;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            }
+
+            /* Enhanced input styles */
+            input[type="text"],
+            input[type="number"],
+            input[type="email"],
+            input[type="password"],
+            input[type="tel"] {
+                border-radius: 0.5rem;
+                border: 2px solid #e5e7eb;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+                padding: 0.5rem 0.75rem;
+            }
+
+            input[type="text"]:hover,
+            input[type="number"]:hover,
+            input[type="email"]:hover,
+            input[type="password"]:hover,
+            input[type="tel"]:hover {
+                border-color: #93C5FD;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                transform: translateY(-1px);
+            }
+
+            input[type="text"]:focus,
+            input[type="number"]:focus,
+            input[type="email"]:focus,
+            input[type="password"]:focus,
+            input[type="tel"]:focus {
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+                outline: none;
+            }
+
+            /* File input styling */
+            input[type="file"] {
+                border-radius: 0.5rem;
+                border: 2px solid #e5e7eb;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+                padding: 0.5rem 0.75rem;
+                background-color: #F9FAFB;
+            }
+
+            input[type="file"]:hover {
+                border-color: #93C5FD;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                transform: translateY(-1px);
+                background-color: #F3F4F6;
+            }
+
+            input[type="file"]:focus {
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+                outline: none;
+                background-color: #FFFFFF;
+            }
+
+            /* Label styling */
+            label {
+                font-weight: 500;
+                color: #374151;
+                margin-bottom: 0.5rem;
+                display: block;
+            }
+
+            /* Form group styling */
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            /* Input with icon */
+            .input-with-icon {
+                position: relative;
+            }
+
+            .input-with-icon i {
+                position: absolute;
+                top: 50%;
+                left: 0.75rem;
+                transform: translateY(-50%);
+                color: #9CA3AF;
+            }
+
+            .input-with-icon input {
+                padding-left: 2.5rem;
+            }
+
+            /* Input with right icon */
+            .input-with-right-icon {
+                position: relative;
+            }
+
+            .input-with-right-icon i {
+                position: absolute;
+                top: 50%;
+                right: 0.75rem;
+                transform: translateY(-50%);
+                color: #9CA3AF;
+            }
+
+            .input-with-right-icon input {
+                padding-right: 2.5rem;
+            }
+        </style>
+    </head>
+
+    <body class="bg-gray-100">
+        <div class="flex h-screen">
+            <!-- Sidebar (Same as index.html) -->
+            <div class="bg-white w-64 shadow-lg">
+                <div class="p-4 border-b">
+                    <!-- <h1 class="text-2xl font-bold text-gray-800">NIIT Hub</h1> -->
+                    <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
+                </div>
+                
+                <nav class="mt-6">
+                    <div class="px-4 space-y-2">
+                        <a href="index.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-chart-line w-6"></i>
+                            <span class="ml-3">Dashboard</span>
+                        </a>
+                        <a href="myapplications.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">My Applications</span>
+                        </a>
+                        
+                        <div class="relative">
+                            <button onclick="toggleServiceDesk()" class="w-full flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-laptop w-6"></i>
+                                <span class="ml-3 flex-1 text-left">Service Desk</span>
+                                <i id="service-arrow" class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
+                            </button>
+                            <!-- Expandable Menu -->
+                            <div id="service-menu" class="hidden overflow-hidden transition-all duration-200">
+                                <div class="py-1 space-y-1">
+                                    <a href="service-request.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-clipboard-list w-4"></i>
+                                        <span class="ml-2">Service Request</span>
+                                    </a>
+                                    <a href="complaints.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-exclamation-circle w-4"></i>
+                                        <span class="ml-2">Complaints</span>
+                                    </a>
+                                    <a href="bookings.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-calendar-check w-4"></i>
+                                        <span class="ml-2">Bookings</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <a href="pulse-check.html" class="flex items-center p-3 text-blue-600 rounded-lg bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">Pulse Check</span>
+                        </a>
+                        <a href="calendar.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-calendar-alt w-6"></i>
+                            <span class="ml-3">Hub Calendar</span>
+                        </a>
+
+                        <a href="feedback.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-comments w-6"></i>
+                            <span class="ml-3">Feedback</span>
+                        </a>
+                        
+                    </div>
+                </nav>
+
+                <div class="absolute bottom-0 w-64 p-4 border-t">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate">User Name</p>
+                            <p class="text-xs text-gray-500 truncate">user@example.com</p>
+                        </div>
+                        <button class="p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 overflow-auto">
+                <header class="bg-white shadow-sm">
+                    <div class="px-6 py-4 pt-10">
+                        <h2 class="text-xl font-semibold text-gray-800">Pulse Check</h2>
+                    </div>
+                </header>
+
+                <main class="p-6">
+                    <!-- Filters and Add New Button -->
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="flex space-x-4">
+                            <div class="relative">
+                                <div class="flex space-x-2 bg-white rounded-lg shadow-sm p-1">
+                                    <button onclick="filterMonth('all')" id="filter-all" class="px-4 py-2 text-sm font-medium rounded-md text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors">
+                                        All
+                                    </button>
+                                    <button onclick="filterMonth('january')" id="filter-january" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                        January
+                                    </button>
+                                    <button onclick="filterMonth('february')" id="filter-february" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                        February
+                                    </button>
+                                    <button onclick="filterMonth('march')" id="filter-march" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                        March
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="showNewPulseCheckForm()" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            <i class="fas fa-plus mr-2"></i>Add New Pulse Check
+                        </button>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submission Date</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registered Users</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active Users</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Burn Rate</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Monthly Revenue</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-03-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,250</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">850</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">68%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$12,500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-02-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,180</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">780</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">66%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$11,800</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-01-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,100</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">720</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">65%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$11,000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-12-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,050</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">680</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">65%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$10,500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-11-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">650</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">65%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$10,000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-10-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">950</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">620</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">65%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$9,500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-09-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">900</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">590</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">66%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$9,000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-08-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">850</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">560</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">66%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$8,500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-07-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">800</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">530</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">66%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$8,000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-06-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">750</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">67%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$7,500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-05-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">700</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">470</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">67%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$7,000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-04-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">650</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">440</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">68%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$6,500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-03-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">600</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">410</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">68%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$6,000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-02-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">550</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">380</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">69%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$5,500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2023-01-01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">350</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">70%</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$5,000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <button class="text-blue-600 hover:text-blue-900"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                            <div class="flex-1 flex justify-between sm:hidden">
+                                <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    Previous
+                                </button>
+                                <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    Next
+                                </button>
+                            </div>
+                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-700">
+                                        Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">15</span> results
+                                    </p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <select class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                        <option value="10">10 per page</option>
+                                        <option value="25">25 per page</option>
+                                        <option value="50">50 per page</option>
+                                        <option value="100">100 per page</option>
+                                    </select>
+                                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                        <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <span class="sr-only">Previous</span>
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                            1
+                                        </button>
+                                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                            2
+                                        </button>
+                                        <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <span class="sr-only">Next</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- New Pulse Check Modal -->
+        <div id="newPulseCheckModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+            <div class="relative top-10 mx-auto p-8 border w-11/12 max-w-6xl shadow-lg rounded-md bg-white">
+                <div class="flex justify-between items-center pb-4 border-b">
+                    <h3 class="text-xl font-semibold text-gray-900">New Pulse Check</h3>
+                    <button onclick="closeNewPulseCheckModal()" class="text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <!-- Progress Steps -->
+                <div class="mt-6 mb-8">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div id="step-1-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white">
+                                <span>1</span>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-900">Product Performance</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 mx-4 h-1 bg-gray-200">
+                            <div id="progress-bar" class="h-1 bg-blue-600" style="width: 0%"></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div id="step-2-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600">
+                                <span>2</span>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-900">Company Performance</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 mx-4 h-1 bg-gray-200">
+                            <div class="h-1 bg-gray-200"></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div id="step-3-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600">
+                                <span>3</span>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-900">Compliance & Traction</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 mx-4 h-1 bg-gray-200">
+                            <div class="h-1 bg-gray-200"></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div id="step-4-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600">
+                                <span>4</span>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-900">Challenges</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="pulseCheckForm" class="space-y-6">
+                    <!-- Step 1: Product Performance -->
+                    <div id="step-1" class="step-content">
+                        <h4 class="text-lg font-medium text-gray-900 mb-4">Product Performance</h4>
+                        <div class="grid grid-cols-2 gap-6">
+                            <!-- Number of registered users -->
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <label class="block text-sm font-medium text-gray-700">Number of registered users</label>
+                                    <button type="button" class="ml-2 text-gray-400 hover:text-gray-500" data-tooltip="Total number of users who have registered for your product or service">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                </div>
+                                <input type="number" name="registered_users" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            
+                            <!-- Number of Active Users -->
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <label class="block text-sm font-medium text-gray-700">Number of Active Users</label>
+                                    <button type="button" class="ml-2 text-gray-400 hover:text-gray-500" data-tooltip="Users who have engaged with your product or service in the last 30 days">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                </div>
+                                <input type="number" name="active_users" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            
+                            <!-- Customers this month -->
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <label class="block text-sm font-medium text-gray-700">Customers this month</label>
+                                    <button type="button" class="ml-2 text-gray-400 hover:text-gray-500" data-tooltip="Total number of customers acquired in the current month">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                </div>
+                                <input type="number" name="customers_this_month" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            
+                            <!-- Customers from previous month -->
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <label class="block text-sm font-medium text-gray-700">Customers from previous month</label>
+                                    <button type="button" class="ml-2 text-gray-400 hover:text-gray-500" data-tooltip="Total number of customers from the previous month">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                </div>
+                                <input type="number" name="customers_previous_month" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            
+                            <!-- Customers Acquired -->
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <label class="block text-sm font-medium text-gray-700">Customers Acquired</label>
+                                    <button type="button" class="ml-2 text-gray-400 hover:text-gray-500" data-tooltip="New customers gained during the reporting period">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                </div>
+                                <input type="number" name="customers_acquired" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            
+                            <!-- Marketing and advertising costs -->
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <label class="block text-sm font-medium text-gray-700">Marketing and advertising costs</label>
+                                    <button type="button" class="ml-2 text-gray-400 hover:text-gray-500" data-tooltip="Total expenses on marketing and advertising activities">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                </div>
+                                <input type="number" name="marketing_costs" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Company Performance -->
+                    <div id="step-2" class="step-content hidden">
+                        <h4 class="text-lg font-medium text-gray-900 mb-4">Company Performance</h4>
+                        
+                        <!-- Conversion Rate Section -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <h5 class="text-md font-medium text-gray-900 mb-3">Conversion Rate</h5>
+                            <p class="text-sm text-gray-600 mb-4">Measures the percentage of visitors who convert into paying customers.</p>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Total number of conversions</label>
+                                    <input type="number" name="total_conversions" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Total number of people reached</label>
+                                    <input type="number" name="total_reached" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Monthly Revenue Section -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <h5 class="text-md font-medium text-gray-900 mb-3">Monthly Revenue</h5>
+                            <p class="text-sm text-gray-600 mb-4">Revenue is the money generated from normal business operations.</p>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Average Sales Price</label>
+                                    <input type="number" name="avg_sales_price" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Number of units sold</label>
+                                    <input type="number" name="units_sold" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Monthly Burn Rate Section -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <h5 class="text-md font-medium text-gray-900 mb-3">Monthly Burn Rate</h5>
+                            <p class="text-sm text-gray-600 mb-4">Total amount of money spent each month.</p>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Monthly Revenue</label>
+                                    <input type="number" name="monthly_revenue" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Cost of Goods sold</label>
+                                    <input type="number" name="cost_of_goods" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Total Monthly operating cost</label>
+                                    <input type="number" name="operating_cost" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Return on Investment Section -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <h5 class="text-md font-medium text-gray-900 mb-3">Return on Investment (ROI)</h5>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Total Investment</label>
+                                    <input type="number" name="total_investment" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Total Cost</label>
+                                    <input type="number" name="total_cost" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Compliance and Traction -->
+                    <div id="step-3" class="step-content hidden">
+                        <h4 class="text-lg font-medium text-gray-900 mb-4">Compliance and Traction</h4>
+                        
+                        <!-- Company Registration -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Company Registration</label>
+                                <select id="company_registration" name="company_registration" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" onchange="toggleDynamicFields('company_registration_fields')">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div id="company_registration_fields" class="mt-4 grid grid-cols-2 gap-6 hidden">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Business Registration Number</label>
+                                    <input type="text" name="business_reg_number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Date Registered</label>
+                                    <input type="date" name="date_registered" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Registered Name</label>
+                                    <input type="text" name="registered_name" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Registration Document</label>
+                                    <input type="file" name="registration_file" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- TIN Number -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">TIN Number</label>
+                                <select id="tin_number" name="tin_number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" onchange="toggleDynamicFields('tin_number_fields')">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div id="tin_number_fields" class="mt-4 grid grid-cols-2 gap-6 hidden">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">TIN Number</label>
+                                    <input type="text" name="tin_number_value" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">TIN Registration Date</label>
+                                    <input type="date" name="tin_reg_date" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">TIN Document</label>
+                                    <input type="file" name="tin_file" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Corporate Income Tax -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Corporate Income Tax</label>
+                                <select id="corporate_tax" name="corporate_tax" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" onchange="toggleDynamicFields('corporate_tax_fields')">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div id="corporate_tax_fields" class="mt-4 grid grid-cols-2 gap-6 hidden">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">From</label>
+                                    <input type="date" name="corporate_tax_from" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">To</label>
+                                    <input type="date" name="corporate_tax_to" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Tax Document</label>
+                                    <input type="file" name="corporate_tax_file" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- PAYE -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">PAYE</label>
+                                <select id="paye" name="paye" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" onchange="toggleDynamicFields('paye_fields')">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div id="paye_fields" class="mt-4 grid grid-cols-2 gap-6 hidden">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">From</label>
+                                    <input type="date" name="paye_from" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">To</label>
+                                    <input type="date" name="paye_to" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">PAYE Document</label>
+                                    <input type="file" name="paye_file" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Annual Return -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Annual Return</label>
+                                <select id="annual_return" name="annual_return" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" onchange="toggleDynamicFields('annual_return_fields')">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div id="annual_return_fields" class="mt-4 grid grid-cols-2 gap-6 hidden">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Annual Returns</label>
+                                    <input type="text" name="annual_returns" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">From</label>
+                                    <input type="date" name="annual_return_from" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">To</label>
+                                    <input type="date" name="annual_return_to" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Data Protection Registration -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Data Protection Registration</label>
+                                <select id="data_protection" name="data_protection" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" onchange="toggleDynamicFields('data_protection_fields')">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div id="data_protection_fields" class="mt-4 grid grid-cols-2 gap-6 hidden">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Registration Number</label>
+                                    <input type="text" name="data_protection_number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">From</label>
+                                    <input type="date" name="data_protection_from" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">To</label>
+                                    <input type="date" name="data_protection_to" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Data Protection Document</label>
+                                    <input type="file" name="data_protection_file" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Business License -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Business License</label>
+                                <select id="business_license" name="business_license" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" onchange="toggleDynamicFields('business_license_fields')">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div id="business_license_fields" class="mt-4 grid grid-cols-2 gap-6 hidden">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">License Registration Number</label>
+                                    <input type="text" name="license_number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">From</label>
+                                    <input type="date" name="license_from" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Expires On</label>
+                                    <input type="date" name="license_expires" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">License Document</label>
+                                    <input type="file" name="license_file" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- NSSF Employee Benefits -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">NSSF Employee Benefits</label>
+                                <select id="nssf" name="nssf" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" onchange="toggleDynamicFields('nssf_fields')">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div id="nssf_fields" class="mt-4 grid grid-cols-2 gap-6 hidden">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">NSSF Registration Number</label>
+                                    <input type="text" name="nssf_number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">Registration Date</label>
+                                    <input type="date" name="nssf_reg_date" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-medium text-gray-700">NSSF Document</label>
+                                    <input type="file" name="nssf_file" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Future Collaborations Partnerships/ PR Exposure in Media -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Future Collaborations Partnerships/ PR Exposure in Media (Traction)</label>
+                                <textarea name="future_collaborations" rows="3" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Sales Pitch -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Sales Pitch</label>
+                                <input type="file" name="sales_pitch" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Challenges and Submission -->
+                    <div id="step-4" class="step-content hidden">
+                        <h4 class="text-lg font-medium text-gray-900 mb-4">Challenges and Submission</h4>
+                        
+                        <!-- Challenges -->
+                        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Challenges</label>
+                                <textarea name="challenges" rows="5" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Form Navigation -->
+                    <div class="flex justify-between pt-6 border-t">
+                        <button type="button" id="prev-btn" onclick="prevStep()" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hidden">
+                            Previous
+                        </button>
+                        <div class="flex space-x-4">
+                            <button type="button" onclick="closeNewPulseCheckModal()" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Cancel
+                            </button>
+                            <button type="button" id="next-btn" onclick="nextStep()" class="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Next
+                            </button>
+                            <button type="submit" id="submit-btn" class="px-5 py-2.5 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 hidden">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- View Pulse Check Details Modal -->
+        <div id="viewPulseCheckModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+            <div class="relative top-10 mx-auto p-8 border w-11/12 max-w-6xl shadow-lg rounded-md bg-white">
+                <div class="flex justify-between items-center pb-4 border-b">
+                    <h3 class="text-xl font-semibold text-gray-900">Pulse Check Details</h3>
+                    <button onclick="closeViewPulseCheckModal()" class="text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <!-- Summary Cards -->
+                <div class="grid grid-cols-5 gap-4 mt-6">
+                    <div class="bg-blue-50 p-4 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium text-blue-800">Submission Date</h4>
+                        <p id="view-submission-date" class="text-lg font-semibold text-blue-900 mt-1">2024-03-01</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium text-green-800">Registered Users</h4>
+                        <p id="view-registered-users" class="text-lg font-semibold text-green-900 mt-1">1,250</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium text-purple-800">Active Users</h4>
+                        <p id="view-active-users" class="text-lg font-semibold text-purple-900 mt-1">850</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium text-yellow-800">Burn Rate</h4>
+                        <p id="view-burn-rate" class="text-lg font-semibold text-yellow-900 mt-1">68%</p>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-lg shadow-sm">
+                        <h4 class="text-sm font-medium text-indigo-800">Monthly Revenue</h4>
+                        <p id="view-monthly-revenue" class="text-lg font-semibold text-indigo-900 mt-1">$12,500</p>
+                    </div>
+                </div>
+
+                <!-- Product Performance Table -->
+                <div class="mt-8">
+                    <h4 class="text-lg font-medium text-gray-900 mb-4">Product Performance</h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <!-- Number of registered users -->
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Number of registered users</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,250</td>
+                                </tr>
+                                <!-- Number of Active users -->
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Number of Active users</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">850</td>
+                                </tr>
+                                <!-- Month Over Month Growth -->
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Month Over Month Growth</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">MOM growth</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5.9%</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Customers this month</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,250</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Customers from the previous month</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,180</td>
+                                </tr>
+                                <!-- Monthly Burn Rate -->
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Monthly Burn Rate</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Burn Rate</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">68%</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Monthly Revenue</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$12,500</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Cost of Goods sold</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$4,000</td>
+                                </tr>
+                                <!-- Customer Acquisition Cost -->
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Customer Acquisition Cost</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Acquisition Cost</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$25</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Customers Acquired</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">70</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Marketing and Advertising Costs</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$1,750</td>
+                                </tr>
+                                <!-- Conversion Rate -->
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Conversion Rate</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Conversion Rate</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">12.5%</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Total number of conversions</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">125</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Total number reached</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1,000</td>
+                                </tr>
+                                <!-- Monthly Active Rate -->
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Monthly Active Rate</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Monthly Revenue</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$12,500</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Average Sale Price</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$100</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Number of Units sold</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">125</td>
+                                </tr>
+                                <!-- Return On Investment -->
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Return On Investment</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Profit Earned on Investment</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$8,500</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 pl-10">Cost of Investment</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$4,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modal Actions -->
+                <div class="flex justify-end space-x-4 pt-6 border-t mt-6">
+                    <button type="button" onclick="closeViewPulseCheckModal()" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleServiceDesk() {
+                const menu = document.getElementById('service-menu');
+                const arrow = document.getElementById('service-arrow');
+                menu.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180');
+            }
+
+            function showNewPulseCheckForm() {
+                const modal = document.getElementById('newPulseCheckModal');
+                modal.classList.remove('hidden');
+                // Reset form to first step
+                resetForm();
+            }
+
+            function closeNewPulseCheckModal() {
+                const modal = document.getElementById('newPulseCheckModal');
+                modal.classList.add('hidden');
+            }
+
+            // Form navigation
+            let currentStep = 1;
+            const totalSteps = 4;
+
+            function nextStep() {
+                if (currentStep < totalSteps) {
+                    document.getElementById(`step-${currentStep}`).classList.add('hidden');
+                    currentStep++;
+                    document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+                    
+                    // Update progress indicators
+                    document.getElementById(`step-${currentStep}-indicator`).classList.remove('bg-gray-200', 'text-gray-600');
+                    document.getElementById(`step-${currentStep}-indicator`).classList.add('bg-blue-600', 'text-white');
+                    
+                    // Update progress bar
+                    const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+                    document.getElementById('progress-bar').style.width = `${progress}%`;
+                    
+                    // Update navigation buttons
+                    document.getElementById('prev-btn').classList.remove('hidden');
+                    if (currentStep === totalSteps) {
+                        document.getElementById('next-btn').classList.add('hidden');
+                        document.getElementById('submit-btn').classList.remove('hidden');
+                    }
+                }
+            }
+
+            function prevStep() {
+                if (currentStep > 1) {
+                    document.getElementById(`step-${currentStep}`).classList.add('hidden');
+                    currentStep--;
+                    document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+                    
+                    // Update progress indicators
+                    document.getElementById(`step-${currentStep + 1}-indicator`).classList.remove('bg-blue-600', 'text-white');
+                    document.getElementById(`step-${currentStep + 1}-indicator`).classList.add('bg-gray-200', 'text-gray-600');
+                    
+                    // Update progress bar
+                    const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+                    document.getElementById('progress-bar').style.width = `${progress}%`;
+                    
+                    // Update navigation buttons
+                    if (currentStep === 1) {
+                        document.getElementById('prev-btn').classList.add('hidden');
+                    }
+                    document.getElementById('next-btn').classList.remove('hidden');
+                    document.getElementById('submit-btn').classList.add('hidden');
+                }
+            }
+
+            function resetForm() {
+                // Reset to first step
+                currentStep = 1;
+                
+                // Hide all steps except the first one
+                for (let i = 2; i <= totalSteps; i++) {
+                    document.getElementById(`step-${i}`).classList.add('hidden');
+                }
+                document.getElementById('step-1').classList.remove('hidden');
+                
+                // Reset progress indicators
+                document.getElementById('step-1-indicator').classList.remove('bg-gray-200', 'text-gray-600');
+                document.getElementById('step-1-indicator').classList.add('bg-blue-600', 'text-white');
+                
+                for (let i = 2; i <= totalSteps; i++) {
+                    document.getElementById(`step-${i}-indicator`).classList.remove('bg-blue-600', 'text-white');
+                    document.getElementById(`step-${i}-indicator`).classList.add('bg-gray-200', 'text-gray-600');
+                }
+                
+                // Reset progress bar
+                document.getElementById('progress-bar').style.width = '0%';
+                
+                // Reset navigation buttons
+                document.getElementById('prev-btn').classList.add('hidden');
+                document.getElementById('next-btn').classList.remove('hidden');
+                document.getElementById('submit-btn').classList.add('hidden');
+                
+                // Reset form fields
+                document.getElementById('pulseCheckForm').reset();
+                
+                // Hide all dynamic fields
+                const dynamicFields = [
+                    'company_registration_fields', 'tin_number_fields', 'corporate_tax_fields',
+                    'paye_fields', 'annual_return_fields', 'data_protection_fields',
+                    'business_license_fields', 'nssf_fields'
+                ];
+                
+                dynamicFields.forEach(fieldId => {
+                    document.getElementById(fieldId).classList.add('hidden');
+                });
+            }
+
+            function toggleDynamicFields(fieldId) {
+                const selectElement = document.getElementById(fieldId.replace('_fields', ''));
+                const fieldsContainer = document.getElementById(fieldId);
+                
+                if (selectElement.value === 'yes') {
+                    fieldsContainer.classList.remove('hidden');
+                } else {
+                    fieldsContainer.classList.add('hidden');
+                }
+            }
+
+            // Initialize tooltips
+            document.addEventListener('DOMContentLoaded', function() {
+                const tooltipButtons = document.querySelectorAll('[data-tooltip]');
+                
+                tooltipButtons.forEach(button => {
+                    button.addEventListener('mouseenter', function() {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'absolute z-10 px-3 py-2 text-sm text-white bg-gray-900 rounded-md shadow-sm';
+                        tooltip.textContent = this.getAttribute('data-tooltip');
+                        tooltip.style.top = `${this.offsetTop - 40}px`;
+                        tooltip.style.left = `${this.offsetLeft}px`;
+                        document.body.appendChild(tooltip);
+                        
+                        this.addEventListener('mouseleave', function() {
+                            tooltip.remove();
+                        }, { once: true });
+                    });
+                });
+            });
+
+            function filterMonth(month) {
+                // Remove active state from all buttons
+                const buttons = document.querySelectorAll('[id^="filter-"]');
+                buttons.forEach(button => {
+                    button.classList.remove('text-blue-600', 'bg-blue-50');
+                    button.classList.add('text-gray-600');
+                });
+
+                // Add active state to selected button
+                const selectedButton = document.getElementById(`filter-${month}`);
+                selectedButton.classList.remove('text-gray-600');
+                selectedButton.classList.add('text-blue-600', 'bg-blue-50');
+
+                // Get all table rows
+                const rows = document.querySelectorAll('tbody tr');
+                
+                // Show/hide rows based on month
+                rows.forEach(row => {
+                    const dateCell = row.querySelector('td:first-child');
+                    const date = new Date(dateCell.textContent);
+                    const rowMonth = date.toLocaleString('default', { month: 'long' }).toLowerCase();
+                    
+                    if (month === 'all' || rowMonth === month) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            // Initialize with 'all' filter active
+            document.addEventListener('DOMContentLoaded', function() {
+                filterMonth('all');
+                
+                // Add click event listeners to all view buttons
+                const viewButtons = document.querySelectorAll('button i.fa-eye').forEach(button => {
+                    button.parentElement.addEventListener('click', function() {
+                        const row = this.closest('tr');
+                        const cells = row.querySelectorAll('td');
+                        
+                        // Get data from the row
+                        const submissionDate = cells[0].textContent;
+                        const registeredUsers = cells[1].textContent;
+                        const activeUsers = cells[2].textContent;
+                        const burnRate = cells[3].textContent;
+                        const monthlyRevenue = cells[4].textContent;
+                        
+                        // Update the modal with the data
+                        document.getElementById('view-submission-date').textContent = submissionDate;
+                        document.getElementById('view-registered-users').textContent = registeredUsers;
+                        document.getElementById('view-active-users').textContent = activeUsers;
+                        document.getElementById('view-burn-rate').textContent = burnRate;
+                        document.getElementById('view-monthly-revenue').textContent = monthlyRevenue;
+                        
+                        // Show the modal
+                        showViewPulseCheckModal();
+                    });
+                });
+            });
+
+            function showViewPulseCheckModal() {
+                const modal = document.getElementById('viewPulseCheckModal');
+                modal.classList.remove('hidden');
+            }
+
+            function closeViewPulseCheckModal() {
+                const modal = document.getElementById('viewPulseCheckModal');
+                modal.classList.add('hidden');
+            }
+        </script>
+    </body>
+</html> 

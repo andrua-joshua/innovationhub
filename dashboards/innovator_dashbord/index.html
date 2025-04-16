@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+
+    <body class="bg-gray-100">
+        <div class="flex h-screen">
+            <!-- Sidebar -->
+            <div class="bg-white w-64 shadow-lg">
+                <!-- Logo Section -->
+                <div class="p-4 border-b">
+                    <!-- <h1 class="text-2xl font-bold text-gray-800">NIIT Hub</h1> -->
+                    <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="mt-6">
+                    <div class="px-4 space-y-2">
+                        <a href="index.html" class="flex items-center p-3 text-blue-600 bg-blue-50 rounded-lg">
+                            <i class="fas fa-chart-line w-6"></i>
+                            <span class="ml-3">Dashboard</span>
+                        </a>
+                        <a href="myapplications.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">My Applications</span>
+                        </a>
+                        
+                        <div class="relative">
+                            <button onclick="toggleServiceDesk()" class="w-full flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-laptop w-6"></i>
+                                <span class="ml-3 flex-1 text-left">Service Desk</span>
+                                <i id="service-arrow" class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
+                            </button>
+                            <!-- Expandable Menu -->
+                            <div id="service-menu" class="hidden overflow-hidden transition-all duration-200">
+                                <div class="py-1 space-y-1">
+                                    <a href="service-request.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-clipboard-list w-4"></i>
+                                        <span class="ml-2">Service Request</span>
+                                    </a>
+                                    <a href="complaints.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-exclamation-circle w-4"></i>
+                                        <span class="ml-2">Complaints</span>
+                                    </a>
+                                    <a href="bookings.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-calendar-check w-4"></i>
+                                        <span class="ml-2">Bookings</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <a href="pulse-check.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">Pulse Check</span>
+                        </a>
+                        <a href="calendar.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-calendar-alt w-6"></i>
+                            <span class="ml-3">Hub Calendar</span>
+                        </a>
+
+                        <a href="feedback.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-comments w-6"></i>
+                            <span class="ml-3">Feedback</span>
+                        </a>
+                        
+                    </div>
+                </nav>
+
+                <!-- Bottom Section -->
+                <div class="absolute bottom-0 w-64 p-4 border-t">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate">User Name</p>
+                            <p class="text-xs text-gray-500 truncate">user@example.com</p>
+                        </div>
+                        <button class="p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 overflow-auto">
+                <!-- Header -->
+                <header class="bg-white shadow-sm">
+                    <div class="px-6 py-4 pt-10">
+                        <h2 class="text-xl font-semibold text-gray-800">Dashboard</h2>
+                    </div>
+                </header>
+
+                <!-- Content Area -->
+                <main class="p-6">
+                    <!-- Overview Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <!-- My Applications Stats -->
+                        <a href="myapplications.html" class="bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                                    <i class="fas fa-heartbeat text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-500">Active Applications</p>
+                                    <p class="text-2xl font-semibold text-gray-800">15</p>
+                                    <p class="text-xs text-green-600 mt-1">↑ 12% from last month</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Service Desk Stats -->
+                        <a href="service-request.html" class="bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-green-100 text-green-600">
+                                    <i class="fas fa-laptop text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-500">Service Requests</p>
+                                    <p class="text-2xl font-semibold text-gray-800">24</p>
+                                    <div class="flex items-center mt-1">
+                                        <span class="text-xs text-yellow-600">8 Pending</span>
+                                        <span class="mx-2 text-gray-300">|</span>
+                                        <span class="text-xs text-green-600">16 Resolved</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Pulse Check Stats -->
+                        <a href="pulse-check.html" class="bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                                    <i class="fas fa-chart-line text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-500">Monthly Growth</p>
+                                    <p class="text-2xl font-semibold text-gray-800">68%</p>
+                                    <p class="text-xs text-green-600 mt-1">↑ 5% from last month</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Calendar Events Stats -->
+                        <a href="calendar.html" class="bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                                    <i class="fas fa-calendar-alt text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm text-gray-500">Upcoming Events</p>
+                                    <p class="text-2xl font-semibold text-gray-800">12</p>
+                                    <p class="text-xs text-gray-600 mt-1">Next: Team Meeting (2h)</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Detailed Sections -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Service Desk Overview -->
+                        <div class="bg-white rounded-lg shadow">
+                            <div class="p-4 border-b">
+                                <h3 class="text-lg font-semibold text-gray-800">Service Desk Overview</h3>
+                            </div>
+                            <div class="p-4">
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="p-2 rounded-full bg-blue-100 text-blue-600">
+                                                <i class="fas fa-clipboard-list"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900">Service Requests</p>
+                                                <p class="text-xs text-gray-500">12 new this week</p>
+                                            </div>
+                                        </div>
+                                        <a href="service-request.html" class="text-sm text-blue-600">View All</a>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="p-2 rounded-full bg-red-100 text-red-600">
+                                                <i class="fas fa-exclamation-circle"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900">Complaints</p>
+                                                <p class="text-xs text-gray-500">3 pending resolution</p>
+                                            </div>
+                                        </div>
+                                        <a href="complaints.html" class="text-sm text-blue-600">View All</a>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="p-2 rounded-full bg-green-100 text-green-600">
+                                                <i class="fas fa-calendar-check"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900">Bookings</p>
+                                                <p class="text-xs text-gray-500">8 scheduled today</p>
+                                            </div>
+                                        </div>
+                                        <a href="bookings.html" class="text-sm text-blue-600">View All</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="bg-white rounded-lg shadow">
+                            <div class="p-4 border-b">
+                                <h3 class="text-lg font-semibold text-gray-800">Recent Activity</h3>
+                            </div>
+                            <div class="p-4">
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="p-2 rounded-full bg-purple-100 text-purple-600">
+                                                <i class="fas fa-heartbeat"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900">New Pulse Check</p>
+                                                <p class="text-xs text-gray-500">Monthly report submitted</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm text-gray-500">2h ago</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="p-2 rounded-full bg-green-100 text-green-600">
+                                                <i class="fas fa-laptop"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900">Service Request</p>
+                                                <p class="text-xs text-gray-500">Hardware upgrade completed</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm text-gray-500">5h ago</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="p-2 rounded-full bg-yellow-100 text-yellow-600">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900">Event Added</p>
+                                                <p class="text-xs text-gray-500">Team meeting scheduled</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm text-gray-500">1d ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <script>
+            function toggleServiceDesk() {
+                const menu = document.getElementById('service-menu');
+                const arrow = document.getElementById('service-arrow');
+                menu.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180');
+            }
+        </script>
+    </body>
+</html>
