@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            /* Enhanced styling for the user profile page */
+            body {
+                background-color: #f3f4f6;
+            }
+            
+            .profile-tab {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #4B5563;
+                border-bottom-width: 2px;
+                border-color: transparent;
+                transition-property: color, background-color, border-color;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 150ms;
+            }
+            
+            .profile-tab:hover {
+                color: #2563EB;
+                border-color: #2563EB;
+            }
+            
+            .profile-tab.active {
+                color: #2563EB;
+                border-color: #2563EB;
+            }
+            
+            .form-input {
+                width: 100%;
+                border-radius: 0.375rem;
+                border-color: #D1D5DB;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                background-color: white;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+            
+            .form-input:focus {
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+                outline: none;
+            }
+            
+            .form-label {
+                display: block;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #374151;
+                margin-bottom: 0.25rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1rem;
+            }
+            
+            .profile-section {
+                background-color: white;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                border: 1px solid #F3F4F6;
+            }
+            
+            .profile-section-title {
+                font-size: 1.125rem;
+                font-weight: 500;
+                color: #111827;
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid #E5E7EB;
+            }
+            
+            .team-member {
+                display: flex;
+                align-items: center;
+                padding: 1rem;
+                border-bottom: 1px solid #F3F4F6;
+            }
+            
+            .team-member:last-child {
+                border-bottom: 0;
+            }
+            
+            .team-member:hover {
+                background-color: #F9FAFB;
+            }
+            
+            /* Enhanced button styles */
+            .btn-primary {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: white;
+                background-color: #2563EB;
+                border-radius: 0.375rem;
+                transition-property: background-color;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 150ms;
+            }
+            
+            .btn-primary:hover {
+                background-color: #1D4ED8;
+            }
+            
+            .btn-primary:focus {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            }
+            
+            .btn-secondary {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #374151;
+                background-color: white;
+                border: 1px solid #D1D5DB;
+                border-radius: 0.375rem;
+                transition-property: background-color;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 150ms;
+            }
+            
+            .btn-secondary:hover {
+                background-color: #F9FAFB;
+            }
+            
+            .btn-secondary:focus {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            }
+            
+            /* Enhanced card styles */
+            .card {
+                background-color: white;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                overflow: hidden;
+                border: 1px solid #F3F4F6;
+            }
+            
+            /* Enhanced header styles */
+            .page-header {
+                background-color: white;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                border-bottom: 1px solid #E5E7EB;
+            }
+            
+            /* Enhanced tab navigation */
+            .tab-navigation {
+                border-bottom: 1px solid #E5E7EB;
+                margin-bottom: 1.5rem;
+                background-color: white;
+                border-top-left-radius: 0.5rem;
+                border-top-right-radius: 0.5rem;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            }
+            
+            /* Enhanced profile picture */
+            .profile-picture {
+                height: 8rem;
+                width: 8rem;
+                border-radius: 9999px;
+                object-fit: cover;
+                border: 4px solid white;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+            
+            /* Enhanced status badges */
+            .status-badge {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+                font-size: 0.75rem;
+                font-weight: 500;
+                border-radius: 9999px;
+            }
+            
+            .status-active {
+                background-color: #D1FAE5;
+                color: #065F46;
+            }
+            
+            .status-away {
+                background-color: #FEF3C7;
+                color: #92400E;
+            }
+            
+            .status-inactive {
+                background-color: #FEE2E2;
+                color: #991B1B;
+            }
+            
+            /* Enhanced toggle switch */
+            .toggle-switch {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                cursor: pointer;
+            }
+            
+            .toggle-switch input {
+                position: absolute;
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            
+            .toggle-switch div {
+                width: 2.75rem;
+                height: 1.5rem;
+                background-color: #E5E7EB;
+                border-radius: 9999px;
+                position: relative;
+            }
+            
+            .toggle-switch input:focus + div {
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+            }
+            
+            .toggle-switch input:checked + div {
+                background-color: #2563EB;
+            }
+            
+            .toggle-switch div:after {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                background-color: white;
+                border: 1px solid #D1D5DB;
+                border-radius: 9999px;
+                height: 1.25rem;
+                width: 1.25rem;
+                transition: all 0.2s;
+            }
+            
+            .toggle-switch input:checked + div:after {
+                transform: translateX(100%);
+                border-color: white;
+            }
+            
+            /* Enhanced login history table */
+            .login-history-header {
+                background-color: #F9FAFB;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+                border-bottom: 1px solid #E5E7EB;
+            }
+            
+            .login-history-row {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+                transition-property: background-color;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 150ms;
+            }
+            
+            .login-history-row:hover {
+                background-color: #F9FAFB;
+            }
+            
+            /* Logout button */
+            .btn-logout {
+                color: #EF4444;
+                transition-property: color;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 150ms;
+            }
+            
+            .btn-logout:hover {
+                color: #DC2626;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <div class="flex h-screen">
+            <!-- Sidebar -->
+            <div class="bg-white w-64 shadow-lg">
+                <div class="p-4 border-b">
+                    <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
+                    <!-- <h1 class="text-2xl font-bold text-gray-800">NIIT Hub</h1> -->
+                </div>
+                
+                <nav class="mt-6">
+                    <div class="px-4 space-y-2">
+                        <a href="index.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-chart-line w-6"></i>
+                            <span class="ml-3">Dashboard</span>
+                        </a>
+                        <a href="myapplications.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">My Applications</span>
+                        </a>
+                        
+                        <div class="relative">
+                            <button onclick="toggleServiceDesk()" class="w-full flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-laptop w-6"></i>
+                                <span class="ml-3 flex-1 text-left">Service Desk</span>
+                                <i id="service-arrow" class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
+                            </button>
+                            <!-- Expandable Menu -->
+                            <div id="service-menu" class="hidden overflow-hidden transition-all duration-200">
+                                <div class="py-1 space-y-1">
+                                    <a href="service-request.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-clipboard-list w-4"></i>
+                                        <span class="ml-2">Service Request</span>
+                                    </a>
+                                    <a href="complaints.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-exclamation-circle w-4"></i>
+                                        <span class="ml-2">Complaints</span>
+                                    </a>
+                                    <a href="bookings.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-calendar-check w-4"></i>
+                                        <span class="ml-2">Bookings</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="pulse-check.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">Pulse Check</span>
+                        </a>
+                        <a href="calendar.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-calendar-alt w-6"></i>
+                            <span class="ml-3">Hub Calendar</span>
+                        </a>
+
+                        <a href="feedback.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-comments w-6"></i>
+                            <span class="ml-3">Feedback</span>
+                        </a>
+                        
+                        <a href="roadmap.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-road w-6"></i>
+                            <span class="ml-3">Roadmap</span>
+                        </a>
+                        
+                        <a href="user-profile.html" class="flex items-center p-3 text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 hover:text-blue-700 transition-colors">
+                            <i class="fas fa-cog w-6"></i>
+                            <span class="ml-3">Settings</span>
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="absolute bottom-0 w-64 p-4 border-t">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate">User Name</p>
+                            <p class="text-xs text-gray-500 truncate">user@example.com</p>
+                        </div>
+                        <button onclick="logout()" class="p-2 text-red-500 hover:text-red-700 rounded-lg hover:bg-red-50">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 overflow-auto">
+                <!-- Header -->
+                <header class="bg-white shadow-sm">
+                    <div class="px-6 py-4 pt-10">
+                        <h2 class="text-xl font-semibold text-gray-800">User Profile</h2>
+                    </div>
+                </header>
+
+                <!-- Tab Navigation -->
+                <div class="bg-white border-b">
+                    <div class="flex space-x-8 px-6">
+                        <button class="profile-tab active" onclick="switchTab('personal')">Personal Profile</button>
+                        <button class="profile-tab" onclick="switchTab('team')">My Team</button>
+                        <button class="profile-tab" onclick="switchTab('security')">Security</button>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="p-6">
+                    <!-- Personal Profile Tab -->
+                    <div id="personal-tab" class="tab-content">
+                        <div class="profile-section">
+                            <h2 class="profile-section-title">Profile Information</h2>
+                            <div class="flex items-start space-x-6">
+                                <div class="flex-shrink-0">
+                                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture">
+                                    <button class="mt-2 w-full btn-secondary">
+                                        <i class="fas fa-camera mr-2"></i>Change Photo
+                                    </button>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="grid grid-cols-2 gap-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Business Name</label>
+                                            <input type="text" class="form-input" value="Acme Corporation">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Business ID</label>
+                                            <input type="text" class="form-input" value="AC123456">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Username</label>
+                                            <input type="text" class="form-input" value="john.doe">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Full Name</label>
+                                            <input type="text" class="form-input" value="John Doe">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Email Address</label>
+                                            <input type="email" class="form-input" value="john.doe@example.com">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-input" value="+1 234 567 8900">
+                                        </div>
+                                    </div>
+                                    <div class="mt-6 flex justify-end">
+                                        <button class="btn-primary">
+                                            <i class="fas fa-save mr-2"></i>Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Tab -->
+                    <div id="team-tab" class="tab-content hidden">
+                        <div class="profile-section">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="profile-section-title">Team Members</h2>
+                                <button class="btn-primary">
+                                    <i class="fas fa-plus mr-2"></i>Add Team Member
+                                </button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="team-member">
+                                    <img src="https://via.placeholder.com/40" alt="Team Member" class="w-10 h-10 rounded-full">
+                                    <div class="ml-4 flex-1">
+                                        <h3 class="text-sm font-medium text-gray-900">Jane Smith</h3>
+                                        <p class="text-sm text-gray-500">jane.smith@example.com</p>
+                                    </div>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                                <div class="team-member">
+                                    <img src="https://via.placeholder.com/40" alt="Team Member" class="w-10 h-10 rounded-full">
+                                    <div class="ml-4 flex-1">
+                                        <h3 class="text-sm font-medium text-gray-900">Mike Johnson</h3>
+                                        <p class="text-sm text-gray-500">mike.johnson@example.com</p>
+                                    </div>
+                                    <span class="status-badge status-away">Away</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div id="security-tab" class="tab-content hidden">
+                        <div class="profile-section">
+                            <h2 class="profile-section-title">Change Password</h2>
+                            <div class="max-w-md">
+                                <div class="form-group">
+                                    <label class="form-label">Current Password</label>
+                                    <input type="password" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">New Password</label>
+                                    <input type="password" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-input">
+                                </div>
+                                <div class="mt-6">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-key mr-2"></i>Update Password
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <h2 class="profile-section-title">Login History</h2>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead>
+                                        <tr>
+                                            <th class="login-history-header text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                                            <th class="login-history-header text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IP Address</th>
+                                            <th class="login-history-header text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Device</th>
+                                            <th class="login-history-header text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="login-history-row text-sm text-gray-900">2024-03-15 14:30</td>
+                                            <td class="login-history-row text-sm text-gray-500">192.168.1.1</td>
+                                            <td class="login-history-row text-sm text-gray-500">Chrome on MacOS</td>
+                                            <td class="login-history-row text-sm text-gray-500">New York, USA</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="login-history-row text-sm text-gray-900">2024-03-14 09:15</td>
+                                            <td class="login-history-row text-sm text-gray-500">192.168.1.1</td>
+                                            <td class="login-history-row text-sm text-gray-500">Safari on iOS</td>
+                                            <td class="login-history-row text-sm text-gray-500">New York, USA</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function switchTab(tabName) {
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                document.getElementById(`${tabName}-tab`).classList.remove('hidden');
+                
+                // Update tab styles
+                document.querySelectorAll('.profile-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                event.target.classList.add('active');
+            }
+            
+            function toggleServiceDesk() {
+                const menu = document.getElementById('service-menu');
+                const arrow = document.getElementById('service-arrow');
+                menu.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180');
+            }
+            
+            function logout() {
+                // In a real application, this would handle the logout process
+                alert('Logging out...');
+                // Redirect to login page
+                window.location.href = 'login.html';
+            }
+        </script>
+    </body>
+</html> 

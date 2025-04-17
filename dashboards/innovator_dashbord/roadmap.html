@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            .timeline {
+                position: relative;
+                padding: 20px 0;
+            }
+
+            .timeline::before {
+                content: '';
+                position: absolute;
+                width: 2px;
+                background: #E5E7EB;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -1px;
+            }
+
+            .timeline-item {
+                padding: 10px 40px;
+                position: relative;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .timeline-item::after {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                right: -10px;
+                background-color: #3B82F6;
+                border-radius: 50%;
+                top: 15px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 50%;
+            }
+
+            .timeline-item:nth-child(even)::after {
+                left: -10px;
+            }
+
+            .timeline-content {
+                padding: 20px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+                transition: all 0.3s ease;
+            }
+
+            .timeline-content:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .status-badge {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.25rem 0.75rem;
+                border-radius: 9999px;
+                font-size: 0.75rem;
+                font-weight: 500;
+            }
+
+            .status-completed {
+                background-color: #DEF7EC;
+                color: #03543F;
+            }
+
+            .status-in-progress {
+                background-color: #FEF3C7;
+                color: #92400E;
+            }
+
+            .status-upcoming {
+                background-color: #E0E7FF;
+                color: #3730A3;
+            }
+
+            /* Custom styles for the roadmap form */
+            .form-input {
+                width: 100%;
+                border-radius: 0.375rem;
+                border-color: #D1D5DB;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                transition: all 0.2s ease;
+                background-color: #F9FAFB;
+            }
+
+            .form-input:hover {
+                background-color: #F3F4F6;
+            }
+
+            .form-input:focus {
+                background-color: #FFFFFF;
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+
+            .form-label {
+                display: block;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #374151;
+                margin-bottom: 0.25rem;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            .form-select {
+                width: 100%;
+                border-radius: 0.375rem;
+                border-color: #D1D5DB;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                transition: all 0.2s ease;
+                background-color: #F9FAFB;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+                background-position: right 0.5rem center;
+                background-repeat: no-repeat;
+                background-size: 1.5em 1.5em;
+                padding-right: 2.5rem;
+            }
+
+            .form-select:hover {
+                background-color: #F3F4F6;
+            }
+
+            .form-select:focus {
+                background-color: #FFFFFF;
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+
+            .form-textarea {
+                width: 100%;
+                border-radius: 0.375rem;
+                border-color: #D1D5DB;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                transition: all 0.2s ease;
+                background-color: #F9FAFB;
+                min-height: 100px;
+                resize: vertical;
+            }
+
+            .form-textarea:hover {
+                background-color: #F3F4F6;
+            }
+
+            .form-textarea:focus {
+                background-color: #FFFFFF;
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+
+            .form-date {
+                width: 100%;
+                border-radius: 0.375rem;
+                border-color: #D1D5DB;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                transition: all 0.2s ease;
+                background-color: #F9FAFB;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'%3E%3C/path%3E%3C/svg%3E");
+                background-position: right 0.5rem center;
+                background-repeat: no-repeat;
+                background-size: 1.5em 1.5em;
+                padding-right: 2.5rem;
+            }
+
+            .form-date:hover {
+                background-color: #F3F4F6;
+            }
+
+            .form-date:focus {
+                background-color: #FFFFFF;
+                border-color: #3B82F6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+
+            .milestone-item {
+                background-color: #F9FAFB;
+                padding: 1rem;
+                border-radius: 0.375rem;
+                border: 1px solid #E5E7EB;
+                transition: all 0.2s ease;
+            }
+
+            .milestone-item:hover {
+                border-color: #BFDBFE;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            }
+
+            .milestone-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0.75rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid #E5E7EB;
+            }
+
+            .milestone-title {
+                font-weight: 500;
+                color: #111827;
+            }
+
+            .milestone-remove {
+                color: #9CA3AF;
+                transition: color 0.2s ease;
+            }
+
+            .milestone-remove:hover {
+                color: #EF4444;
+            }
+
+            .form-section {
+                background-color: #FFFFFF;
+                padding: 1rem;
+                border-radius: 0.375rem;
+                border: 1px solid #E5E7EB;
+                margin-bottom: 1rem;
+            }
+
+            .form-section-title {
+                font-size: 1.125rem;
+                font-weight: 500;
+                color: #111827;
+                margin-bottom: 0.75rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid #E5E7EB;
+            }
+
+            .color-picker {
+                width: 2rem;
+                height: 2rem;
+                border-radius: 9999px;
+                border: 1px solid #D1D5DB;
+                cursor: pointer;
+            }
+
+            .color-option {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 9999px;
+                border: 1px solid #D1D5DB;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+            }
+
+            .color-option:hover {
+                transform: scale(1.1);
+            }
+
+            .color-option.selected {
+                box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #3B82F6;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        <div class="flex h-screen">
+            <!-- Sidebar (Same as other pages) -->
+            <div class="bg-white w-64 shadow-lg">
+                <div class="p-4 border-b">
+                    <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
+                </div>
+                
+                <nav class="mt-6">
+                    <div class="px-4 space-y-2">
+                        <a href="index.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-chart-line w-6"></i>
+                            <span class="ml-3">Dashboard</span>
+                        </a>
+                        <a href="myapplications.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">My Applications</span>
+                        </a>
+                        
+                        <div class="relative">
+                            <button onclick="toggleServiceDesk()" class="w-full flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-laptop w-6"></i>
+                                <span class="ml-3 flex-1 text-left">Service Desk</span>
+                                <i id="service-arrow" class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
+                            </button>
+                            <div id="service-menu" class="hidden overflow-hidden transition-all duration-200">
+                                <div class="py-1 space-y-1">
+                                    <a href="service-request.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-clipboard-list w-4"></i>
+                                        <span class="ml-2">Service Request</span>
+                                    </a>
+                                    <a href="complaints.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-exclamation-circle w-4"></i>
+                                        <span class="ml-2">Complaints</span>
+                                    </a>
+                                    <a href="bookings.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                        <i class="fas fa-calendar-check w-4"></i>
+                                        <span class="ml-2">Bookings</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="pulse-check.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-heartbeat w-6"></i>
+                            <span class="ml-3">Pulse Check</span>
+                        </a>
+                        <a href="calendar.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-calendar-alt w-6"></i>
+                            <span class="ml-3">Hub Calendar</span>
+                        </a>
+                        <a href="feedback.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-comments w-6"></i>
+                            <span class="ml-3">Feedback</span>
+                        </a>
+                        <a href="roadmap.html" class="flex items-center p-3 text-blue-600 rounded-lg bg-blue-50">
+                            <i class="fas fa-road w-6"></i>
+                            <span class="ml-3">Roadmap</span>
+                        </a>
+                        <a href="user-profile.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-cog w-6"></i>
+                            <span class="ml-3">Settings</span>
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="absolute bottom-0 w-64 p-4 border-t">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate">User Name</p>
+                            <p class="text-xs text-gray-500 truncate">user@example.com</p>
+                        </div>
+                        <button class="p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 overflow-auto">
+                <header class="bg-white shadow-sm">
+                    <div class="px-6 py-4">
+                        <h2 class="text-xl font-semibold text-gray-800">Product Roadmap</h2>
+                        <p class="mt-1 text-sm text-gray-600">Track our product development progress and upcoming features</p>
+                    </div>
+                </header>
+
+                <main class="p-6">
+                    <!-- Filters and Add New Roadmap Button -->
+                    <div class="mb-6 flex justify-between items-center">
+                        <div class="flex space-x-4">
+                            <button id="filter-all" onclick="filterRoadmap('all')" class="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100">
+                                All
+                            </button>
+                            <button id="filter-completed" onclick="filterRoadmap('completed')" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
+                                Completed
+                            </button>
+                            <button id="filter-in-progress" onclick="filterRoadmap('in-progress')" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
+                                In Progress
+                            </button>
+                            <button id="filter-upcoming" onclick="filterRoadmap('upcoming')" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
+                                Upcoming
+                            </button>
+                        </div>
+                        
+                        <button onclick="showNewRoadmapModal()" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center">
+                            <i class="fas fa-plus mr-2"></i>Add New Roadmap
+                        </button>
+                    </div>
+                    
+                    <!-- Timeline -->
+                    <div class="timeline">
+                        <!-- Q1 2024 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-lg font-semibold text-gray-900">Q1 2024</h3>
+                                    <span class="status-badge status-completed">
+                                        <i class="fas fa-check-circle mr-1"></i>
+                                        Completed
+                                    </span>
+                                </div>
+                                <div class="mt-4 space-y-4">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">User Authentication System</h4>
+                                        <p class="text-sm text-gray-600">Implemented secure user authentication with multi-factor support</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Dashboard Redesign</h4>
+                                        <p class="text-sm text-gray-600">New modern dashboard with improved data visualization</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q2 2024 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-lg font-semibold text-gray-900">Q2 2024</h3>
+                                    <span class="status-badge status-in-progress">
+                                        <i class="fas fa-spinner fa-spin mr-1"></i>
+                                        In Progress
+                                    </span>
+                                </div>
+                                <div class="mt-4 space-y-4">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Mobile App Development</h4>
+                                        <p class="text-sm text-gray-600">Native mobile apps for iOS and Android platforms</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">API Integration</h4>
+                                        <p class="text-sm text-gray-600">Enhanced API capabilities with improved documentation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q3 2024 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-lg font-semibold text-gray-900">Q3 2024</h3>
+                                    <span class="status-badge status-upcoming">
+                                        <i class="fas fa-clock mr-1"></i>
+                                        Upcoming
+                                    </span>
+                                </div>
+                                <div class="mt-4 space-y-4">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">AI-Powered Analytics</h4>
+                                        <p class="text-sm text-gray-600">Advanced analytics with machine learning capabilities</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Cloud Integration</h4>
+                                        <p class="text-sm text-gray-600">Seamless integration with major cloud providers</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q4 2024 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-lg font-semibold text-gray-900">Q4 2024</h3>
+                                    <span class="status-badge status-upcoming">
+                                        <i class="fas fa-clock mr-1"></i>
+                                        Upcoming
+                                    </span>
+                                </div>
+                                <div class="mt-4 space-y-4">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Enterprise Features</h4>
+                                        <p class="text-sm text-gray-600">Advanced features for enterprise customers</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Performance Optimization</h4>
+                                        <p class="text-sm text-gray-600">System-wide performance improvements</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- New Roadmap Modal -->
+        <div id="newRoadmapModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+            <div class="relative top-20 mx-auto p-8 border w-3/4 max-w-2xl shadow-lg rounded-md bg-white">
+                <div class="flex justify-between items-center pb-4 border-b">
+                    <h3 class="text-xl font-semibold text-gray-900">Create New Roadmap</h3>
+                    <button onclick="closeNewRoadmapModal()" class="text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form id="newRoadmapForm" class="space-y-6 mt-6">
+                    <!-- Basic Information Section -->
+                    <div class="form-section">
+                        <h4 class="form-section-title">Basic Information</h4>
+                        
+                        <!-- Roadmap Title -->
+                        <div class="form-group">
+                            <label class="form-label">Roadmap Title</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-road text-gray-400"></i>
+                                </div>
+                                <input type="text" id="roadmapTitle" class="form-input pl-10" placeholder="Enter roadmap title">
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea id="roadmapDescription" class="form-textarea" placeholder="Describe the purpose and goals of this roadmap"></textarea>
+                        </div>
+
+                        <!-- Date Range -->
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label class="form-label">Start Date</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-calendar-alt text-gray-400"></i>
+                                    </div>
+                                    <input type="date" id="startDate" class="form-date pl-10">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">End Date</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-calendar-alt text-gray-400"></i>
+                                    </div>
+                                    <input type="date" id="endDate" class="form-date pl-10">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Priority -->
+                        <div class="form-group">
+                            <label class="form-label">Priority</label>
+                            <select id="roadmapPriority" class="form-select">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                                <option value="critical">Critical</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Milestones Section -->
+                    <div class="form-section">
+                        <h4 class="form-section-title">Milestones</h4>
+                        <div id="milestonesContainer" class="space-y-4">
+                            <div class="milestone-item">
+                                <div class="milestone-header">
+                                    <h4 class="milestone-title">Milestone 1</h4>
+                                    <button type="button" class="milestone-remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="form-group">
+                                        <label class="form-label">Title</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fas fa-flag text-gray-400"></i>
+                                            </div>
+                                            <input type="text" class="form-input pl-10" placeholder="Milestone title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Description</label>
+                                        <textarea class="form-textarea" rows="2" placeholder="Milestone description"></textarea>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Due Date</label>
+                                            <div class="relative">
+                                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                    <i class="fas fa-calendar-day text-gray-400"></i>
+                                                </div>
+                                                <input type="date" class="form-date pl-10">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Status</label>
+                                            <select class="form-select">
+                                                <option value="upcoming">Upcoming</option>
+                                                <option value="in_progress">In Progress</option>
+                                                <option value="completed">Completed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addMilestone()" class="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                            <i class="fas fa-plus-circle mr-1"></i> Add Milestone
+                        </button>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex justify-end space-x-4 pt-6 border-t">
+                        <button type="button" onclick="closeNewRoadmapModal()" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Create Roadmap
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function toggleServiceDesk() {
+                const menu = document.getElementById('service-menu');
+                const arrow = document.getElementById('service-arrow');
+                menu.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180');
+            }
+
+            function showNewRoadmapModal() {
+                const modal = document.getElementById('newRoadmapModal');
+                modal.classList.remove('hidden');
+            }
+
+            function closeNewRoadmapModal() {
+                const modal = document.getElementById('newRoadmapModal');
+                modal.classList.add('hidden');
+            }
+
+            function addMilestone() {
+                const container = document.getElementById('milestonesContainer');
+                const milestoneCount = container.children.length + 1;
+                
+                const milestoneHtml = `
+                    <div class="milestone-item">
+                        <div class="milestone-header">
+                            <h4 class="milestone-title">Milestone ${milestoneCount}</h4>
+                            <button type="button" onclick="removeMilestone(this)" class="milestone-remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="form-group">
+                                <label class="form-label">Title</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-flag text-gray-400"></i>
+                                    </div>
+                                    <input type="text" class="form-input pl-10" placeholder="Milestone title">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-textarea" rows="2" placeholder="Milestone description"></textarea>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label class="form-label">Due Date</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i class="fas fa-calendar-day text-gray-400"></i>
+                                        </div>
+                                        <input type="date" class="form-date pl-10">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Status</label>
+                                    <select class="form-select">
+                                        <option value="upcoming">Upcoming</option>
+                                        <option value="in_progress">In Progress</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.insertAdjacentHTML('beforeend', milestoneHtml);
+            }
+
+            function removeMilestone(button) {
+                const milestoneItem = button.closest('.milestone-item');
+                milestoneItem.remove();
+                
+                // Renumber remaining milestones
+                const container = document.getElementById('milestonesContainer');
+                const milestones = container.querySelectorAll('.milestone-item');
+                milestones.forEach((milestone, index) => {
+                    const title = milestone.querySelector('.milestone-title');
+                    title.textContent = `Milestone ${index + 1}`;
+                });
+            }
+
+            // Color theme selection
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize with 'all' filter active
+                filterRoadmap('all');
+                
+                // Add event listener for form submission
+                document.getElementById('newRoadmapForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Here you would collect the form data and send it to your backend
+                    const roadmapTitle = document.getElementById('roadmapTitle').value;
+                    const roadmapDescription = document.getElementById('roadmapDescription').value;
+                    const startDate = document.getElementById('startDate').value;
+                    const endDate = document.getElementById('endDate').value;
+                    const priority = document.getElementById('roadmapPriority').value;
+                    
+                    // Collect milestones data
+                    const milestones = [];
+                    const milestoneItems = document.querySelectorAll('.milestone-item');
+                    milestoneItems.forEach(item => {
+                        const title = item.querySelector('input[type="text"]').value;
+                        const description = item.querySelector('textarea').value;
+                        const dueDate = item.querySelector('input[type="date"]').value;
+                        const status = item.querySelector('select').value;
+                        
+                        milestones.push({
+                            title,
+                            description,
+                            dueDate,
+                            status
+                        });
+                    });
+                    
+                    // Log the data (replace with actual API call)
+                    console.log({
+                        title: roadmapTitle,
+                        description: roadmapDescription,
+                        startDate,
+                        endDate,
+                        priority,
+                        milestones
+                    });
+                    
+                    // Close the modal
+                    closeNewRoadmapModal();
+                    
+                    // Show success message
+                    alert('Roadmap created successfully!');
+                });
+            });
+
+            // Function to filter roadmap items
+            function filterRoadmap(status) {
+                // Remove active state from all filter buttons
+                const filterButtons = document.querySelectorAll('[id^="filter-"]');
+                filterButtons.forEach(button => {
+                    button.classList.remove('text-blue-600', 'bg-blue-50');
+                    button.classList.add('text-gray-600');
+                });
+                
+                // Add active state to selected filter button
+                const selectedButton = document.getElementById(`filter-${status}`);
+                selectedButton.classList.remove('text-gray-600');
+                selectedButton.classList.add('text-blue-600', 'bg-blue-50');
+                
+                // Get all timeline items
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                
+                // Show/hide items based on status
+                timelineItems.forEach(item => {
+                    const statusBadge = item.querySelector('.status-badge');
+                    const itemStatus = statusBadge.textContent.trim().toLowerCase().replace(' ', '-');
+                    
+                    if (status === 'all' || itemStatus === status) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        </script>
+    </body>
+</html> 

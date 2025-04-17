@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            /* Enhanced styling for the user profile page */
+            body {
+                background-color: #f3f4f6;
+            }
+            
+            .profile-tab {
+                @apply px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:border-blue-600 border-b-2 border-transparent transition-colors;
+            }
+            
+            .profile-tab.active {
+                @apply text-blue-600 border-blue-600;
+            }
+            
+            .form-input {
+                @apply w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white px-4 py-2;
+            }
+            
+            .form-label {
+                @apply block text-sm font-medium text-gray-700 mb-1;
+            }
+            
+            .form-group {
+                @apply mb-4;
+            }
+            
+            .profile-section {
+                @apply bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-100;
+            }
+            
+            .profile-section-title {
+                @apply text-lg font-medium text-gray-900 mb-4 pb-2 border-b border-gray-200;
+            }
+            
+            .team-member {
+                @apply flex items-center p-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors;
+            }
+            
+            .team-member:hover {
+                @apply bg-gray-50;
+            }
+            
+            /* Enhanced button styles */
+            .btn-primary {
+                @apply px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors;
+            }
+            
+            .btn-secondary {
+                @apply px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors;
+            }
+            
+            /* Enhanced card styles */
+            .card {
+                @apply bg-white rounded-lg shadow-md overflow-hidden border border-gray-100;
+            }
+            
+            /* Enhanced header styles */
+            .page-header {
+                @apply bg-white shadow-md border-b border-gray-200;
+            }
+            
+            /* Enhanced tab navigation */
+            .tab-navigation {
+                @apply border-b border-gray-200 mb-6 bg-white rounded-t-lg shadow-sm;
+            }
+            
+            /* Enhanced profile picture */
+            .profile-picture {
+                @apply h-32 w-32 rounded-full object-cover border-4 border-white shadow-lg;
+            }
+            
+            /* Enhanced status badges */
+            .status-badge {
+                @apply px-2 py-1 text-xs font-medium rounded-full;
+            }
+            
+            .status-active {
+                @apply bg-green-100 text-green-800;
+            }
+            
+            .status-away {
+                @apply bg-yellow-100 text-yellow-800;
+            }
+            
+            .status-inactive {
+                @apply bg-red-100 text-red-800;
+            }
+            
+            /* Enhanced toggle switch */
+            .toggle-switch {
+                @apply relative inline-flex items-center cursor-pointer;
+            }
+            
+            .toggle-switch input {
+                @apply sr-only peer;
+            }
+            
+            .toggle-switch div {
+                @apply w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600;
+            }
+            
+            /* Enhanced login history table */
+            .login-history-header {
+                @apply bg-gray-50 px-4 py-3 border-b border-gray-200;
+            }
+            
+            .login-history-row {
+                @apply px-4 py-3 hover:bg-gray-50 transition-colors;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50">
+        <div class="min-h-screen flex">
+            <!-- Sidebar -->
+            <div class="w-64 bg-white shadow-md">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800">NIIS Hub</h2>
+                </div>
+                <nav class="mt-4">
+                    <a href="dashboard.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home w-6"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </a>
+                    <a href="my-applications.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-file-alt w-6"></i>
+                        <span class="ml-3">My Applications</span>
+                    </a>
+                    <a href="service-request.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-headset w-6"></i>
+                        <span class="ml-3">Service Desk</span>
+                    </a>
+                    <a href="pulse-check.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-heartbeat w-6"></i>
+                        <span class="ml-3">Pulse Check</span>
+                    </a>
+                    <a href="hub-calendar.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-calendar w-6"></i>
+                        <span class="ml-3">Hub Calendar</span>
+                    </a>
+                    <a href="feedback.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-comment w-6"></i>
+                        <span class="ml-3">Feedback</span>
+                    </a>
+                    <a href="roadmap.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-road w-6"></i>
+                        <span class="ml-3">Roadmap</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1">
+                <!-- Header -->
+                <header class="page-header">
+                    <div class="flex justify-between items-center p-4">
+                        <h1 class="text-2xl font-semibold text-gray-800">User Profile</h1>
+                        <div class="flex items-center space-x-4">
+                            <button class="text-gray-600 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-bell text-xl"></i>
+                            </button>
+                            <button onclick="window.location.href='user-profile.html'" class="text-gray-600 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-cog text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Tab Navigation -->
+                <div class="tab-navigation">
+                    <div class="flex space-x-8 px-6">
+                        <button class="profile-tab active" onclick="switchTab('personal')">Personal Profile</button>
+                        <button class="profile-tab" onclick="switchTab('team')">My Team</button>
+                        <button class="profile-tab" onclick="switchTab('security')">Security</button>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="p-6">
+                    <!-- Personal Profile Tab -->
+                    <div id="personal-tab" class="tab-content">
+                        <div class="profile-section">
+                            <h2 class="profile-section-title">Profile Information</h2>
+                            <div class="flex items-start space-x-6">
+                                <div class="flex-shrink-0">
+                                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture">
+                                    <button class="mt-2 w-full btn-secondary">
+                                        <i class="fas fa-camera mr-2"></i>Change Photo
+                                    </button>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="grid grid-cols-2 gap-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Business Name</label>
+                                            <input type="text" class="form-input" value="Acme Corporation">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Business ID</label>
+                                            <input type="text" class="form-input" value="AC123456">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Username</label>
+                                            <input type="text" class="form-input" value="john.doe">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Full Name</label>
+                                            <input type="text" class="form-input" value="John Doe">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Email Address</label>
+                                            <input type="email" class="form-input" value="john.doe@example.com">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-input" value="+1 234 567 8900">
+                                        </div>
+                                    </div>
+                                    <div class="mt-6 flex justify-end">
+                                        <button class="btn-primary">
+                                            <i class="fas fa-save mr-2"></i>Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Tab -->
+                    <div id="team-tab" class="tab-content hidden">
+                        <div class="profile-section">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="profile-section-title">Team Members</h2>
+                                <button class="btn-primary">
+                                    <i class="fas fa-plus mr-2"></i>Add Team Member
+                                </button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="team-member">
+                                    <img src="https://via.placeholder.com/40" alt="Team Member" class="w-10 h-10 rounded-full">
+                                    <div class="ml-4 flex-1">
+                                        <h3 class="text-sm font-medium text-gray-900">Jane Smith</h3>
+                                        <p class="text-sm text-gray-500">jane.smith@example.com</p>
+                                    </div>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                                <div class="team-member">
+                                    <img src="https://via.placeholder.com/40" alt="Team Member" class="w-10 h-10 rounded-full">
+                                    <div class="ml-4 flex-1">
+                                        <h3 class="text-sm font-medium text-gray-900">Mike Johnson</h3>
+                                        <p class="text-sm text-gray-500">mike.johnson@example.com</p>
+                                    </div>
+                                    <span class="status-badge status-away">Away</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div id="security-tab" class="tab-content hidden">
+                        <div class="profile-section">
+                            <h2 class="profile-section-title">Change Password</h2>
+                            <div class="max-w-md">
+                                <div class="form-group">
+                                    <label class="form-label">Current Password</label>
+                                    <input type="password" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">New Password</label>
+                                    <input type="password" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-input">
+                                </div>
+                                <div class="mt-6">
+                                    <button class="btn-primary">
+                                        <i class="fas fa-key mr-2"></i>Update Password
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <h2 class="profile-section-title">Login History</h2>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead>
+                                        <tr>
+                                            <th class="login-history-header text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                                            <th class="login-history-header text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IP Address</th>
+                                            <th class="login-history-header text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Device</th>
+                                            <th class="login-history-header text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="login-history-row text-sm text-gray-900">2024-03-15 14:30</td>
+                                            <td class="login-history-row text-sm text-gray-500">192.168.1.1</td>
+                                            <td class="login-history-row text-sm text-gray-500">Chrome on MacOS</td>
+                                            <td class="login-history-row text-sm text-gray-500">New York, USA</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="login-history-row text-sm text-gray-900">2024-03-14 09:15</td>
+                                            <td class="login-history-row text-sm text-gray-500">192.168.1.1</td>
+                                            <td class="login-history-row text-sm text-gray-500">Safari on iOS</td>
+                                            <td class="login-history-row text-sm text-gray-500">New York, USA</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function switchTab(tabName) {
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                document.getElementById(`${tabName}-tab`).classList.remove('hidden');
+                
+                // Update tab styles
+                document.querySelectorAll('.profile-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                event.target.classList.add('active');
+            }
+        </script>
+    </body>
+</html> 
