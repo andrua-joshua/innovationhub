@@ -324,25 +324,25 @@
     <body class="bg-gray-100">
         <div class="flex h-screen">
             <!-- Sidebar (Same as index.html) -->
-            <div class="bg-white w-64 shadow-lg">
-                <div class="p-4 border-b">
+            <div class="bg-blue-700 w-64 shadow-lg">
+                <div class="p-4 border-b mt-5">
                     <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
                     <!-- <h1 class="text-2xl font-bold text-gray-800">NIIT Hub</h1> -->
                 </div>
                 
                 <nav class="mt-6">
                     <div class="px-4 space-y-2">
-                        <a href="index.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <a href="index.html" class="flex items-center p-3 text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                             <i class="fas fa-chart-line w-6"></i>
                             <span class="ml-3">Dashboard</span>
                         </a>
-                        <a href="myapplications.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <a href="myapplications.html" class="flex items-center p-3 text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                             <i class="fas fa-heartbeat w-6"></i>
                             <span class="ml-3">My Applications</span>
                         </a>
                         
                         <div class="relative">
-                            <button onclick="toggleServiceDesk()" class="w-full flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                            <button onclick="toggleServiceDesk()" class="w-full flex items-center p-3 text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                                 <i class="fas fa-laptop w-6"></i>
                                 <span class="ml-3 flex-1 text-left">Service Desk</span>
                                 <i id="service-arrow" class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
@@ -350,15 +350,15 @@
                             <!-- Expandable Menu -->
                             <div id="service-menu" class=" overflow-hidden transition-all duration-200">
                                 <div class="py-1 space-y-1">
-                                    <a href="service-request.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                    <a href="service-request.html" class="flex items-center rounded-lg px-4 py-2 text-sm text-white hover:bg-blue-50 hover:text-blue-600 ml-6">
                                         <i class="fas fa-clipboard-list w-4"></i>
                                         <span class="ml-2">Service Request</span>
                                     </a>
-                                    <a href="complaints.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 ml-6">
+                                    <a href="complaints.html" class="flex items-center rounded-lg px-4 py-2 text-sm text-white hover:bg-blue-50 hover:text-blue-600 ml-6">
                                         <i class="fas fa-exclamation-circle w-4"></i>
                                         <span class="ml-2">Complaints</span>
                                     </a>
-                                    <a href="bookings.html" class="flex items-center px-4 py-2 text-sm text-blue-600 bg-blue-50 hover:text-blue-600 ml-6">
+                                    <a href="bookings.html" class="flex items-center rounded-lg px-4 py-2 text-sm text-black hover:bg-blue-50 hover:text-blue-600 ml-6" style="background-color: #d8d819;">
                                         <i class="fas fa-calendar-check w-4"></i>
                                         <span class="ml-2">Bookings</span>
                                     </a>
@@ -367,25 +367,25 @@
                         </div>
 
 
-                        <a href="pulse-check.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <a href="pulse-check.html" class="flex items-center p-3 text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                             <i class="fas fa-heartbeat w-6"></i>
                             <span class="ml-3">Pulse Check</span>
                         </a>
-                        <a href="calendar.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <a href="calendar.html" class="flex items-center p-3 text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                             <i class="fas fa-calendar-alt w-6"></i>
                             <span class="ml-3">Hub Calendar</span>
                         </a>
 
-                        <a href="feedback.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <a href="feedback.html" class="flex items-center p-3 rounded-lg text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                             <i class="fas fa-comments w-6"></i>
                             <span class="ml-3">Feedback</span>
                         </a>
 
-                        <a href="roadmap.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <a href="roadmap.html" class="flex items-center p-3 rounded-lg text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                             <i class="fas fa-road w-6"></i>
                             <span class="ml-3">Roadmap</span>
                         </a>
-                        <a href="user-profile.html" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                        <a href="user-profile.html" class="flex items-center p-3 text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                             <i class="fas fa-cog w-6"></i>
                             <span class="ml-3">Settings</span>
                         </a>
@@ -393,13 +393,13 @@
                     </div>
                 </nav>
 
-                <div class="absolute bottom-0 w-64 p-4 border-t">
+                <div class="absolute bottom-0 w-64 p-4 border-t bg-black">
                     <div class="flex items-center space-x-4">
                         <div class="flex-shrink-0">
                             <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
                         </div>
                         <div class="flex-1 min-w-0">
-                            <p class="text-sm font-medium text-gray-900 truncate">User Name</p>
+                            <p class="text-sm font-medium text-white truncate">User Name</p>
                             <p class="text-xs text-gray-500 truncate">user@example.com</p>
                         </div>
                         <button class="p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100">
@@ -411,9 +411,9 @@
 
             <!-- Main Content -->
             <div class="flex-1 overflow-auto">
-                <header class="bg-white shadow-sm sticky top-0 z-0 flex items-center justify-between">
+                <header class="bg-blue-700 shadow-sm sticky top-0 z-0 flex items-center justify-between">
                     <div class="px-6 py-4 pt-10">
-                        <h2 class="text-xl font-semibold text-gray-800">Bookings</h2>
+                        <h2 class="text-xl font-semibold text-white">Bookings</h2>
                     </div>
 
 
@@ -423,10 +423,10 @@
                                 <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate">User Name</p>
-                                <p class="text-xs text-gray-500 truncate">user@example.com</p>
+                                <p class="text-sm font-medium text-white truncate">User Name</p>
+                                <p class="text-xs text-black truncate">user@example.com</p>
                             </div>
-                            <a href="user-profile.html" class="p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100">
+                            <a href="user-profile.html" class="p-2 text-black hover:text-gray-700 rounded-lg hover:bg-gray-100">
                                 <i class="fas fa-cog"></i>
                             </a>
                         </div>
@@ -454,7 +454,7 @@
                             </div>
                             </div>
                             </div>
-                        <button onclick="showNewBookingForm()" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        <button onclick="showNewBookingForm()" class="text-black px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" style="background-color: #d8d819;">
                             <i class="fas fa-plus mr-2"></i>Add New Booking
                             </button>
                     </div>
