@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <style>
+            .gallery-item {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.5s ease-out;
+            }
+            
+            .gallery-item.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .filter-button.active {
+                background-color: #3B82F6;
+                color: white;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .animate-fade-in {
+                animation: fadeIn 0.5s ease-out forwards;
+            }
+        </style>
+    </head>
+    <body class="bg-black">
+        <!-- Navigation -->
+        <div class="relative sticky top-0 z-50 bg-black shadow-md">
+            <div class="hidden md:flex items-center justify-between px-8 py-4">
+                <div class="flex items-center">
+                    <a href="/index.html">
+                        <img src="/assets/logo.png" alt="Logo" class="h-14 w-auto hover:scale-105 transition-transform">
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/index.html" class="text-sm text-gray-300 hover:text-white border border-gray-700 rounded-full px-3 py-1.5 transition-colors duration-200">Home</a>
+                    <a href="/pages/whatwedo.html" class="text-sm text-gray-300 hover:text-white border border-gray-700 rounded-full px-3 py-1.5 transition-colors duration-200">What we do</a>
+                    <a href="/pages/programs.html" class="text-sm text-gray-300 hover:text-white border border-gray-700 rounded-full px-3 py-1.5 transition-colors duration-200">Programs</a>
+                    <a href="/pages/startups.html" class="text-sm text-gray-300 hover:text-white border border-gray-700 rounded-full px-3 py-1.5 transition-colors duration-200">Startups</a>
+                    <a href="/pages/about.html" class="text-sm text-gray-300 hover:text-white border border-gray-700 rounded-full px-3 py-1.5 transition-colors duration-200">About us</a>
+                    <a href="/pages/contactus.html" class="text-sm text-gray-300 hover:text-white border border-gray-700 rounded-full px-3 py-1.5 transition-colors duration-200">Contact</a>
+                    <a href="/pages/login.html" class="text-sm px-3 py-1.5 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400">Join the hub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Header -->
+        <div class="relative px-4 md:px-16 py-12 md:py-20">
+            <div class="absolute inset-0">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-pulse"></div>
+            </div>
+
+            <div class="relative text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 animate__animated animate__fadeInDown">
+                    Our <span class="text-blue-400">Gallery</span>
+                </h1>
+                <p class="text-gray-400 max-w-2xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
+                    Explore our vibrant ecosystem through these captured moments of innovation, collaboration, and success.
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="relative flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-button active px-6 py-2 rounded-full text-gray-300 hover:text-white border border-gray-700 transition-all duration-300" data-filter="all">
+                    All
+                </button>
+                <button class="filter-button px-6 py-2 rounded-full text-gray-300 hover:text-white border border-gray-700 transition-all duration-300" data-filter="events">
+                    Events
+                </button>
+                <button class="filter-button px-6 py-2 rounded-full text-gray-300 hover:text-white border border-gray-700 transition-all duration-300" data-filter="workshops">
+                    Workshops
+                </button>
+                <button class="filter-button px-6 py-2 rounded-full text-gray-300 hover:text-white border border-gray-700 transition-all duration-300" data-filter="spaces">
+                    Spaces
+                </button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                <!-- Gallery items will be dynamically loaded here -->
+            </div>
+        </div>
+
+        <script>
+            // Gallery data
+            const galleryItems = [
+                {
+                    image: '/assets/NIIH-Building.jpeg',
+                    title: 'Innovation Hub',
+                    description: 'Home of digital transformation',
+                    category: 'spaces'
+                },
+                {
+                    image: '/assets/hub_img1.jpeg',
+                    title: 'Collaborative Space',
+                    description: 'Where ideas come to life',
+                    category: 'spaces'
+                },
+                {
+                    image: '/assets/hub_img2.jpeg',
+                    title: 'Tech Events',
+                    description: 'Networking and learning',
+                    category: 'events'
+                },
+                {
+                    image: '/assets/hub_img3.jpeg',
+                    title: 'Workshops',
+                    description: 'Hands-on learning',
+                    category: 'workshops'
+                },
+                {
+                    image: '/assets/hub_img4.jpeg',
+                    title: 'Innovation Lab',
+                    description: 'Testing new ideas',
+                    category: 'spaces'
+                },
+                {
+                    image: '/assets/NIIH-Building.jpeg',
+                    title: 'Community',
+                    description: 'Growing together',
+                    category: 'events'
+                }
+            ];
+
+            // Function to create gallery items
+            function createGalleryItem(item) {
+                return `
+                    <div class="gallery-item group relative overflow-hidden rounded-xl transform hover:scale-105 transition-all duration-500" data-category="${item.category}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 transform translate-y-16 group-hover:translate-y-0 transition-transform duration-500">
+                            <h3 class="text-white text-lg font-semibold mb-2">${item.title}</h3>
+                            <p class="text-gray-300 text-sm">${item.description}</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Function to filter gallery items
+            function filterGallery(category) {
+                const items = document.querySelectorAll('.gallery-item');
+                items.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                        setTimeout(() => item.classList.add('visible'), 50);
+                    } else {
+                        item.classList.remove('visible');
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            // Initialize gallery
+            document.addEventListener('DOMContentLoaded', function() {
+                const galleryGrid = document.querySelector('.grid');
+                galleryItems.forEach(item => {
+                    galleryGrid.innerHTML += createGalleryItem(item);
+                });
+
+                // Add click handlers to filter buttons
+                const filterButtons = document.querySelectorAll('.filter-button');
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        filterGallery(this.dataset.filter);
+                    });
+                });
+
+                // Initial load
+                filterGallery('all');
+
+                // Intersection Observer for animation
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    observer.observe(item);
+                });
+            });
+        </script>
+    </body>
+</html> 
