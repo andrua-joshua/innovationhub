@@ -7,28 +7,28 @@
     </head>
 
     <body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen">
-        <div class="container mx-auto px-4 py-12 min-h-screen flex items-center justify-center">
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-6xl flex">
+        <div class="container mx-auto px-4 py-6 md:py-12 min-h-screen flex items-center justify-center">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-6xl flex flex-col md:flex-row">
                 <!-- Left Side - Form -->
-                <div class="w-1/2 p-8">
+                <div class="w-full md:w-1/2 p-4 md:p-8">
                     <!-- Tabs -->
-                    <div class="flex border-b mb-8">
-                        <button id="signInTab" class="pb-4 px-8 text-blue-600 border-b-2 border-blue-600 font-medium">Sign In</button>
-                        <button id="signUpTab" class="pb-4 px-8 text-gray-400 border-b-2 border-yellow-400 font-medium">Sign Up</button>
+                    <div class="flex border-b mb-6 md:mb-8">
+                        <button id="signInTab" class="pb-4 px-4 md:px-8 text-blue-600 border-b-2 border-blue-600 font-medium text-sm md:text-base">Sign In</button>
+                        <button id="signUpTab" class="pb-4 px-4 md:px-8 text-gray-400 border-b-2 border-yellow-400 font-medium text-sm md:text-base">Sign Up</button>
                     </div>
 
                     <!-- Sign In Form -->
-                    <div id="signInForm" class="space-y-6">
+                    <div id="signInForm" class="space-y-4 md:space-y-6">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" placeholder="Input your email in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Email</label>
+                            <input type="email" placeholder="Input your email in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Password</label>
                             <div class="relative">
-                                <input type="password" placeholder="Input your password in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="password" placeholder="Input your password in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                                 <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                     </svg>
@@ -37,37 +37,37 @@
                         </div>
                         <div class="flex items-center">
                             <input type="checkbox" id="terms" class="h-4 w-4 text-blue-600 rounded border-gray-300">
-                            <label for="terms" class="ml-2 text-sm text-gray-600">
+                            <label for="terms" class="ml-2 text-xs md:text-sm text-gray-600">
                                 I have read and agree to the <a href="#" class="text-blue-600">Terms of Service</a>
                             </label>
                         </div>
-                        <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700">Sign In</button>
-                        <div class="text-center text-sm text-gray-500">
+                        <button class="w-full bg-blue-600 text-white py-2 md:py-3 rounded-lg font-medium hover:bg-blue-700 text-sm md:text-base">Sign In</button>
+                        <div class="text-center text-xs md:text-sm text-gray-500">
                             Or
                             <button class="text-orange-500 font-medium ml-1">Don't have an account? Sign Up</button>
                         </div>
                     </div>
 
                     <!-- Sign Up Form (Hidden by default) -->
-                    <div id="signUpForm" class="hidden space-y-6">
+                    <div id="signUpForm" class="hidden space-y-4 md:space-y-6">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                            <input type="text" placeholder="Input your name in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Name</label>
+                            <input type="text" placeholder="Input your name in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" placeholder="Input your email in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Email</label>
+                            <input type="email" placeholder="Input your email in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
-                            <input type="tel" placeholder="077 777 7777" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Mobile Number</label>
+                            <input type="tel" placeholder="077 777 7777" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Password</label>
                             <div class="relative">
-                                <input type="password" placeholder="Input your password in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="password" placeholder="Input your password in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                                 <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                     </svg>
@@ -75,11 +75,11 @@
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Confirm Password</label>
                             <div class="relative">
-                                <input type="password" placeholder="Input your password in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="password" placeholder="Input your password in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                                 <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                     </svg>
@@ -88,30 +88,30 @@
                         </div>
                         <div class="flex items-center">
                             <input type="checkbox" id="terms-signup" class="h-4 w-4 text-blue-600 rounded border-gray-300">
-                            <label for="terms-signup" class="ml-2 text-sm text-gray-600">
+                            <label for="terms-signup" class="ml-2 text-xs md:text-sm text-gray-600">
                                 I have read and agree to the <a href="#" class="text-blue-600">Terms of Service</a>
                             </label>
                         </div>
-                        <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700">Create New Account</button>
-                        <div class="text-center text-sm text-gray-500">
+                        <button class="w-full bg-blue-600 text-white py-2 md:py-3 rounded-lg font-medium hover:bg-blue-700 text-sm md:text-base">Create New Account</button>
+                        <div class="text-center text-xs md:text-sm text-gray-500">
                             <button class="text-orange-500 font-medium">Already have account? Sign in</button>
                         </div>
                     </div>
 
                     <!-- Logo at bottom -->
-                    <div class="mt-12">
-                        <img src="../assets/logo.png" alt="National ICT Innovation Hub" class="h-12">
+                    <div class="mt-8 md:mt-12">
+                        <img src="../assets/logo.png" alt="National ICT Innovation Hub" class="h-8 md:h-12">
                     </div>
                 </div>
 
                 <!-- Right Side - Image -->
-                <div class="w-1/2 bg-blue-50 p-8 flex items-center justify-center">
+                <div class="w-full md:w-1/2 bg-blue-50 p-4 md:p-8 flex items-center justify-center hidden md:flex">
                     <div class="relative">
                         <img src="../assets/security.jpeg" alt="Robot Hand" class="w-full">
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                            <h2 class="text-3xl font-bold text-blue-600 mb-2">Lets Manage Your<br>Project And Get It<br>Done</h2>
-                            <div class="bg-yellow-400 w-10 h-10 rounded-lg flex items-center justify-center ml-auto">
-                                <svg class="w-6 h-6 text-white transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <h2 class="text-2xl md:text-3xl font-bold text-blue-600 mb-2">Lets Manage Your<br>Project And Get It<br>Done</h2>
+                            <div class="bg-yellow-400 w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center ml-auto">
+                                <svg class="w-5 h-5 md:w-6 md:h-6 text-white transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
                             </div>
@@ -140,25 +140,25 @@
                 // Switch the order of form and image
                 formContainer.innerHTML = `
                     <!-- Left Side - Form -->
-                    <div class="w-1/2 p-8">
+                    <div class="w-full md:w-1/2 p-4 md:p-8">
                         <!-- Tabs -->
-                        <div class="flex border-b mb-8">
-                            <button id="signInTab" class="pb-4 px-8 text-blue-600 border-b-2 border-blue-600 font-medium">Sign In</button>
-                            <button id="signUpTab" class="pb-4 px-8 text-gray-400 border-b-2 border-yellow-400 font-medium">Sign Up</button>
+                        <div class="flex border-b mb-6 md:mb-8">
+                            <button id="signInTab" class="pb-4 px-4 md:px-8 text-blue-600 border-b-2 border-blue-600 font-medium text-sm md:text-base">Sign In</button>
+                            <button id="signUpTab" class="pb-4 px-4 md:px-8 text-gray-400 border-b-2 border-yellow-400 font-medium text-sm md:text-base">Sign Up</button>
                         </div>
 
                         <!-- Sign In Form -->
-                        <div id="signInForm" class="space-y-6">
+                        <div id="signInForm" class="space-y-4 md:space-y-6">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                <input type="email" placeholder="Input your email in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Email</label>
+                                <input type="email" placeholder="Input your email in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Password</label>
                                 <div class="relative">
-                                    <input type="password" placeholder="Input your password in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="password" placeholder="Input your password in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                                     <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                         </svg>
@@ -167,30 +167,30 @@
                             </div>
                             <div class="flex items-center">
                                 <input type="checkbox" id="terms" class="h-4 w-4 text-blue-600 rounded border-gray-300">
-                                <label for="terms" class="ml-2 text-sm text-gray-600">
+                                <label for="terms" class="ml-2 text-xs md:text-sm text-gray-600">
                                     I have read and agree to the <a href="#" class="text-blue-600">Terms of Service</a>
                                 </label>
                             </div>
-                            <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700">Sign In</button>
-                            <div class="text-center text-sm text-gray-500">
+                            <button class="w-full bg-blue-600 text-white py-2 md:py-3 rounded-lg font-medium hover:bg-blue-700 text-sm md:text-base">Sign In</button>
+                            <div class="text-center text-xs md:text-sm text-gray-500">
                                 Or
                                 <button class="text-orange-500 font-medium ml-1" onclick="handleSignUpClick()">Don't have an account? Sign Up</button>
                             </div>
                         </div>
 
                         <!-- Logo at bottom -->
-                        <div class="mt-12">
-                            <img src="../assets/logo.png" alt="National ICT Innovation Hub" class="h-12">
+                        <div class="mt-8 md:mt-12">
+                            <img src="../assets/logo.png" alt="National ICT Innovation Hub" class="h-8 md:h-12">
                         </div>
                     </div>
 
                     <!-- Right Side - Image -->
-                    <div class="w-1/2 bg-[url('../assets/security.jpeg')] bg-cover bg-center p-8 flex items-center justify-center">
+                    <div class="w-full md:w-1/2 bg-[url('../assets/security.jpeg')] bg-cover bg-center p-4 md:p-8 flex items-center justify-center hidden md:flex">
                         <div class="relative pt-20">
-                            <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/50 p-8 rounded-lg w-[90%] mt-20">
-                                <h2 class="text-3xl font-bold text-blue-700 mb-2">Lets Manage Your Project And Get It<br />Done</h2>
-                                <div class="bg-yellow-400 w-10 h-10 rounded-lg flex items-center justify-center mt-4">
-                                    <svg class="w-6 h-6 text-white transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/50 p-6 md:p-8 rounded-lg w-[90%] mt-20">
+                                <h2 class="text-2xl md:text-3xl font-bold text-blue-700 mb-2">Lets Manage Your Project And Get It<br />Done</h2>
+                                <div class="bg-yellow-400 w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center mt-4">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6 text-white transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
                                 </div>
@@ -212,12 +212,12 @@
                 // Switch the order of form and image
                 formContainer.innerHTML = `
                     <!-- Left Side - Image -->
-                    <div class="w-1/2 bg-blue-50 p-8 flex items-center justify-center bg-[url('../assets/security.jpeg')] bg-cover bg-center relative">
+                    <div class="w-full md:w-1/2 bg-blue-50 p-4 md:p-8 flex items-center justify-center bg-[url('../assets/security.jpeg')] bg-cover bg-center relative hidden md:flex">
                         <div class="relative">
-                            <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-white/50 p-8 rounded-lg w-[90%]">
-                                <h2 class="text-3xl font-bold text-blue-700 mb-2">Lets Manage Your <br /> Project And Get It Done</h2>
-                                <div class="bg-yellow-400 w-10 h-10 rounded-lg flex items-center justify-center ml-auto">
-                                    <svg class="w-6 h-6 text-white transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-white/50 p-6 md:p-8 rounded-lg w-[90%]">
+                                <h2 class="text-2xl md:text-3xl font-bold text-blue-700 mb-2">Lets Manage Your <br /> Project And Get It Done</h2>
+                                <div class="bg-yellow-400 w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center ml-auto">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6 text-white transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
                                 </div>
@@ -226,38 +226,38 @@
 
                         <!-- Logo at bottom -->
                         <div class="absolute bottom-8 left-8">
-                            <img src="../assets/logo.png" alt="National ICT Innovation Hub" class="h-12">
+                            <img src="../assets/logo.png" alt="National ICT Innovation Hub" class="h-8 md:h-12">
                         </div>
                     </div>
 
                     <!-- Right Side - Form -->
-                    <div class="w-1/2 p-8">
+                    <div class="w-full md:w-1/2 p-4 md:p-8">
                         <!-- Tabs -->
-                        <div class="flex border-b mb-8">
-                            <button id="signInTab" class="pb-4 px-8 text-gray-400 border-b-2 border-blue-600 font-medium">Sign In</button>
-                            <button id="signUpTab" class="pb-4 px-8 text-blue-600 border-b-2 border-yellow-400 font-medium">Sign Up</button>
+                        <div class="flex border-b mb-6 md:mb-8">
+                            <button id="signInTab" class="pb-4 px-4 md:px-8 text-gray-400 border-b-2 border-blue-600 font-medium text-sm md:text-base">Sign In</button>
+                            <button id="signUpTab" class="pb-4 px-4 md:px-8 text-blue-600 border-b-2 border-yellow-400 font-medium text-sm md:text-base">Sign Up</button>
                         </div>
 
                         <!-- Sign Up Form -->
-                        <div id="signUpForm" class="space-y-6">
+                        <div id="signUpForm" class="space-y-4 md:space-y-6">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                                <input type="text" placeholder="Input your name in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Name</label>
+                                <input type="text" placeholder="Input your name in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                <input type="email" placeholder="Input your email in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Email</label>
+                                <input type="email" placeholder="Input your email in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
-                                <input type="tel" placeholder="077 777 7777" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Mobile Number</label>
+                                <input type="tel" placeholder="077 777 7777" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Password</label>
                                 <div class="relative">
-                                    <input type="password" placeholder="Input your password in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="password" placeholder="Input your password in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                                     <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                         </svg>
@@ -265,11 +265,11 @@
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Confirm Password</label>
                                 <div class="relative">
-                                    <input type="password" placeholder="Input your password in here" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="password" placeholder="Input your password in here" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                                     <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                         </svg>
@@ -278,12 +278,12 @@
                             </div>
                             <div class="flex items-center">
                                 <input type="checkbox" id="terms-signup" class="h-4 w-4 text-blue-600 rounded border-gray-300">
-                                <label for="terms-signup" class="ml-2 text-sm text-gray-600">
+                                <label for="terms-signup" class="ml-2 text-xs md:text-sm text-gray-600">
                                     I have read and agree to the <a href="#" class="text-blue-600">Terms of Service</a>
                                 </label>
                             </div>
-                            <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700">Create New Account</button>
-                            <div class="text-center text-sm text-gray-500">
+                            <button class="w-full bg-blue-600 text-white py-2 md:py-3 rounded-lg font-medium hover:bg-blue-700 text-sm md:text-base">Create New Account</button>
+                            <div class="text-center text-xs md:text-sm text-gray-500">
                                 <button class="text-orange-500 font-medium" onclick="handleSignInClick()">Already have account? Sign in</button>
                             </div>
                         </div>
