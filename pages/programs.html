@@ -141,18 +141,46 @@
 </head>
 <body>
 
-    <div class="flex items-center justify-between px-8 py-4 bg-white shadow-md slide-in-top">
-        <div class="flex items-center">
-            <img src="/assets/logo.png" alt="Logo" class="h-6 w-auto hover-scale">
+    <div class="relative bg-white shadow-md slide-in-top">
+        <div class="hidden md:flex items-center justify-between px-8 py-4 bg-white shadow-md slide-in-top">
+            <div class="flex items-center">
+                <img src="/assets/logo.png" alt="Logo" class="h-14 w-auto hover-scale">
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="/" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Home</a>
+                <a href="/pages/whatwedo.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">What we do</a>
+                <a href="/pages/programs.html" class="text-sm text-white bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Programs</a>
+                <a href="/pages/startups.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Startups</a>
+                <a href="/pages/about.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">About us</a>
+                <a href="/pages/contactus.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Contact</a>
+                <a href="/pages/login.html" class="text-sm px-3 py-1.5 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400 hover-scale">Join the hub</a>
+            </div>
         </div>
-        <div class="flex items-center space-x-4">
-            <a href="/" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Home</a>
-            <a href="/pages/whatwedo.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">What we do</a>
-            <a href="/pages/programs.html" class="text-sm text-white bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Programs</a>
-            <a href="/pages/startups.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Startups</a>
-            <a href="/pages/about.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">About us</a>
-            <a href="/pages/contactus.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale">Contact</a>
-            <a href="/pages/login.html" class="text-sm px-3 py-1.5 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400 hover-scale">Join the hub</a>
+
+        <!-- Mobile Navigation -->
+        <div class=" md:hidden">
+            <div class="flex items-center justify-between px-4 py-4">
+                <div class="flex items-center">
+                    <img src="/assets/logo.png" alt="Logo" class="h-12 w-auto hover-scale">
+                </div>
+                <button id="mobile-menu-button" class="hamburger p-2 focus:outline-none">
+                    <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                    <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                    <div class="hamburger-line w-6 h-0.5 bg-gray-800"></div>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="mobile-menu bg-white shadow-lg hidden absolute w-full z-50">
+                <div class="flex flex-col p-4 space-y-3">
+                    <a href="/index.html" class="text-sm text-white bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">Home</a>
+                    <a href="/pages/whatwedo.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">What we do</a>
+                    <a href="/pages/programs.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">Programs</a>
+                    <a href="/pages/startups.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">Startups</a>
+                    <a href="/pages/about.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">About us</a>
+                    <a href="/pages/contactus.html" class="text-sm text-gray-700 hover:text-white hover:bg-blue-700 border border-gray-300 rounded-full px-3 py-1.5 transition-colors duration-200 hover-scale text-center">Contact</a>
+                    <a href="/pages/login.html" class="text-sm px-3 py-1.5 bg-lime-300 text-gray-800 rounded-full hover:bg-lime-400 hover-scale text-center">Join the hub</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -518,7 +546,31 @@
         // Simple animation trigger on scroll
         document.addEventListener('DOMContentLoaded', function() {
             const animatedElements = document.querySelectorAll('.animate__animated');
+             // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
             
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('open');
+                hamburger.classList.toggle('open');
+                
+                if(mobileMenu.classList.contains('hidden')){
+                    mobileMenu.classList.remove('hidden')
+                }else{
+                    mobileMenu.classList.add('hidden')
+                }
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = mobileMenuButton.contains(event.target) || mobileMenu.contains(event.target);
+                
+                if (!isClickInside && mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                    hamburger.classList.remove('open');
+                }
+            });
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
