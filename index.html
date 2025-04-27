@@ -472,7 +472,37 @@
             .hero-background:not(.active) {
                 opacity: 0;
             }
+
+
+            #animation-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            transition: opacity 0.3s ease;
+        }
+        .animation-label {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: 600;
+            color: #4b5563;
+            background: rgba(255,255,255,0.8);
+            padding: 8px;
+            border-radius: 4px;
+            margin: 0 auto;
+            width: fit-content;
+        }
+        @media (min-width: 768px) {
+            #animation-container {
+                height: 500px;
+            }
+        }
         </style>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
     <body class="bg-white">
        <div class="relative sticky top-0 z-50 bg-white shadow-md slide-in-top">
@@ -519,7 +549,7 @@
             </div>
        </div>
 
-       <div class="relative flex flex-col md:flex-row items-center justify-between px-4 md:px-16 py-8 md:py-12">
+       <div class="relative flex flex-col md:flex-row items-center justify-between px-4 md:px-8 py-4 md:py-6">
             <!-- Background image slideshow -->
             <div class="absolute inset-0">
                 <div class="hero-background active">
@@ -837,13 +867,75 @@
 
         <!-- Partner Logos Section -->
         <div class="px-4 md:px-16 py-8 md:py-12 fade-in">
-            <div class="flex flex-wrap items-center justify-center space-x-4 md:space-x-12">
+            <div class="max-w-6xl mx-auto px-6 py-12 md:py-20">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <!-- Animation Container -->
+                    <div class="w-full md:w-1/2">
+                        <div id="animation-container" class="bg-gray-50 rounded-lg shadow-md overflow-hidden"></div>
+                    </div>
+        
+                    <!-- Text Section -->
+                    <div class="w-full md:w-1/2">
+                        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+                            Up your work game, it's easy
+                        </h1>
+                        
+                        <div class="space-y-8 mb-12">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 text-green-500 text-xl mt-1 mr-4">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">No cost to join</h3>
+                                    <p class="text-gray-600 mt-1">
+                                        Register and browse talent profiles, explore projects, or even book a consultation.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 text-green-500 text-xl mt-1 mr-4">
+                                    <i class="fas fa-search-dollar"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Post a job and hire top talent</h3>
+                                    <p class="text-gray-600 mt-1">
+                                        Finding talent doesn't have to be a chore. Post a job or we can search for you!
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 text-green-500 text-xl mt-1 mr-4">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Work with the best—without breaking the bank</h3>
+                                    <p class="text-gray-600 mt-1">
+                                        Upwork makes it affordable to up your work and take advantage of low transaction rates.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 my-8"></div>
+                        
+                        <div class="text-center md:text-left">
+                            <a href="#" class="inline-block px-8 py-3 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 transition-colors">
+                                Sign up for free
+                            </a>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="flex flex-wrap items-center justify-center space-x-4 md:space-x-12">
                 <img src="/assets/MTN-Logo1.png" alt="MTC" class="h-6 md:h-8 hover-scale zoom-in mb-4">
                 <img src="/assets/Huawei-Symbol1.png" alt="Huawei" class="h-6 md:h-8 hover-scale zoom-in mb-4">
                 <img src="/assets/SDA 1.png" alt="Meta" class="h-6 md:h-8 hover-scale zoom-in mb-4">
                 <img src="/assets/logo-70.png" alt="Google" class="h-6 md:h-8 hover-scale zoom-in mb-4">
                 <img src="/assets/logo-35.png" alt="Singularity" class="h-6 md:h-8 hover-scale zoom-in mb-4">
-            </div>
+            </div> -->
         </div>
 
         <!-- Journey Section -->
@@ -1451,6 +1543,65 @@
                 
                 // Existing script code...
             });
+        </script>
+        <script>
+            const animationContainer = document.getElementById('animation-container');
+            
+            const animations = [
+                {
+                    path: 'https://lottie.host/45bd66a3-9034-4fe0-9ea8-62099884efa3/OTGUFLHqls.json',
+                    label: 'Registration'
+                },
+               
+                {
+                    path: 'https://lottie.host/c64912c6-3be9-4eb7-8898-6bad3aa1c4ef/yWZpzEmn7N.json',
+                    label: 'Service Desk'
+                },
+                
+                {
+                    path: 'https://lottie.host/1e416962-9b6c-4c1f-b51e-3c484ad14230/SyscBiatnQ.json',
+                    label: 'Mentoring'
+                }
+            ];
+    
+            let currentAnimation = 0;
+            let animInstance = null;
+            const animationDuration = 3000; // 3 seconds per animation
+    
+            // Create label element
+            const labelElement = document.createElement('div');
+            labelElement.className = 'animation-label';
+            animationContainer.appendChild(labelElement);
+    
+            function loadAnimation(index) {
+                if (animInstance) {
+                    animInstance.destroy();
+                }
+    
+                animationContainer.style.opacity = 0;
+                
+                setTimeout(() => {
+                    animInstance = lottie.loadAnimation({
+                        container: animationContainer,
+                        renderer: 'svg',
+                        loop: false,
+                        autoplay: true,
+                        path: animations[index].path
+                    });
+    
+                    labelElement.textContent = animations[index].label;
+                    animationContainer.style.opacity = 1;
+    
+                    // Set timeout for next animation
+                    setTimeout(() => {
+                        currentAnimation = (currentAnimation + 1) % animations.length;
+                        loadAnimation(currentAnimation);
+                    }, animationDuration);
+                }, 300);
+            }
+    
+            // Start the infinite animation loop
+            loadAnimation(0);
         </script>
     </body>
 </html>
