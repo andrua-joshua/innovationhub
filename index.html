@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <!-- Add Lottie library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
         
         <style>
             .fade-in {
@@ -519,334 +521,112 @@
             </div>
        </div>
 
-       <div class="relative flex flex-col md:flex-row items-center justify-between px-4 md:px-16 py-8 md:py-12">
-            <!-- Background image slideshow -->
+       <div class="relative flex flex-col md:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-8 md:py-16 lg:py-24 overflow-hidden">
+            <!-- Background elements -->
             <div class="absolute inset-0">
-                <div class="hero-background active">
-                    <img src="/assets/NIIH-Building.jpeg" alt="NIIH Building">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/80 to-blue-900/90"></div>
+                <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full filter blur-3xl opacity-20 transform translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl opacity-20 transform -translate-x-1/2 translate-y-1/2 animate-pulse" style="animation-delay: 1s;"></div>
+                <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-400 rounded-full filter blur-3xl opacity-10 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" style="animation-delay: 2s;"></div>
                 </div>
-                <div class="hero-background">
-                    <img src="/assets/hub_img1.jpeg" alt="Hub Image 1">
-                </div>
-                <div class="hero-background">
-                    <img src="/assets/hub_img2.jpeg" alt="Hub Image 2">
-                </div>
-                <div class="hero-background">
-                    <img src="/assets/hub_img3.jpeg" alt="Hub Image 3">
-                </div>
-                <div class="hero-background">
-                    <img src="/assets/hub_img4.jpeg" alt="Hub Image 4">
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-blue-900/60 rounded-3xl"></div>
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-blue-600/30 rounded-2xl blur-2xl"></div>
-                <div class="absolute inset-0 bg-white/30 rounded-2xl blur-3xl opacity-70" style="clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);"></div>
-                <div class="absolute top-1/4 left-1/4 w-20 h-20 bg-white/40 rounded-full blur-2xl"></div>
-                <div class="absolute bottom-1/3 right-1/3 w-24 h-24 bg-white/30 rounded-full blur-2xl"></div>
+            
+            <!-- Floating shapes -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-lg opacity-20 animate-float" style="animation-delay: 0s;"></div>
+                <div class="absolute top-20 right-20 w-16 h-16 bg-blue-300 rounded-full opacity-20 animate-float" style="animation-delay: 1s;"></div>
+                <div class="absolute bottom-20 left-20 w-24 h-24 bg-blue-400 rounded-lg opacity-20 animate-float" style="animation-delay: 2s;"></div>
             </div>
             
-            <div class="relative w-full md:w-1/2 space-y-6 slide-in-left mb-8 md:mb-0">
-                <h1 class="text-3xl md:text-5xl font-bold text-white animate__animated animate__fadeInDown">
+            <div class="relative w-full md:w-1/2 space-y-6 lg:space-y-8 slide-in-left mb-8 md:mb-0">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white animate__animated animate__fadeInDown">
                     Empowering Innovators, <br /> 
                     <span class="text-lime-300 pulse">Transforming Ideas</span>
                 </h1>
-                <p class="text-gray-200 text-base md:text-lg animate__animated animate__fadeIn animate__delay-1s">
-                    Welcome to the intersection of innovation and imagination, <br />where your digital aspirations come to life
+                <p class="text-gray-200 text-base md:text-lg lg:text-xl animate__animated animate__fadeIn animate__delay-1s">
+                    Welcome to the National ICT Innovation Hub, your first destination for fostering homegrown digital solutions and promoting digital employment throughout Uganda.
                 </p>
-                <!-- <div class="space-x-4">
-                    <button class="px-6 py-3 bg-blue-800 text-white rounded-full hover:bg-blue-900 font-semibold flex items-center space-x-2 hover-scale">
-                        <span>Join NiiH now</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                <!-- Add Lottie animation container -->
+                <!-- <div id="lottie-container" class="w-full h-64 md:h-96 lg:h-[32rem]"></div> -->
+            <div class="flex items-center space-x-4 mt-8">
+                <a href="/pages/login.html" class="relative group">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-lime-300 via-blue-500 to-lime-300 rounded-full blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-xy"></div>
+                    <button class="relative flex items-center space-x-2 px-8 py-3 bg-black rounded-full leading-none">
+                        <span class="text-lime-300 group-hover:text-white transition duration-200">Get Started</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-lime-300 group-hover:text-white transition duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
+                        <div class="absolute inset-0 rounded-full border-2 border-lime-300 group-hover:border-white transition duration-200"></div>
                     </button>
-                </div> -->
-                <div class="flex flex-wrap justify-center md:justify-start space-x-4">
-                    <!-- illustrative animation -->
-                    <div class="relative w-full h-[400px] overflow-hidden">
-                        <!-- Background elements -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl"></div>
-                        
-                        <!-- Animated browser window -->
-                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[85%] max-w-3xl bg-white rounded-xl shadow-2xl overflow-hidden">
-                            <!-- Browser header -->
-                            <div class="bg-gray-100 p-2 flex items-center space-x-2">
-                                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <div class="flex-1 mx-3">
-                                    <div class="bg-white rounded-full px-3 py-0.5 text-xs text-gray-500 animate-url">
-                                        innovationhub.ug
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Browser content with page switching -->
-                            <div class="p-4 relative h-[320px] overflow-hidden">
-                                <!-- Page 1: Home/Search -->
-                                <div class="absolute inset-0 page-content animate-page-1">
-                                    <!-- Search animation -->
-                                    <div class="mb-4">
-                                        <div class="flex items-center bg-gray-50 rounded-xl p-3 transition-all duration-300 animate-search">
-                                            <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                            </svg>
-                                            <div class="w-full h-5 bg-gray-200 rounded animate-typing"></div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Results animation -->
-                                    <div class="space-y-3">
-                                        <!-- Result 1 -->
-                                        <div class="bg-white rounded-xl p-3 shadow-sm animate-result-1">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                                                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                                                    </svg>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <div class="h-3 bg-gray-200 rounded w-3/4 mb-1"></div>
-                                                    <div class="h-2 bg-gray-200 rounded w-1/2"></div>
-                                                </div>
-                                                <div class="w-16 h-6 bg-blue-600 rounded-lg"></div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Result 2 -->
-                                        <div class="bg-white rounded-xl p-3 shadow-sm animate-result-2">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-lime-100 rounded-full flex items-center justify-center mr-3">
-                                                    <svg class="w-5 h-5 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                                                    </svg>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <div class="h-3 bg-gray-200 rounded w-2/3 mb-1"></div>
-                                                    <div class="h-2 bg-gray-200 rounded w-1/2"></div>
-                                                </div>
-                                                <div class="w-16 h-6 bg-lime-600 rounded-lg"></div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Result 3 -->
-                                        <div class="bg-white rounded-xl p-3 shadow-sm animate-result-3">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                                                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                                    </svg>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <div class="h-3 bg-gray-200 rounded w-3/4 mb-1"></div>
-                                                    <div class="h-2 bg-gray-200 rounded w-1/2"></div>
-                                                </div>
-                                                <div class="w-16 h-6 bg-purple-600 rounded-lg"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Connection animation -->
-                                    <div class="mt-4 relative">
-                                        <div class="absolute inset-0 flex items-center justify-center">
-                                            <svg class="w-full h-full" viewBox="0 0 400 150">
-                                                <!-- Connection lines -->
-                                                <path d="M50,75 C150,25 250,125 350,75" stroke="rgba(59, 130, 246, 0.3)" stroke-width="2" fill="none" class="animate-connection"></path>
-                                                <path d="M50,95 C150,145 250,45 350,95" stroke="rgba(16, 185, 129, 0.3)" stroke-width="2" fill="none" class="animate-connection" style="animation-delay: 0.5s;"></path>
-                                                <path d="M50,115 C150,65 250,165 350,115" stroke="rgba(139, 92, 246, 0.3)" stroke-width="2" fill="none" class="animate-connection" style="animation-delay: 1s;"></path>
-                                                
-                                                <!-- Connection points -->
-                                                <circle cx="50" cy="75" r="4" fill="#3B82F6" class="animate-pulse"></circle>
-                                                <circle cx="350" cy="75" r="4" fill="#3B82F6" class="animate-pulse"></circle>
-                                                <circle cx="50" cy="95" r="4" fill="#10B981" class="animate-pulse" style="animation-delay: 0.5s;"></circle>
-                                                <circle cx="350" cy="95" r="4" fill="#10B981" class="animate-pulse" style="animation-delay: 0.5s;"></circle>
-                                                <circle cx="50" cy="115" r="4" fill="#8B5CF6" class="animate-pulse" style="animation-delay: 1s;"></circle>
-                                                <circle cx="350" cy="115" r="4" fill="#8B5CF6" class="animate-pulse" style="animation-delay: 1s;"></circle>
-                                            </svg>
-                                        </div>
-                                        
-                                        <!-- Connection text -->
-                                        <div class="relative z-10 text-center">
-                                            <div class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs animate-fade-in">
-                                                Connecting innovators with opportunities
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Page 2: Programs -->
-                                <div class="absolute inset-0 page-content animate-page-2">
-                                    <div class="flex flex-col h-full">
-                                        <h2 class="text-xl font-bold text-gray-800 mb-4 animate-typing-text">Our Innovation Programs</h2>
-                                        
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 flex-1">
-                                            <!-- Program 1 -->
-                                            <div class="bg-blue-50 rounded-xl p-3 animate-program-1">
-                                                <div class="flex items-center mb-3">
-                                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
-                                                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <h3 class="text-base font-semibold text-gray-800 animate-typing-text">Hackathon 2024</h3>
-                                                </div>
-                                                <p class="text-gray-600 text-sm animate-typing-text">Join our annual coding challenge and win amazing prizes.</p>
-                                                <div class="mt-3 flex justify-end">
-                                                    <div class="w-20 h-6 bg-blue-600 rounded-lg animate-button"></div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- Program 2 -->
-                                            <div class="bg-lime-50 rounded-xl p-3 animate-program-2">
-                                                <div class="flex items-center mb-3">
-                                                    <div class="w-8 h-8 bg-lime-100 rounded-full flex items-center justify-center mr-2">
-                                                        <svg class="w-5 h-5 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <h3 class="text-base font-semibold text-gray-800 animate-typing-text">Idea Garage</h3>
-                                                </div>
-                                                <p class="text-gray-600 text-sm animate-typing-text">Transform your innovative concepts into reality.</p>
-                                                <div class="mt-3 flex justify-end">
-                                                    <div class="w-20 h-6 bg-lime-600 rounded-lg animate-button"></div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- Program 3 -->
-                                            <div class="bg-purple-50 rounded-xl p-3 animate-program-3">
-                                                <div class="flex items-center mb-3">
-                                                    <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-2">
-                                                        <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <h3 class="text-base font-semibold text-gray-800 animate-typing-text">Mentorship Program</h3>
-                                                </div>
-                                                <p class="text-gray-600 text-sm animate-typing-text">Connect with industry experts for guidance.</p>
-                                                <div class="mt-3 flex justify-end">
-                                                    <div class="w-20 h-6 bg-purple-600 rounded-lg animate-button"></div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- Program 4 -->
-                                            <div class="bg-amber-50 rounded-xl p-3 animate-program-4">
-                                                <div class="flex items-center mb-3">
-                                                    <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mr-2">
-                                                        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <h3 class="text-base font-semibold text-gray-800 animate-typing-text">Startup Accelerator</h3>
-                                                </div>
-                                                <p class="text-gray-600 text-sm animate-typing-text">Fast-track your startup growth.</p>
-                                                <div class="mt-3 flex justify-end">
-                                                    <div class="w-20 h-6 bg-amber-600 rounded-lg animate-button"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Page 3: About Us -->
-                                <div class="absolute inset-0 page-content animate-page-3">
-                                    <div class="flex flex-col h-full">
-                                        <h2 class="text-xl font-bold text-gray-800 mb-4 animate-typing-text">About the Innovation Hub</h2>
-                                        
-                                        <div class="flex flex-col md:flex-row gap-4 flex-1">
-                                            <div class="md:w-1/2 animate-about-1">
-                                                <div class="bg-gray-100 rounded-xl p-4 h-full">
-                                                    <h3 class="text-lg font-semibold text-gray-800 mb-3 animate-typing-text">Our Mission</h3>
-                                                    <p class="text-gray-600 text-sm animate-typing-text">The National ICT Innovation Hub is dedicated to fostering innovation and entrepreneurship in Uganda's technology sector.</p>
-                                                    
-                                                    <div class="mt-4 space-y-3">
-                                                        <div class="flex items-center">
-                                                            <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-2">
-                                                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                                                </svg>
-                                                            </div>
-                                                            <span class="text-gray-700 text-sm animate-typing-text">Empowering local innovators</span>
-                                                        </div>
-                                                        
-                                                        <div class="flex items-center">
-                                                            <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-2">
-                                                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                                                </svg>
-                                                            </div>
-                                                            <span class="text-gray-700 text-sm animate-typing-text">Building sustainable tech ecosystem</span>
-                                                        </div>
-                                                        
-                                                        <div class="flex items-center">
-                                                            <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-2">
-                                                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                                                </svg>
-                                                            </div>
-                                                            <span class="text-gray-700 text-sm animate-typing-text">Creating digital employment opportunities</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="md:w-1/2 animate-about-2">
-                                                <div class="bg-blue-50 rounded-xl p-4 h-full">
-                                                    <h3 class="text-lg font-semibold text-gray-800 mb-3 animate-typing-text">Our Impact</h3>
-                                                    
-                                                    <div class="space-y-4">
-                                                        <div class="flex items-center justify-between">
-                                                            <span class="text-gray-700 text-sm animate-typing-text">Startups Impacted</span>
-                                                            <div class="text-xl font-bold text-blue-600 animate-counter">50+</div>
-                                                        </div>
-                                                        
-                                                        <div class="flex items-center justify-between">
-                                                            <span class="text-gray-700 text-sm animate-typing-text">Events Hosted</span>
-                                                            <div class="text-xl font-bold text-blue-600 animate-counter">500+</div>
-                                                        </div>
-                                                        
-                                                        <div class="flex items-center justify-between">
-                                                            <span class="text-gray-700 text-sm animate-typing-text">Trainings Conducted</span>
-                                                            <div class="text-xl font-bold text-blue-600 animate-counter">1000+</div>
-                                                        </div>
-                                                        
-                                                        <div class="flex items-center justify-between">
-                                                            <span class="text-gray-700 text-sm animate-typing-text">Programs Launched</span>
-                                                            <div class="text-xl font-bold text-blue-600 animate-counter">20+</div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="mt-4">
-                                                        <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                                                            <div class="h-full bg-blue-600 rounded-full animate-progress"></div>
-                                                        </div>
-                                                        <p class="text-xs text-gray-500 mt-1 animate-typing-text">Join our growing community of innovators</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </a>
+            </div>
             </div>
             <div class="relative w-full md:w-1/2 flex justify-center slide-in-right">
                 <img src="assets/illustrativ.png" alt="Innovation Illustration" class="w-4/5 relative z-10 float">
             </div>
         </div>
 
-        <!-- Partner Logos Section -->
-        <div class="px-4 md:px-16 py-8 md:py-12 fade-in">
-            <div class="flex flex-wrap items-center justify-center space-x-4 md:space-x-12">
-                <img src="/assets/MTN-Logo1.png" alt="MTC" class="h-6 md:h-8 hover-scale zoom-in mb-4">
-                <img src="/assets/Huawei-Symbol1.png" alt="Huawei" class="h-6 md:h-8 hover-scale zoom-in mb-4">
-                <img src="/assets/SDA 1.png" alt="Meta" class="h-6 md:h-8 hover-scale zoom-in mb-4">
-                <img src="/assets/logo-70.png" alt="Google" class="h-6 md:h-8 hover-scale zoom-in mb-4">
-                <img src="/assets/logo-35.png" alt="Singularity" class="h-6 md:h-8 hover-scale zoom-in mb-4">
+        <!-- Who We Are Section -->
+        <div class="relative px-4 md:px-12 py-8 md:py-16 bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 mx-4 md:mx-16 rounded-2xl overflow-hidden fade-in my-8 md:my-12">
+            <!-- Animated background elements -->
+            <div class="absolute inset-0">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full filter blur-3xl opacity-20 transform translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl opacity-20 transform -translate-x-1/2 translate-y-1/2 animate-pulse" style="animation-delay: 1s;"></div>
+                <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-400 rounded-full filter blur-3xl opacity-10 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" style="animation-delay: 2s;"></div>
+            </div>
+            
+            <!-- Floating shapes -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-lg opacity-20 animate-float" style="animation-delay: 0s;"></div>
+                <div class="absolute top-20 right-20 w-16 h-16 bg-blue-300 rounded-full opacity-20 animate-float" style="animation-delay: 1s;"></div>
+                <div class="absolute bottom-20 left-20 w-24 h-24 bg-blue-400 rounded-lg opacity-20 animate-float" style="animation-delay: 2s;"></div>
+            </div>
+            
+            <div class="relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+                <!-- Left side: Image with enhanced effects -->
+                <div class="w-full md:w-1/2 transform hover:scale-105 transition-all duration-500 mb-6 md:mb-0">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/40 to-transparent z-10"></div>
+                        <img src="/assets/NIIH-Building.jpeg" alt="National ICT Innovation Hub" class="w-full h-[250px] md:h-[350px] object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <h3 class="text-white text-xl md:text-2xl font-bold mb-1">National ICT Innovation Hub</h3>
+                            <p class="text-blue-100 text-sm md:text-base">Nakawa Campus, UICT</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right side: Content with enhanced styling -->
+                <div class="w-full md:w-1/2 space-y-4">
+                    <div class="inline-block animate-fade-in">
+                        <span class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-5 py-1.5 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-shadow duration-300">Who We Are</span>
+                    </div>
+                    
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-900 animate-slide-in-right">Empowering Digital Innovation in Uganda</h2>
+                    
+                    <div class="space-y-3 text-gray-700">
+                        <p class="text-base md:text-lg leading-relaxed animate-fade-in" style="animation-delay: 0.2s;">
+                            Welcome to the National ICT Innovation Hub, your first destination for fostering homegrown digital solutions and promoting digital employment throughout Uganda.
+                        </p>
+                        
+                        <p class="text-base md:text-lg leading-relaxed animate-fade-in" style="animation-delay: 0.4s;">
+                            Situated within the Uganda Institute of Information and Communications Technology (UICT) Nakawa Campus, our hub serves as a dynamic environment for ICT innovators facing challenges with workspace, limited internet connectivity and searching for creative spaces that spur thinking.
+                        </p>
+                        
+                        <p class="text-base md:text-lg leading-relaxed animate-fade-in" style="animation-delay: 0.6s;">
+                            Join us at the National ICT Innovation Hub and be part of a vibrant community dedicated to driving digital innovation and economic growth in Uganda.
+                        </p>
+                    </div>
+                    
+                    <div class="pt-2 animate-fade-in" style="animation-delay: 0.8s;">
+                        <a href="/pages/about.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-full hover:from-blue-700 hover:to-blue-900 transition-all duration-300 group shadow-lg hover:shadow-xl">
+                            <span class="font-medium">Read More</span>
+                            <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Journey Section -->
         
         <!-- Statistics Section -->
         <div class="relative px-4 md:px-16 py-8 md:py-12 overflow-hidden flex flex-col md:flex-row fade-in" style="background-color: #d8d819;">
@@ -881,69 +661,134 @@
             </div>
         </div>
 
-        <!-- Why Choose NiiH Section -->
-        <div class="px-4 md:px-20 py-8 md:py-12 mx-4 md:mx-20 bg-gradient-to-b from-blue-50/50 bg-blue-100 my-10 md:my-20 rounded-2xl relative overflow-hidden bounce-in">
-            <!-- Glass morphism effects -->
-            <div class="absolute inset-0">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-400/40 via-purple-300/40 to-white/50 rounded-2xl blur-xl"></div>
-                <div class="absolute inset-0 bg-white/50 rounded-2xl blur-2xl opacity-80"></div>
-                <div class="absolute top-1/4 left-1/4 w-20 h-20 bg-purple-200/60 rounded-full blur-xl"></div>
-                <div class="absolute bottom-1/3 right-1/3 w-24 h-24 bg-blue-200/50 rounded-full blur-xl"></div>
+        <!-- Latest News Section -->
+        <div class="px-4 md:px-20 py-8 md:py-12 mx-2 md:mx-10 fade-in">
+            <div class="text-center mb-6 md:mb-12 slide-in-top">
+                <span class="bg-blue-600 text-white px-3 md:px-4 py-1 rounded-full text-xs md:text-sm">AI Robitics & Technology Website</span>
+                <h2 class="text-2xl md:text-4xl font-bold mt-2 md:mt-4">See Our Latest News!</h2>
             </div>
 
-            <div class="relative flex flex-col md:flex-row items-center justify-between">
-                
-                <div class="mb-8 md:mb-0">
-                    <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-8 slide-in-left">Why Choose <span class="text-blue-600 pulse">NiiH</span></h2>
-                    <p class="text-gray-600 mb-6 md:mb-12 max-w-2xl text-sm md:text-base">
-                        The best platform and ecosystem for building and scaling innovative solutions. We provide comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.
-                    </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+                <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
+                    <img src="/assets/news2.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
+                    <div class="py-4 md:py-6">
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">🇺🇬 Uganda's AI Revolution Begins!</h3>
+                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
+                            <div class="flex items-center">
+                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>March 10, 2025</span>
                 </div>
-                
-                <div class="grid grid-cols-1 gap-4 md:gap-8 w-full md:w-auto">
-                    <div class="bg-white/80 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-sm flex items-center justify-center hover-scale">
-                        <div class="mb-4 border-2 border-blue-600 rounded-md p-2 mr-3 md:mr-5">
-                            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            <div class="flex items-center space-x-2 md:space-x-4">
+                                <div class="flex items-center">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                             </svg>
+                                    <span>42</span>
                         </div>
-                        <div>
-                            <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Conductive Co-working spaces</h3>
-                            <p class="text-gray-600 text-sm md:text-base">Total amount of money raused to a result of working with Walk Studio</p>
+                                <div class="flex items-center">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                    <span>12</span>
                         </div>
                     </div>
+                        </div>
+                        <hr class="my-2 md:my-4">
+                        <p class="text-gray-600 text-sm md:text-base">AI is shaping the future, and Uganda must be ready! 
+                            @OticUganda
+                            , in partnership with 
+                            @w3schoolsonline
+                             
+                            @MoICT_Ug
+                            , and the National ICT Innovation Hub, is launching the National AI Skilling Program, a free training initiative designed to equip Ugandans with the digital skills needed for tomorrow.</p>
+                    </div>
+                </div>
 
-                    
-                    <div class="bg-white/80 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-sm flex items-center justify-center hover-scale">
-                        <div class="mb-4 border-2 border-blue-600 rounded-md p-2 mr-3 md:mr-5">
-                            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
+                    <img src="/assets/new1.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
+                    <div class="py-4 md:py-6">
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Digital Skilling in Uganda</h3>
+                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
+                            <div class="flex items-center">
+                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
+                                <span>Mar 12, 2025</span>
                         </div>
-                        <div>
-                            <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Incubatution Suport Service</h3>
-                            <p class="text-gray-600 text-sm md:text-base">Total amount of money raused to a result of working with Walk Studio</p>
+                            <div class="flex items-center space-x-2 md:space-x-4">
+                                <div class="flex items-center">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                    <span>42</span>
                         </div>
+                                <div class="flex items-center">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                    <span>12</span>
                     </div>
+                            </div>
+                        </div>
+                        <hr class="my-2 md:my-4">
+                        <p class="text-gray-600 text-sm md:text-base">Today we celebrated the graduation of the first phase of the Digital Skilling Program, an initiative by the 
+                            @MoICT_Ug
+                            , in partnership with 
+                            @MTNFoundation
+                            , 
+                            @CenteTech
+                            , 
+                            @HuaweiMobileUG
+                             and 
+                            @UICTug
+                             
+                            </p>
+                    </div>
+                </div>
 
-                    <div class="bg-white/80 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-sm flex items-center justify-center hover-scale">
-                        <div class="mb-4 border-2 border-blue-600 rounded-md p-2 mr-3 md:mr-5">
-                            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                <div class="rounded-xl overflow-hidden shadow-sm">
+                    <img src="/assets/news3.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
+                    <div class="py-4 md:py-6">
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Closing Ceremony for Girls in UICT</h3>
+                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
+                            <div class="flex items-center">
+                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
+                                <span>Apr 28, 2023</span>
                         </div>
-                        <div>
-                            <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Acceleration Support Service</h3>
-                            <p class="text-gray-600 text-sm md:text-base">Total amount of money raused to a result of working with Walk Studio</p>
+                            <div class="flex items-center space-x-2 md:space-x-4">
+                                <div class="flex items-center">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                    <span>42</span>
                         </div>
+                                <div class="flex items-center">
+                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                    <span>12</span>
                     </div>
-                    
+                </div>
+            </div>
+                        <hr class="my-2 md:my-4">
+                        <p class="text-gray-600 text-sm md:text-base">We were honored to have Hon 
+                            @Hon_Ssebugwawo
+                             at the closing ceremony for the Girls in ICT Week at 
+                            @MoICT_Ug
+                            . She encouraged all the young girls exploring the world of ICT that they have the potential to succeed and make a difference in this exciting field. 
+                            @code_academy_ug
+                            </p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Gallery Section -->
-        <div class="relative px-4 md:px-16 py-12 md:py-20 bg-black overflow-hidden">
+        <div class="relative px-4 md:px-16 py-12 md:py-20 bg-black overflow-hidden mb-12 md:mb-20">
             <!-- Animated background elements -->
             <div class="absolute inset-0">
                 <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
@@ -1030,109 +875,6 @@
             </div>
         </div>
 
-        <!-- Latest News Section -->
-        <div class="px-4 md:px-20 py-8 md:py-12 mx-2 md:mx-10 fade-in">
-            <div class="text-center mb-6 md:mb-12 slide-in-top">
-                <span class="bg-blue-600 text-white px-3 md:px-4 py-1 rounded-full text-xs md:text-sm">AI Robitics & Technology Website</span>
-                <h2 class="text-2xl md:text-4xl font-bold mt-2 md:mt-4">See Our Latest News!</h2>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
-                <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
-                    <img src="/assets/news.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
-                    <div class="py-4 md:py-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Explore New Era of Automation: AI & Robotics Technology</h3>
-                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
-                            <div class="flex items-center">
-                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <span>Oct 15, 2023</span>
-                            </div>
-                            <div class="flex items-center space-x-2 md:space-x-4">
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                    <span>42</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                    </svg>
-                                    <span>12</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-2 md:my-4">
-                        <p class="text-gray-600 text-sm md:text-base">From smart industrial robotics to AI-Powered systems, we offer comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.</p>
-                    </div>
-                </div>
-
-                <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
-                    <img src="/assets/news.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
-                    <div class="py-4 md:py-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Explore New Era of Automation: AI & Robotics Technology</h3>
-                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
-                            <div class="flex items-center">
-                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <span>Oct 15, 2023</span>
-                            </div>
-                            <div class="flex items-center space-x-2 md:space-x-4">
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                    <span>42</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                    </svg>
-                                    <span>12</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-2 md:my-4">
-                        <p class="text-gray-600 text-sm md:text-base">From smart industrial robotics to AI-Powered systems, we offer comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.</p>
-                    </div>
-                </div>
-
-                <div class="rounded-xl overflow-hidden shadow-sm">
-                    <img src="/assets/news.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
-                    <div class="py-4 md:py-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Explore New Era of Automation: AI & Robotics Technology</h3>
-                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
-                            <div class="flex items-center">
-                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <span>Oct 15, 2023</span>
-                            </div>
-                            <div class="flex items-center space-x-2 md:space-x-4">
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                    <span>42</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                    </svg>
-                                    <span>12</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-2 md:my-4">
-                        <p class="text-gray-600 text-sm md:text-base">From smart industrial robotics to AI-Powered systems, we offer comprehensive support through our special-tailored supporting ecosystem, an environment for collaboration, resources, and tools to help you thrive.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Startup Trust Section -->
         <div class="px-4 md:px-16 py-8 md:py-20 bg-gradient-to-b from-blue-50/50 bg-blue-100 mx-4 md:mx-20 rounded-2xl slide-in-bottom">
             <h1 class="text-3xl md:text-5xl font-bold text-center mb-6 md:mb-12 text-blue-800 animate__animated animate__pulse animate__infinite">Our Partners</h1>
@@ -1141,21 +883,24 @@
             </p>
             <div class="overflow-hidden relative">
                 <div class="flex items-center space-x-4 md:space-x-8 partner-scroll">
-                    <img src="/assets/logo-35.png" alt="UZ" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/MTN-Logo1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/Huawei-Symbol1.png" alt="Roar" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/logo.png" alt="Lifeworks" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/SDA 1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/Polygon 3.png" alt="Roar" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/SDA 1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
-                    <!-- Duplicate logos for seamless scrolling -->
-                    <img src="/assets/logo-35.png" alt="UZ" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/MTN-Logo1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/Huawei-Symbol1.png" alt="Roar" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/logo.png" alt="Lifeworks" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/SDA 1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/Polygon 3.png" alt="Roar" class="h-8 md:h-12 hover-scale">
-                    <img src="/assets/SDA 1.png" alt="Bidena" class="h-8 md:h-12 hover-scale">
+                    <img src="/assets/partners/UNDP-768x768.png" alt="UNDP" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/UICT-768x768.png" alt="UICT" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/SunBird-768x768.png" alt="SunBird" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/Refactory-768x768.png" alt="Refactory" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/MTN-768x768.png" alt="MTN" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/MinistryOfICT-768x768.png" alt="Ministry of ICT" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/Mastercard-768x768.png" alt="Mastercard" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/Jica-768x768.png" alt="Jica" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/JCSE-768x768.png" alt="JCSE" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/InnovationVillage-768x768.png" alt="Innovation Village" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/ICDL-768x768.png" alt="ICDL" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/Huawei-768x768.png" alt="Huawei" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/H3C-768x768.png" alt="H3C" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/Fundi-768x768.png" alt="Fundi" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/Enabel-768x768.png" alt="Enabel" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/Brahamam.png" alt="Brahamam" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/Coursera-768x768.png" alt="Coursera" class="h-12 md:h-20 hover-scale">
+                    <img src="/assets/partners/Centenary-768x768.png" alt="Centenary" class="h-12 md:h-20 hover-scale">
                 </div>
             </div>
         </div>
@@ -1449,6 +1194,20 @@
                 // Switch background every 5 seconds
                 setInterval(switchBackground, 5000);
                 
+                // Existing script code...
+            });
+
+            // Initialize Lottie animation
+            document.addEventListener('DOMContentLoaded', function() {
+                // Load and play the Lottie animation
+                const animation = lottie.loadAnimation({
+                    container: document.getElementById('lottie-container'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: '/assets/scene.json' // Updated path to scene.json
+                });
+
                 // Existing script code...
             });
         </script>
