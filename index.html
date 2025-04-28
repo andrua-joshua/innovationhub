@@ -475,6 +475,9 @@
                 opacity: 0;
             }
         </style>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
     <body class="bg-white">
        <div class="relative sticky top-0 z-50 bg-white shadow-md slide-in-top">
@@ -1210,6 +1213,65 @@
 
                 // Existing script code...
             });
+        </script>
+        <script>
+            const animationContainer = document.getElementById('animation-container');
+            
+            const animations = [
+                {
+                    path: 'https://lottie.host/45bd66a3-9034-4fe0-9ea8-62099884efa3/OTGUFLHqls.json',
+                    label: 'Registration'
+                },
+               
+                {
+                    path: 'https://lottie.host/c64912c6-3be9-4eb7-8898-6bad3aa1c4ef/yWZpzEmn7N.json',
+                    label: 'Service Desk'
+                },
+                
+                {
+                    path: 'https://lottie.host/1e416962-9b6c-4c1f-b51e-3c484ad14230/SyscBiatnQ.json',
+                    label: 'Mentoring'
+                }
+            ];
+    
+            let currentAnimation = 0;
+            let animInstance = null;
+            const animationDuration = 3000; // 3 seconds per animation
+    
+            // Create label element
+            const labelElement = document.createElement('div');
+            labelElement.className = 'animation-label';
+            animationContainer.appendChild(labelElement);
+    
+            function loadAnimation(index) {
+                if (animInstance) {
+                    animInstance.destroy();
+                }
+    
+                animationContainer.style.opacity = 0;
+                
+                setTimeout(() => {
+                    animInstance = lottie.loadAnimation({
+                        container: animationContainer,
+                        renderer: 'svg',
+                        loop: false,
+                        autoplay: true,
+                        path: animations[index].path
+                    });
+    
+                    labelElement.textContent = animations[index].label;
+                    animationContainer.style.opacity = 1;
+    
+                    // Set timeout for next animation
+                    setTimeout(() => {
+                        currentAnimation = (currentAnimation + 1) % animations.length;
+                        loadAnimation(currentAnimation);
+                    }, animationDuration);
+                }, 300);
+            }
+    
+            // Start the infinite animation loop
+            loadAnimation(0);
         </script>
     </body>
 </html>
