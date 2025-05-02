@@ -6,9 +6,115 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <style>
+            /* Mobile menu styles */
+            @media (max-width: 768px) {
+                .sidebar {
+                    transform: translateX(-100%);
+                    transition: transform 0.3s ease-in-out;
+                    position: fixed;
+                    z-index: 50;
+                    height: 100%;
+                }
+                .sidebar.active {
+                    transform: translateX(0);
+                }
+                .overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    z-index: 40;
+                }
+                .overlay.active {
+                    display: block;
+                }
+                .timeline::before {
+                    left: 20px;
+                }
+                .timeline-item {
+                    width: 100% !important;
+                    padding-left: 45px !important;
+                    padding-right: 0 !important;
+                    margin-bottom: 20px;
+                }
+                .timeline-item:nth-child(even) {
+                    left: 0 !important;
+                }
+                .timeline-item::after {
+                    left: 11px !important;
+                }
+                .timeline-content {
+                    padding: 15px;
+                    width: 100%;
+                    margin-left: 0;
+                }
+                .timeline-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.5rem;
+                }
+                .timeline-title {
+                    font-size: 1.1rem;
+                    margin-bottom: 0.25rem;
+                }
+                .status-badge {
+                    font-size: 0.7rem;
+                    padding: 0.2rem 0.5rem;
+                }
+                .timeline-description {
+                    font-size: 0.9rem;
+                }
+                .filter-buttons {
+                    overflow-x: auto;
+                    white-space: nowrap;
+                    -webkit-overflow-scrolling: touch;
+                    padding-bottom: 10px;
+                }
+                .filter-buttons::-webkit-scrollbar {
+                    display: none;
+                }
+                .timeline-content {
+                    padding: 15px;
+                }
+                .timeline-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.5rem;
+                }
+                .timeline-title {
+                    font-size: 1.1rem;
+                    margin-bottom: 0.25rem;
+                }
+                .status-badge {
+                    font-size: 0.7rem;
+                    padding: 0.2rem 0.5rem;
+                }
+                .timeline-description {
+                    font-size: 0.9rem;
+                }
+                .milestone-grid {
+                    grid-template-columns: 1fr !important;
+                }
+                .form-section {
+                    padding: 1rem;
+                }
+                .form-grid {
+                    grid-template-columns: 1fr !important;
+                }
+                .modal-content {
+                    padding: 1rem;
+                    margin: 1rem;
+                }
+            }
+
+            /* Existing timeline styles */
             .timeline {
                 position: relative;
                 padding: 20px 0;
+                width: 100%;
             }
 
             .timeline::before {
@@ -38,6 +144,7 @@
                 background-color: #3B82F6;
                 border-radius: 50%;
                 top: 15px;
+                z-index: 1;
             }
 
             .timeline-item:nth-child(even) {
@@ -49,11 +156,11 @@
             }
 
             .timeline-content {
-                padding: 20px;
                 background: white;
+                padding: 20px;
                 border-radius: 8px;
                 box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-                transition: all 0.3s ease;
+                position: relative;
             }
 
             .timeline-content:hover {
@@ -265,10 +372,18 @@
             }
         </style>
     </head>
-    <body class="bg-gray-100">
+    <body class="bg-blue-100">
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-blue-700 text-white">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Overlay for mobile menu -->
+        <div id="overlay" class="overlay"></div>
+
         <div class="flex h-screen">
-            <!-- Sidebar (Same as other pages) -->
-            <div class="bg-blue-700 w-64 shadow-lg">
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar bg-blue-700 w-64 shadow-lg">
                 <div class="p-4 border-b mt-5">
                     <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
                 </div>
@@ -349,19 +464,19 @@
 
             <!-- Main Content -->
             <div class="flex-1 overflow-auto">
-                <header class="bg-blue-700 shadow-sm flex items-center justify-between">
-                    <div class="px-6 py-4">
-                        <h2 class="text-xl font-semibold text-white">Product Roadmap</h2>
-                        <p class="mt-1 text-sm text-white">Track our product development progress and upcoming features</p>
+                <header class="bg-white shadow-sm flex flex-col md:flex-row items-center justify-between border-t border-2 border-blue-700">
+                    <div class="px-6 py-4 w-full md:w-auto">
+                        <h2 class="text-xl font-semibold text-blue-700">Product Roadmap</h2>
+                        <p class="mt-1 text-sm text-grey-700">Track our product development progress and upcoming features</p>
                     </div>
 
-                    <div class="bottom-0 w-64 p-4 border-0">
+                    <div class="w-full md:w-64 p-4 border-0">
                         <div class="flex items-center space-x-4">
                             <div class="flex-shrink-0">
                                 <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-white truncate">User Name</p>
+                                <p class="text-sm font-medium text-blue-700 truncate">User Name</p>
                                 <p class="text-xs text-black truncate">user@example.com</p>
                             </div>
                             <a href="user-profile.html" class="p-2 text-black hover:text-gray-700 rounded-lg hover:bg-gray-100">
@@ -371,25 +486,25 @@
                     </div>
                 </header>
 
-                <main class="p-6">
+                <main class="p-4 md:p-6">
                     <!-- Filters and Add New Roadmap Button -->
-                    <div class="mb-6 flex justify-between items-center">
-                        <div class="flex space-x-4">
-                            <button id="filter-all" onclick="filterRoadmap('all')" class="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100">
+                    <div class="mb-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                        <div class="filter-buttons flex space-x-4 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                            <button id="filter-all" onclick="filterRoadmap('all')" class="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100 whitespace-nowrap">
                                 All
                             </button>
-                            <button id="filter-completed" onclick="filterRoadmap('completed')" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
+                            <button id="filter-completed" onclick="filterRoadmap('completed')" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md whitespace-nowrap">
                                 Completed
                             </button>
-                            <button id="filter-in-progress" onclick="filterRoadmap('in-progress')" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
+                            <button id="filter-in-progress" onclick="filterRoadmap('in-progress')" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md whitespace-nowrap">
                                 In Progress
                             </button>
-                            <button id="filter-upcoming" onclick="filterRoadmap('upcoming')" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
+                            <button id="filter-upcoming" onclick="filterRoadmap('upcoming')" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md whitespace-nowrap">
                                 Upcoming
                             </button>
                         </div>
                         
-                        <button onclick="showNewRoadmapModal()" class="text-black px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center" style="background-color: #d8d819;">
+                        <button onclick="showNewRoadmapModal()" class="w-full md:w-auto text-black px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center justify-center" style="background-color: #d8d819;">
                             <i class="fas fa-plus mr-2"></i>Add New Roadmap
                         </button>
                     </div>
@@ -399,19 +514,19 @@
                         <!-- Q1 2024 -->
                         <div class="timeline-item">
                             <div class="timeline-content">
-                                <div class="flex justify-between items-start">
-                                    <h3 class="text-lg font-semibold text-gray-900">Q1 2024</h3>
-                                    <span class="status-badge status-completed">
+                                <div class="timeline-header flex justify-between items-start">
+                                    <h3 class="timeline-title text-lg font-semibold text-gray-900">Q1 2024</h3>
+                                    <span class="status-badge status-completed whitespace-nowrap">
                                         <i class="fas fa-check-circle mr-1"></i>
                                         Completed
                                     </span>
                                 </div>
                                 <div class="mt-4 space-y-4">
-                                    <div>
+                                    <div class="timeline-description">
                                         <h4 class="font-medium text-gray-900">User Authentication System</h4>
                                         <p class="text-sm text-gray-600">Implemented secure user authentication with multi-factor support</p>
                                     </div>
-                                    <div>
+                                    <div class="timeline-description">
                                         <h4 class="font-medium text-gray-900">Dashboard Redesign</h4>
                                         <p class="text-sm text-gray-600">New modern dashboard with improved data visualization</p>
                                     </div>
@@ -422,19 +537,19 @@
                         <!-- Q2 2024 -->
                         <div class="timeline-item">
                             <div class="timeline-content">
-                                <div class="flex justify-between items-start">
-                                    <h3 class="text-lg font-semibold text-gray-900">Q2 2024</h3>
-                                    <span class="status-badge status-in-progress">
+                                <div class="timeline-header flex justify-between items-start">
+                                    <h3 class="timeline-title text-lg font-semibold text-gray-900">Q2 2024</h3>
+                                    <span class="status-badge status-in-progress whitespace-nowrap">
                                         <i class="fas fa-spinner fa-spin mr-1"></i>
                                         In Progress
                                     </span>
                                 </div>
                                 <div class="mt-4 space-y-4">
-                                    <div>
+                                    <div class="timeline-description">
                                         <h4 class="font-medium text-gray-900">Mobile App Development</h4>
                                         <p class="text-sm text-gray-600">Native mobile apps for iOS and Android platforms</p>
                                     </div>
-                                    <div>
+                                    <div class="timeline-description">
                                         <h4 class="font-medium text-gray-900">API Integration</h4>
                                         <p class="text-sm text-gray-600">Enhanced API capabilities with improved documentation</p>
                                     </div>
@@ -445,19 +560,19 @@
                         <!-- Q3 2024 -->
                         <div class="timeline-item">
                             <div class="timeline-content">
-                                <div class="flex justify-between items-start">
-                                    <h3 class="text-lg font-semibold text-gray-900">Q3 2024</h3>
-                                    <span class="status-badge status-upcoming">
+                                <div class="timeline-header flex justify-between items-start">
+                                    <h3 class="timeline-title text-lg font-semibold text-gray-900">Q3 2024</h3>
+                                    <span class="status-badge status-upcoming whitespace-nowrap">
                                         <i class="fas fa-clock mr-1"></i>
                                         Upcoming
                                     </span>
                                 </div>
                                 <div class="mt-4 space-y-4">
-                                    <div>
+                                    <div class="timeline-description">
                                         <h4 class="font-medium text-gray-900">AI-Powered Analytics</h4>
                                         <p class="text-sm text-gray-600">Advanced analytics with machine learning capabilities</p>
                                     </div>
-                                    <div>
+                                    <div class="timeline-description">
                                         <h4 class="font-medium text-gray-900">Cloud Integration</h4>
                                         <p class="text-sm text-gray-600">Seamless integration with major cloud providers</p>
                                     </div>
@@ -468,19 +583,19 @@
                         <!-- Q4 2024 -->
                         <div class="timeline-item">
                             <div class="timeline-content">
-                                <div class="flex justify-between items-start">
-                                    <h3 class="text-lg font-semibold text-gray-900">Q4 2024</h3>
-                                    <span class="status-badge status-upcoming">
+                                <div class="timeline-header flex justify-between items-start">
+                                    <h3 class="timeline-title text-lg font-semibold text-gray-900">Q4 2024</h3>
+                                    <span class="status-badge status-upcoming whitespace-nowrap">
                                         <i class="fas fa-clock mr-1"></i>
                                         Upcoming
                                     </span>
                                 </div>
                                 <div class="mt-4 space-y-4">
-                                    <div>
+                                    <div class="timeline-description">
                                         <h4 class="font-medium text-gray-900">Enterprise Features</h4>
                                         <p class="text-sm text-gray-600">Advanced features for enterprise customers</p>
                                     </div>
-                                    <div>
+                                    <div class="timeline-description">
                                         <h4 class="font-medium text-gray-900">Performance Optimization</h4>
                                         <p class="text-sm text-gray-600">System-wide performance improvements</p>
                                     </div>
@@ -494,7 +609,7 @@
 
         <!-- New Roadmap Modal -->
         <div id="newRoadmapModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
-            <div class="relative top-20 mx-auto p-8 border w-3/4 max-w-2xl shadow-lg rounded-md bg-white">
+            <div class="relative top-20 mx-auto p-4 md:p-8 border w-11/12 md:w-3/4 max-w-2xl shadow-lg rounded-md bg-white">
                 <div class="flex justify-between items-center pb-4 border-b">
                     <h3 class="text-xl font-semibold text-gray-900">Create New Roadmap</h3>
                     <button onclick="closeNewRoadmapModal()" class="text-gray-400 hover:text-gray-500">
@@ -514,25 +629,25 @@
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <i class="fas fa-road text-gray-400"></i>
                                 </div>
-                                <input type="text" id="roadmapTitle" class="form-input pl-10" placeholder="Enter roadmap title">
+                                <input type="text" id="roadmapTitle" class="form-input pl-10 w-full" placeholder="Enter roadmap title">
                             </div>
                         </div>
 
                         <!-- Description -->
                         <div class="form-group">
                             <label class="form-label">Description</label>
-                            <textarea id="roadmapDescription" class="form-textarea" placeholder="Describe the purpose and goals of this roadmap"></textarea>
+                            <textarea id="roadmapDescription" class="form-textarea w-full" placeholder="Describe the purpose and goals of this roadmap"></textarea>
                         </div>
 
                         <!-- Date Range -->
-                        <div class="grid grid-cols-2 gap-6">
+                        <div class="form-grid grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                             <div class="form-group">
                                 <label class="form-label">Start Date</label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <i class="fas fa-calendar-alt text-gray-400"></i>
                                     </div>
-                                    <input type="date" id="startDate" class="form-date pl-10">
+                                    <input type="date" id="startDate" class="form-date pl-10 w-full">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -541,7 +656,7 @@
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <i class="fas fa-calendar-alt text-gray-400"></i>
                                     </div>
-                                    <input type="date" id="endDate" class="form-date pl-10">
+                                    <input type="date" id="endDate" class="form-date pl-10 w-full">
                                 </div>
                             </div>
                         </div>
@@ -549,7 +664,7 @@
                         <!-- Priority -->
                         <div class="form-group">
                             <label class="form-label">Priority</label>
-                            <select id="roadmapPriority" class="form-select">
+                            <select id="roadmapPriority" class="form-select w-full">
                                 <option value="low">Low</option>
                                 <option value="medium" selected>Medium</option>
                                 <option value="high">High</option>
@@ -558,64 +673,12 @@
                         </div>
                     </div>
 
-                    <!-- Milestones Section -->
-                    <div class="form-section">
-                        <h4 class="form-section-title">Milestones</h4>
-                        <div id="milestonesContainer" class="space-y-4">
-                            <div class="milestone-item">
-                                <div class="milestone-header">
-                                    <h4 class="milestone-title">Milestone 1</h4>
-                                    <button type="button" class="milestone-remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                                <div class="space-y-3">
-                                    <div class="form-group">
-                                        <label class="form-label">Title</label>
-                                        <div class="relative">
-                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <i class="fas fa-flag text-gray-400"></i>
-                                            </div>
-                                            <input type="text" class="form-input pl-10" placeholder="Milestone title">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Description</label>
-                                        <textarea class="form-textarea" rows="2" placeholder="Milestone description"></textarea>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Due Date</label>
-                                            <div class="relative">
-                                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                    <i class="fas fa-calendar-day text-gray-400"></i>
-                                                </div>
-                                                <input type="date" class="form-date pl-10">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Status</label>
-                                            <select class="form-select">
-                                                <option value="upcoming">Upcoming</option>
-                                                <option value="in_progress">In Progress</option>
-                                                <option value="completed">Completed</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" onclick="addMilestone()" class="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
-                            <i class="fas fa-plus-circle mr-1"></i> Add Milestone
-                        </button>
-                    </div>
-
                     <!-- Form Actions -->
-                    <div class="flex justify-end space-x-4 pt-6 border-t">
-                        <button type="button" onclick="closeNewRoadmapModal()" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    <div class="flex flex-col md:flex-row justify-end space-y-3 md:space-y-0 md:space-x-4 pt-6 border-t">
+                        <button type="button" onclick="closeNewRoadmapModal()" class="w-full md:w-auto px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             Cancel
                         </button>
-                        <button type="submit" class="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        <button type="submit" class="w-full md:w-auto px-5 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             Create Roadmap
                         </button>
                     </div>
@@ -624,6 +687,33 @@
         </div>
 
         <script>
+            // Add mobile menu functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+
+                mobileMenuButton.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                });
+
+                overlay.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+
+                // Close sidebar when clicking outside on mobile
+                document.addEventListener('click', function(event) {
+                    if (window.innerWidth < 768) {
+                        if (!sidebar.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                            sidebar.classList.remove('active');
+                            overlay.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
             function toggleServiceDesk() {
                 const menu = document.getElementById('service-menu');
                 const arrow = document.getElementById('service-arrow');

@@ -92,16 +92,54 @@
             .date-wrapper:focus-within {
                 background-color: #FFFFFF;
             }
+
+            @media (max-width: 768px) {
+                .sidebar {
+                    transform: translateX(-100%);
+                    transition: transform 0.3s ease-in-out;
+                }
+                .sidebar.active {
+                    transform: translateX(0);
+                }
+                .overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    z-index: 40;
+                }
+                .overlay.active {
+                    display: block;
+                }
+                .table-responsive {
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+                .modal-content {
+                    width: 95%;
+                    margin: 1rem auto;
+                }
+            }
         </style>
     </head>
 
-    <body class="bg-gray-100">
+    <body class="bg-blue-100">
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-blue-700 text-white">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Overlay for mobile menu -->
+        <div id="overlay" class="overlay"></div>
+
         <div class="flex h-screen">
-            <!-- Sidebar (Same as index.html) -->
-            <div class="bg-blue-700 w-64 shadow-lg">
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar bg-blue-700 w-64 shadow-lg fixed md:relative h-full z-50">
                 <div class="p-4 border-b mt-5">
                     <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
-                    <!-- <h1 class="text-2xl font-bold text-gray-800">NIIT Hub</h1> -->
                 </div>
                 
                 <nav class="mt-6">
@@ -122,24 +160,23 @@
                                 <i id="service-arrow" class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
                             </button>
                             <!-- Expandable Menu -->
-                            <div id="service-menu" class=" overflow-hidden transition-all duration-200">
+                            <div id="service-menu" class="overflow-hidden transition-all duration-200">
                                 <div class="py-1 space-y-1">
-                                    <a href="service-request.html" class="flex items-center rounded-lg px-4 py-2 text-sm text-black  hover:text-blue-600 hover:rounded-lg ml-6" style="background-color: #d8d819;">
+                                    <a href="service-request.html" class="flex items-center rounded-lg px-4 py-2 text-sm text-black hover:text-blue-600 hover:rounded-lg ml-6" style="background-color: #d8d819;">
                                         <i class="fas fa-clipboard-list w-4"></i>
                                         <span class="ml-2">Service Request</span>
                                     </a>
-                                    <a href="complaints.html" class="flex items-center rounded-lg px-4 py-2 text-sm text-white hover:bg-blue-50  hover:text-blue-600 ml-6">
+                                    <a href="complaints.html" class="flex items-center rounded-lg px-4 py-2 text-sm text-white hover:bg-blue-50 hover:text-blue-600 ml-6">
                                         <i class="fas fa-exclamation-circle w-4"></i>
                                         <span class="ml-2">Complaints</span>
                                     </a>
-                                    <a href="bookings.html" class="flex items-center rounded-lg px-4 py-2 text-sm text-white hover:bg-blue-50  hover:text-blue-600 ml-6">
+                                    <a href="bookings.html" class="flex items-center rounded-lg px-4 py-2 text-sm text-white hover:bg-blue-50 hover:text-blue-600 ml-6">
                                         <i class="fas fa-calendar-check w-4"></i>
                                         <span class="ml-2">Bookings</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
-
 
                         <a href="pulse-check.html" class="flex items-center p-3 text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                             <i class="fas fa-heartbeat w-6"></i>
@@ -154,7 +191,6 @@
                             <i class="fas fa-comments w-6"></i>
                             <span class="ml-3">Feedback</span>
                         </a>
-                        
                         <a href="roadmap.html" class="flex items-center p-3 text-white rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">
                             <i class="fas fa-road w-6"></i>
                             <span class="ml-3">Roadmap</span>
@@ -163,7 +199,6 @@
                             <i class="fas fa-cog w-6"></i>
                             <span class="ml-3">Settings</span>
                         </a>
-                        
                     </div>
                 </nav>
 
@@ -176,7 +211,7 @@
                             <p class="text-sm font-medium text-white truncate">User Name</p>
                             <p class="text-xs text-black truncate">user@example.com</p>
                         </div>
-                        <button onclick="window.location.href='user-profile.html'" class="p-2 text-black hover:text-gray-700 rounded-lg hover:bg-gray-100">
+                        <button class="p-2 text-black hover:text-gray-700 rounded-lg hover:bg-gray-100">
                             <i class="fas fa-cog"></i>
                         </button>
                     </div>
@@ -185,18 +220,18 @@
 
             <!-- Main Content -->
             <div class="flex-1 overflow-auto">
-                <header class="bg-blue-700 shadow-sm sticky top-0 z-0 flex items-center justify-between">
-                    <div class="px-6 py-4 pt-10">
-                        <h2 class="text-xl font-semibold text-white">Service Request</h2>
+                <header class="bg-white shadow-sm sticky top-0 z-0 flex flex-col md:flex-row items-center justify-between border-t border-2 border-blue-700">
+                    <div class="px-6 py-4 pt-10 md:pt-4">
+                        <h2 class="text-xl font-semibold text-blue-700">Service Request</h2>
                     </div>
 
-                    <div class="bottom-0 w-64 p-4 border-0">
+                    <div class="w-full md:w-64 p-4 border-0">
                         <div class="flex items-center space-x-4">
                             <div class="flex-shrink-0">
                                 <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-white truncate">User Name</p>
+                                <p class="text-sm font-medium text-blue-700 truncate">User Name</p>
                                 <p class="text-xs text-black truncate">user@example.com</p>
                             </div>
                             <a href="user-profile.html" class="p-2 text-black hover:text-gray-700 rounded-lg hover:bg-gray-100">
@@ -206,38 +241,34 @@
                     </div>
                 </header>
 
-                <main class="p-6">
+                <main class="p-4 md:p-6">
                     <!-- Filters and Add New Button -->
-                    <div class="flex justify-between items-center mb-6">
-                        <div class="flex space-x-4">
-                            <div class="relative">
-                                <div class="flex space-x-2 bg-white rounded-lg shadow-sm p-1">
-                                    <button onclick="filterStatus('all')" id="filter-all" class="px-4 py-2 text-sm font-medium rounded-md text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors">
-                                        All
-                                    </button>
-                                    <button onclick="filterStatus('submitted')" id="filter-submitted" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
-                                        Submitted
-                                    </button>
-                                    <button onclick="filterStatus('under_review')" id="filter-under_review" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
-                                        Under Review
-                                    </button>
-                                    <button onclick="filterStatus('completed')" id="filter-completed" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
-                                        Completed
-                                    </button>
-                                    <button onclick="filterStatus('rejected')" id="filter-rejected" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
-                                        Rejected
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="filterStatus('all')" id="filter-all" class="px-4 py-2 text-sm font-medium rounded-md text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors">
+                                All
+                            </button>
+                            <button onclick="filterStatus('submitted')" id="filter-submitted" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                Submitted
+                            </button>
+                            <button onclick="filterStatus('under_review')" id="filter-under_review" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                Under Review
+                            </button>
+                            <button onclick="filterStatus('completed')" id="filter-completed" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                Completed
+                            </button>
+                            <button onclick="filterStatus('rejected')" id="filter-rejected" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                Rejected
+                            </button>
                         </div>
-                        <button onclick="showNewRequestForm()" class=" text-black px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" style="background-color: #d8d819;">
+                        <button onclick="showNewRequestForm()" class="w-full md:w-auto text-black px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" style="background-color: #d8d819;">
                             <i class="fas fa-plus mr-2"></i>Add New Request
                         </button>
                     </div>
 
                     <!-- Table -->
                     <div class="bg-white rounded-lg shadow overflow-hidden">
-                        <div class="overflow-x-auto">
+                        <div class="table-responsive">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
@@ -556,7 +587,7 @@
                         </div>
 
                         <!-- Pagination -->
-                        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                        <div class="bg-white px-4 py-3 flex flex-col md:flex-row items-center justify-between border-t border-gray-200 sm:px-6">
                             <div class="flex-1 flex justify-between sm:hidden">
                                 <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                                     Previous
@@ -604,7 +635,7 @@
 
         <!-- New Request Modal -->
         <div id="newRequestModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
-            <div class="relative top-20 mx-auto p-8 border w-3/4 shadow-lg rounded-md bg-white">
+            <div class="relative top-20 mx-auto p-4 md:p-8 border w-full md:w-3/4 shadow-lg rounded-md bg-white modal-content">
                 <div class="flex justify-between items-center pb-4 border-b">
                     <h3 class="text-xl font-semibold text-gray-900">New Service Request</h3>
                     <button onclick="closeNewRequestModal()" class="text-gray-400 hover:text-gray-500">
@@ -694,7 +725,7 @@
 
         <!-- View Service Request Modal -->
         <div id="viewRequestModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
-            <div class="relative top-20 mx-auto p-8 border w-3/4 shadow-lg rounded-md bg-white">
+            <div class="relative top-20 mx-auto p-4 md:p-8 border w-full md:w-3/4 shadow-lg rounded-md bg-white modal-content">
                 <div class="flex justify-between items-center pb-4 border-b">
                     <h3 class="text-xl font-semibold text-gray-900">View Service Request</h3>
                     <button onclick="closeViewModal()" class="text-gray-400 hover:text-gray-500">
@@ -776,7 +807,7 @@
 
         <!-- Edit Service Request Modal -->
         <div id="editRequestModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
-            <div class="relative top-20 mx-auto p-8 border w-3/4 shadow-lg rounded-md bg-white">
+            <div class="relative top-20 mx-auto p-4 md:p-8 border w-full md:w-3/4 shadow-lg rounded-md bg-white modal-content">
                 <div class="flex justify-between items-center pb-4 border-b">
                     <h3 class="text-xl font-semibold text-gray-900">Edit Service Request</h3>
                     <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-500">
@@ -870,6 +901,33 @@
         </div>
 
         <script>
+            // Mobile menu functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+
+                mobileMenuButton.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                });
+
+                overlay.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+
+                // Close sidebar when clicking outside on mobile
+                document.addEventListener('click', function(event) {
+                    if (window.innerWidth < 768) {
+                        if (!sidebar.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                            sidebar.classList.remove('active');
+                            overlay.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
             function toggleServiceDesk() {
                 const menu = document.getElementById('service-menu');
                 const arrow = document.getElementById('service-arrow');

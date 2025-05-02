@@ -231,13 +231,77 @@
             .input-with-right-icon input {
                 padding-right: 2.5rem;
             }
+
+            /* Add responsive styles */
+            @media (max-width: 768px) {
+                .sidebar {
+                    transform: translateX(-100%);
+                    transition: transform 0.3s ease-in-out;
+                    position: fixed;
+                    z-index: 50;
+                    height: 100%;
+                }
+                .sidebar.active {
+                    transform: translateX(0);
+                }
+                .overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    z-index: 40;
+                }
+                .overlay.active {
+                    display: block;
+                }
+                .table-responsive {
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+                .modal-content {
+                    width: 95%;
+                    margin: 1rem auto;
+                }
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+                @screen md {
+                    .grid {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                }
+                .progress-steps {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+                .progress-steps .flex-1 {
+                    display: none;
+                }
+                .step-indicator {
+                    width: 100%;
+                }
+                .form-section {
+                    padding: 1rem;
+                }
+            }
         </style>
     </head>
 
-    <body class="bg-gray-100">
+    <body class="bg-blue-100">
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-blue-700 text-white">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Overlay for mobile menu -->
+        <div id="overlay" class="overlay"></div>
+
         <div class="flex h-screen">
-            <!-- Sidebar (Same as index.html) -->
-            <div class="bg-blue-700 w-64 shadow-lg">
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar bg-blue-700 w-64 shadow-lg">
                 <div class="p-4 border-b mt-5">
                     <!-- <h1 class="text-2xl font-bold text-gray-800">NIIT Hub</h1> -->
                     <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
@@ -322,19 +386,18 @@
 
             <!-- Main Content -->
             <div class="flex-1 overflow-auto">
-                <header class="bg-blue-700 shadow-sm sticky top-0 z-0 flex items-center justify-between">
-                    <div class="px-6 py-4 pt-10">
-                        <h2 class="text-xl font-semibold text-white">Pulse Check</h2>
+                <header class="bg-white shadow-sm sticky top-0 z-0 flex flex-col md:flex-row items-center justify-between border-t border-2 border-blue-700">
+                    <div class="px-6 py-4 pt-10 md:pt-4">
+                        <h2 class="text-xl font-semibold text-blue-700">Pulse Check</h2>
                     </div>
 
-
-                    <div class="bottom-0 w-64 p-4 border-0">
+                    <div class="w-full md:w-64 p-4 border-0">
                         <div class="flex items-center space-x-4">
                             <div class="flex-shrink-0">
                                 <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User">
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-white truncate">User Name</p>
+                                <p class="text-sm font-medium text-blue-700 truncate">User Name</p>
                                 <p class="text-xs text-black truncate">user@example.com</p>
                             </div>
                             <a href="user-profile.html" class="p-2 text-black hover:text-gray-700 rounded-lg hover:bg-gray-100">
@@ -344,35 +407,33 @@
                     </div>
                 </header>
 
-                <main class="p-6">
+                <main class="p-4 md:p-6">
                     <!-- Filters and Add New Button -->
-                    <div class="flex justify-between items-center mb-6">
-                        <div class="flex space-x-4">
-                            <div class="relative">
-                                <div class="flex space-x-2 bg-white rounded-lg shadow-sm p-1">
-                                    <button onclick="filterMonth('all')" id="filter-all" class="px-4 py-2 text-sm font-medium rounded-md text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors">
-                                        All
-                                    </button>
-                                    <button onclick="filterMonth('january')" id="filter-january" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
-                                        January
-                                    </button>
-                                    <button onclick="filterMonth('february')" id="filter-february" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
-                                        February
-                                    </button>
-                                    <button onclick="filterMonth('march')" id="filter-march" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
-                                        March
-                                    </button>
-                                </div>
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+                        <div class="w-full md:w-auto overflow-x-auto">
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="filterMonth('all')" id="filter-all" class="px-4 py-2 text-sm font-medium rounded-md text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors">
+                                    All
+                                </button>
+                                <button onclick="filterMonth('january')" id="filter-january" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                    January
+                                </button>
+                                <button onclick="filterMonth('february')" id="filter-february" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                    February
+                                </button>
+                                <button onclick="filterMonth('march')" id="filter-march" class="px-4 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 transition-colors">
+                                    March
+                                </button>
                             </div>
                         </div>
-                        <button onclick="showNewPulseCheckForm()" class="text-black px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" style="background-color: #d8d819;" >
+                        <button onclick="showNewPulseCheckForm()" class="w-full md:w-auto text-black px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" style="background-color: #d8d819;">
                             <i class="fas fa-plus mr-2"></i>Add New Pulse Check
                         </button>
                     </div>
 
                     <!-- Table -->
                     <div class="bg-white rounded-lg shadow overflow-hidden">
-                        <div class="overflow-x-auto">
+                        <div class="table-responsive">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
@@ -540,7 +601,7 @@
                         </div>
 
                         <!-- Pagination -->
-                        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                        <div class="bg-white px-4 py-3 flex flex-col md:flex-row items-center justify-between border-t border-gray-200 sm:px-6">
                             <div class="flex-1 flex justify-between sm:hidden">
                                 <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                                     Previous
@@ -588,7 +649,7 @@
 
         <!-- New Pulse Check Modal -->
         <div id="newPulseCheckModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
-            <div class="relative top-10 mx-auto p-8 border w-11/12 max-w-6xl shadow-lg rounded-md bg-white">
+            <div class="relative top-10 mx-auto p-4 md:p-8 border w-full md:w-11/12 max-w-6xl shadow-lg rounded-md bg-white modal-content">
                 <div class="flex justify-between items-center pb-4 border-b">
                     <h3 class="text-xl font-semibold text-gray-900">New Pulse Check</h3>
                     <button onclick="closeNewPulseCheckModal()" class="text-gray-400 hover:text-gray-500">
@@ -598,9 +659,9 @@
                 
                 <!-- Progress Steps -->
                 <div class="mt-6 mb-8">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between progress-steps">
                         <div class="flex items-center">
-                            <div id="step-1-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white">
+                            <div id="step-1-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white step-indicator">
                                 <span>1</span>
                             </div>
                             <div class="ml-4">
@@ -611,7 +672,7 @@
                             <div id="progress-bar" class="h-1 bg-blue-600" style="width: 0%"></div>
                         </div>
                         <div class="flex items-center">
-                            <div id="step-2-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600">
+                            <div id="step-2-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600 step-indicator">
                                 <span>2</span>
                             </div>
                             <div class="ml-4">
@@ -622,7 +683,7 @@
                             <div class="h-1 bg-gray-200"></div>
                         </div>
                         <div class="flex items-center">
-                            <div id="step-3-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600">
+                            <div id="step-3-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600 step-indicator">
                                 <span>3</span>
                             </div>
                             <div class="ml-4">
@@ -633,7 +694,7 @@
                             <div class="h-1 bg-gray-200"></div>
                         </div>
                         <div class="flex items-center">
-                            <div id="step-4-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600">
+                            <div id="step-4-indicator" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600 step-indicator">
                                 <span>4</span>
                             </div>
                             <div class="ml-4">
@@ -1055,9 +1116,9 @@
             </div>
         </div>
 
-        <!-- View Pulse Check Details Modal -->
+        <!-- View Pulse Check Modal -->
         <div id="viewPulseCheckModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
-            <div class="relative top-10 mx-auto p-8 border w-11/12 max-w-6xl shadow-lg rounded-md bg-white">
+            <div class="relative top-10 mx-auto p-4 md:p-8 border w-full md:w-11/12 max-w-6xl shadow-lg rounded-md bg-white modal-content">
                 <div class="flex justify-between items-center pb-4 border-b">
                     <h3 class="text-xl font-semibold text-gray-900">Pulse Check Details</h3>
                     <button onclick="closeViewPulseCheckModal()" class="text-gray-400 hover:text-gray-500">
@@ -1066,7 +1127,7 @@
                 </div>
                 
                 <!-- Summary Cards -->
-                <div class="grid grid-cols-5 gap-4 mt-6">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6">
                     <div class="bg-blue-50 p-4 rounded-lg shadow-sm">
                         <h4 class="text-sm font-medium text-blue-800">Submission Date</h4>
                         <p id="view-submission-date" class="text-lg font-semibold text-blue-900 mt-1">2024-03-01</p>
@@ -1224,6 +1285,33 @@
         </div>
 
         <script>
+            // Add mobile menu functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+
+                mobileMenuButton.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                });
+
+                overlay.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+
+                // Close sidebar when clicking outside on mobile
+                document.addEventListener('click', function(event) {
+                    if (window.innerWidth < 768) {
+                        if (!sidebar.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                            sidebar.classList.remove('active');
+                            overlay.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
             function toggleServiceDesk() {
                 const menu = document.getElementById('service-menu');
                 const arrow = document.getElementById('service-arrow');

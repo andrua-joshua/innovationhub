@@ -6,6 +6,54 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <style>
+            /* Mobile menu styles */
+            @media (max-width: 768px) {
+                .sidebar {
+                    transform: translateX(-100%);
+                    transition: transform 0.3s ease-in-out;
+                    position: fixed;
+                    z-index: 50;
+                    height: 100%;
+                }
+                .sidebar.active {
+                    transform: translateX(0);
+                }
+                .overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    z-index: 40;
+                }
+                .overlay.active {
+                    display: block;
+                }
+                .profile-grid {
+                    grid-template-columns: 1fr !important;
+                }
+                .profile-photo-section {
+                    text-align: center;
+                    margin-bottom: 2rem;
+                }
+                .tab-scroll {
+                    overflow-x: auto;
+                    white-space: nowrap;
+                    -webkit-overflow-scrolling: touch;
+                    scrollbar-width: none;
+                }
+                .tab-scroll::-webkit-scrollbar {
+                    display: none;
+                }
+                .login-history-table {
+                    display: block;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+            }
+
             /* Enhanced styling for the user profile page */
             body {
                 background-color: #f3f4f6;
@@ -297,10 +345,18 @@
             }
         </style>
     </head>
-    <body class="bg-gray-100">
+    <body class="bg-blue-100">
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-blue-700 text-white">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Overlay for mobile menu -->
+        <div id="overlay" class="overlay"></div>
+
         <div class="flex h-screen">
             <!-- Sidebar -->
-            <div class="bg-blue-700 w-64 shadow-lg">
+            <div id="sidebar" class="sidebar bg-blue-700 w-64 shadow-lg">
                 <div class="p-4 border-b mt-5">
                     <img src="../assets/logo.png" alt="NIIT Logo" class="w-[80%]">
                     <!-- <h1 class="text-2xl font-bold text-gray-800">NIIT Hub</h1> -->
@@ -387,36 +443,36 @@
             <!-- Main Content -->
             <div class="flex-1 overflow-auto">
                 <!-- Header -->
-                <header class="bg-blue-700 shadow-sm sticky top-0 z-10">
-                    <div class="px-6 py-4 pt-10">
-                        <h2 class="text-xl font-semibold text-white">User Profile</h2>
+                <header class="bg-white shadow-sm sticky top-0 z-10 border-t border-2 border-blue-700">
+                    <div class="px-4 md:px-6 py-4 pt-10 md:pt-4">
+                        <h2 class="text-xl font-semibold text-blue-700">User Profile</h2>
                     </div>
                 </header>
 
                 <!-- Tab Navigation -->
                 <div class="bg-white border-b">
-                    <div class="flex space-x-8 px-6">
-                        <button class="profile-tab active" onclick="switchTab('personal')">Personal Profile</button>
-                        <button class="profile-tab" onclick="switchTab('team')">My Team</button>
-                        <button class="profile-tab" onclick="switchTab('security')">Security</button>
+                    <div class="tab-scroll flex space-x-8 px-4 md:px-6">
+                        <button class="profile-tab active whitespace-nowrap" onclick="switchTab('personal')">Personal Profile</button>
+                        <button class="profile-tab whitespace-nowrap" onclick="switchTab('team')">My Team</button>
+                        <button class="profile-tab whitespace-nowrap" onclick="switchTab('security')">Security</button>
                     </div>
                 </div>
 
                 <!-- Content Area -->
-                <div class="p-6">
+                <div class="p-4 md:p-6">
                     <!-- Personal Profile Tab -->
                     <div id="personal-tab" class="tab-content">
                         <div class="profile-section">
                             <h2 class="profile-section-title">Profile Information</h2>
-                            <div class="flex items-start space-x-6">
-                                <div class="flex-shrink-0">
-                                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture">
+                            <div class="flex flex-col md:flex-row md:items-start md:space-x-6">
+                                <div class="profile-photo-section flex-shrink-0 mb-6 md:mb-0">
+                                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture mx-auto md:mx-0">
                                     <button class="mt-2 w-full btn-secondary">
                                         <i class="fas fa-camera mr-2"></i>Change Photo
                                     </button>
                                 </div>
                                 <div class="flex-1">
-                                    <div class="grid grid-cols-2 gap-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 profile-grid">
                                         <div class="form-group">
                                             <label class="form-label">Business Name</label>
                                             <input type="text" class="form-input" value="Acme Corporation">
@@ -443,7 +499,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-6 flex justify-end">
-                                        <button class="btn-primary text-black" style="background-color: #d8d819;">
+                                        <button class="w-full md:w-auto btn-primary text-black" style="background-color: #d8d819;">
                                             <i class="fas fa-save mr-2"></i>Save Changes
                                         </button>
                                     </div>
@@ -455,24 +511,24 @@
                     <!-- Team Tab -->
                     <div id="team-tab" class="tab-content hidden">
                         <div class="profile-section">
-                            <div class="flex justify-between items-center mb-6">
-                                <h2 class="profile-section-title">Team Members</h2>
-                                <button class="btn-primary text-black" style="background-color: #d8d819;">
+                            <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+                                <h2 class="profile-section-title mb-0">Team Members</h2>
+                                <button class="w-full md:w-auto btn-primary text-black" style="background-color: #d8d819;">
                                     <i class="fas fa-plus mr-2"></i>Add Team Member
                                 </button>
                             </div>
                             <div class="space-y-4">
-                                <div class="team-member">
+                                <div class="team-member flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0">
                                     <img src="https://via.placeholder.com/40" alt="Team Member" class="w-10 h-10 rounded-full">
-                                    <div class="ml-4 flex-1">
+                                    <div class="md:ml-4 flex-1">
                                         <h3 class="text-sm font-medium text-gray-900">Jane Smith</h3>
                                         <p class="text-sm text-gray-500">jane.smith@example.com</p>
                                     </div>
                                     <span class="status-badge status-active">Active</span>
                                 </div>
-                                <div class="team-member">
+                                <div class="team-member flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0">
                                     <img src="https://via.placeholder.com/40" alt="Team Member" class="w-10 h-10 rounded-full">
-                                    <div class="ml-4 flex-1">
+                                    <div class="md:ml-4 flex-1">
                                         <h3 class="text-sm font-medium text-gray-900">Mike Johnson</h3>
                                         <p class="text-sm text-gray-500">mike.johnson@example.com</p>
                                     </div>
@@ -486,7 +542,7 @@
                     <div id="security-tab" class="tab-content hidden">
                         <div class="profile-section">
                             <h2 class="profile-section-title">Change Password</h2>
-                            <div class="max-w-md">
+                            <div class="max-w-md w-full">
                                 <div class="form-group">
                                     <label class="form-label">Current Password</label>
                                     <input type="password" class="form-input">
@@ -500,7 +556,7 @@
                                     <input type="password" class="form-input">
                                 </div>
                                 <div class="mt-6">
-                                    <button class="btn-primary text-black" style="background-color: #d8d819;">
+                                    <button class="w-full md:w-auto btn-primary text-black" style="background-color: #d8d819;">
                                         <i class="fas fa-key mr-2"></i>Update Password
                                     </button>
                                 </div>
@@ -509,7 +565,7 @@
 
                         <div class="profile-section">
                             <h2 class="profile-section-title">Login History</h2>
-                            <div class="overflow-x-auto">
+                            <div class="login-history-table">
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead>
                                         <tr>
@@ -542,6 +598,33 @@
         </div>
 
         <script>
+            // Add mobile menu functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
+
+                mobileMenuButton.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                });
+
+                overlay.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+
+                // Close sidebar when clicking outside on mobile
+                document.addEventListener('click', function(event) {
+                    if (window.innerWidth < 768) {
+                        if (!sidebar.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                            sidebar.classList.remove('active');
+                            overlay.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
             function switchTab(tabName) {
                 // Hide all tab contents
                 document.querySelectorAll('.tab-content').forEach(tab => {
