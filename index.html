@@ -474,6 +474,72 @@
             .hero-background:not(.active) {
                 opacity: 0;
             }
+
+            .card-item {
+                transform-origin: center;
+                transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .card-item.center {
+                transform: scale(1.2);
+                z-index: 10;
+            }
+            #cardContainer {
+                will-change: transform;
+                transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+                display: flex;
+                gap: 1rem;
+            }
+
+            .partner-item {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                perspective: 1000px;
+            }
+            
+            .partner-item img {
+                max-width: 80%;
+                max-height: 80%;
+                object-fit: contain;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                filter: grayscale(100%);
+                transform-style: preserve-3d;
+            }
+            
+            .partner-item.active {
+                z-index: 30;
+            }
+            
+            .partner-item.active img {
+                border: 3px solid rgba(59, 130, 246, 0.8);
+                box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+                padding: 8px;
+                background-color: white;
+                filter: grayscale(0%);
+                transform: scale(1.1) translateZ(50px);
+            }
+            
+            .partner-item.prev {
+                transform: translateX(-30%) scale(0.8) rotateY(-15deg);
+                z-index: 20;
+                opacity: 0.7;
+            }
+            
+            .partner-item.next {
+                transform: translateX(30%) scale(0.8) rotateY(15deg);
+                z-index: 20;
+                opacity: 0.7;
+            }
+            
+            .partner-item.hidden {
+                transform: translateX(100%) scale(0.6) translateZ(-50px);
+                opacity: 0;
+                z-index: 10;
+            }
         </style>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
           <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -524,99 +590,377 @@
             </div>
        </div>
 
-       <div class="relative flex flex-col md:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-8 md:py-16 lg:py-24 overflow-hidden">
-            <!-- Background elements -->
-            <div class="absolute inset-0">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/80 to-blue-900/90"></div>
-                <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full filter blur-3xl opacity-20 transform translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
-                <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl opacity-20 transform -translate-x-1/2 translate-y-1/2 animate-pulse" style="animation-delay: 1s;"></div>
-                <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-400 rounded-full filter blur-3xl opacity-10 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" style="animation-delay: 2s;"></div>
-                </div>
-            
-            <!-- Floating shapes -->
-            <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-lg opacity-20 animate-float" style="animation-delay: 0s;"></div>
-                <div class="absolute top-20 right-20 w-16 h-16 bg-blue-300 rounded-full opacity-20 animate-float" style="animation-delay: 1s;"></div>
-                <div class="absolute bottom-20 left-20 w-24 h-24 bg-blue-400 rounded-lg opacity-20 animate-float" style="animation-delay: 2s;"></div>
-            </div>
-            
-            <div class="relative w-full md:w-1/2 space-y-6 lg:space-y-8 slide-in-left mb-8 md:mb-0">
-                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white animate__animated animate__fadeInDown">
+       <div class="bg-black">
+            <div class="relative flex flex-col md:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-3 md:py-16 lg:py-0 lg:pt-16 overflow-hidden">
+                
+                
+                <div class="relative w-full md:w-1/2 space-y-6  slide-in-left mb-0 md:mb-0">
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white animate__animated animate__fadeInDown">
                     Empowering Innovators, <br /> 
                     <span class="text-lime-300 pulse">Transforming Ideas</span>
                 </h1>
-                <p class="text-gray-200 text-base md:text-lg lg:text-xl animate__animated animate__fadeIn animate__delay-1s">
+                    <p class="text-gray-200 text-base md:text-lg lg:text-xl animate__animated animate__fadeIn animate__delay-1s">
                     Welcome to the National ICT Innovation Hub, your first destination for fostering homegrown digital solutions and promoting digital employment throughout Uganda.
                 </p>
                 <!-- Add Lottie animation container -->
-                <!-- <div id="lottie-container" class="w-full h-64 md:h-96 lg:h-[32rem]"></div> -->
-            <div class="flex items-center space-x-4 mt-8">
-                <a href="/pages/login.html" class="relative group">
-                    <div class="absolute -inset-0.5 bg-gradient-to-r from-lime-300 via-blue-500 to-lime-300 rounded-full blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-xy"></div>
-                    <button class="relative flex items-center space-x-2 px-8 py-3 bg-black rounded-full leading-none">
-                        <span class="text-lime-300 group-hover:text-white transition duration-200">Get Started</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-lime-300 group-hover:text-white transition duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                        <div class="absolute inset-0 rounded-full border-2 border-lime-300 group-hover:border-white transition duration-200"></div>
-                    </button>
-                </a>
-            </div>
+                    <!-- <div id="lottie-container" class="w-full h-64 md:h-96 lg:h-[32rem]"></div> -->
+                <div class="flex items-center space-x-4 mt-8">
+                    <a href="/pages/login.html" class="relative group">
+                        <div class="absolute -inset-0.5 bg-gradient-to-r from-lime-300 via-blue-500 to-lime-300 rounded-full blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-xy"></div>
+                        <button class="relative flex items-center space-x-2 px-8 py-3 bg-black rounded-full leading-none">
+                            <span class="text-lime-300 group-hover:text-white transition duration-200">Get Started</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-lime-300 group-hover:text-white transition duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                            <div class="absolute inset-0 rounded-full border-2 border-lime-300 group-hover:border-white transition duration-200"></div>
+                        </button>
+                    </a>
+                </div>
             </div>
             <div class="relative w-full md:w-1/2 flex justify-center slide-in-right">
                 <img src="assets/illustrativ.png" alt="Innovation Illustration" class="w-4/5 relative z-10 float">
             </div>
         </div>
 
+        <!-- Some animations about what the hub does -->
+         <div class="pb-5 px-10">
+             <div class="flex flex-col">
+                
+                <div class="flex space-x-1 p-4 overflow-hidden relative h-[400px] items-end justify-center">
+                    
+                    <div class="flex animate-slideCards items-end transition-transform duration-700 absolute bottom-4" id="cardContainer">
+                        <!-- Original cards -->
+                        <div class="bg-white/5 backdrop-blur-xl min-w-[300px] transition-all duration-700 mx-0.5 card-item shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/30 hover:border-white/50">
+                            <div class="h-56 bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-xl relative overflow-hidden">
+                                <img src="/assets/co-working-space.jpg" alt="Co-Working Space" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                                <!-- Add title and logo -->
+                                <div class="absolute top-1 left-4 right-4 flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white/90"></h3>
+                                    <i class="fas fa-users text-white/90 text-xl"></i>
+                                </div>
+                                <!-- Add slider-like decorative elements -->
+                                <div class="absolute top-3 left-4 right-4 flex items-center space-x-2">
+                                    <div class="h-1.5 w-12 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-8 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-4 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 flex items-center space-x-2">
+                                <i class="fas fa-users text-white/90 text-lg"></i>
+                                <h3 class="text-sm font-medium text-white/90">Co-Working Space</h3>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/5 backdrop-blur-xl min-w-[300px] transition-all duration-700 mx-0.5 card-item shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/30 hover:border-white/50">
+                            <div class="h-56 bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-xl relative overflow-hidden">
+                                <img src="/assets/mentorship.jpg" alt="Mentorship" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                                <!-- Add title and logo -->
+                                <div class="absolute top-2 left-4 right-4 flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white/90">Mentorship</h3>
+                                    <i class="fas fa-handshake text-white/90 text-xl"></i>
+                                </div>
+                                <!-- Add slider-like decorative elements -->
+                                <div class="absolute top-12 left-4 right-4 flex items-center space-x-2">
+                                    <div class="h-1.5 w-12 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-8 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-4 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 flex items-center space-x-2">
+                                <i class="fas fa-handshake text-white/90 text-lg"></i>
+                                <h3 class="text-sm font-medium text-white/90">Mentorship</h3>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/5 backdrop-blur-xl min-w-[300px] transition-all duration-700 mx-0.5 card-item shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/30 hover:border-white/50">
+                            <div class="h-56 bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-xl relative overflow-hidden">
+                                <img src="/assets/networking.jpg" alt="Networking" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                                <!-- Add title and logo -->
+                                <div class="absolute top-2 left-4 right-4 flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white/90">Networking</h3>
+                                    <i class="fas fa-network-wired text-white/90 text-xl"></i>
+                                </div>
+                                <!-- Add slider-like decorative elements -->
+                                <div class="absolute top-12 left-4 right-4 flex items-center space-x-2">
+                                    <div class="h-1.5 w-12 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-8 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-4 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 flex items-center space-x-2">
+                                <i class="fas fa-network-wired text-white/90 text-lg"></i>
+                                <h3 class="text-sm font-medium text-white/90">Networking</h3>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/5 backdrop-blur-xl min-w-[300px] transition-all duration-700 mx-0.5 card-item shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/30 hover:border-white/50">
+                            <div class="h-56 bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-xl relative overflow-hidden">
+                                <img src="/assets/incubation.jpg" alt="Incubation" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                                <!-- Add title and logo -->
+                                <div class="absolute top-2 left-4 right-4 flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white/90">Incubation</h3>
+                                    <i class="fas fa-lightbulb text-white/90 text-xl"></i>
+                                </div>
+                                <!-- Add slider-like decorative elements -->
+                                <div class="absolute top-12 left-4 right-4 flex items-center space-x-2">
+                                    <div class="h-1.5 w-12 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-8 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-4 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 flex items-center space-x-2">
+                                <i class="fas fa-lightbulb text-white/90 text-lg"></i>
+                                <h3 class="text-sm font-medium text-white/90">Incubation</h3>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/5 backdrop-blur-xl min-w-[300px] transition-all duration-700 mx-0.5 card-item shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/30 hover:border-white/50">
+                            <div class="h-56 bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-xl relative overflow-hidden">
+                                <img src="/assets/acceleration.jpg" alt="Acceleration" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                                <!-- Add title and logo -->
+                                <div class="absolute top-2 left-4 right-4 flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white/90">Acceleration</h3>
+                                    <i class="fas fa-rocket text-white/90 text-xl"></i>
+                                </div>
+                                <!-- Add slider-like decorative elements -->
+                                <div class="absolute top-12 left-4 right-4 flex items-center space-x-2">
+                                    <div class="h-1.5 w-12 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-8 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-4 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 flex items-center space-x-2">
+                                <i class="fas fa-rocket text-white/90 text-lg"></i>
+                                <h3 class="text-sm font-medium text-white/90">Acceleration</h3>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/5 backdrop-blur-xl min-w-[300px] transition-all duration-700 mx-0.5 card-item shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/30 hover:border-white/50">
+                            <div class="h-56 bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-xl relative overflow-hidden">
+                                <img src="/assets/events.jpg" alt="Events" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                                <!-- Add title and logo -->
+                                <div class="absolute top-2 left-4 right-4 flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white/90">Events</h3>
+                                    <i class="fas fa-calendar-alt text-white/90 text-xl"></i>
+                                </div>
+                                <!-- Add slider-like decorative elements -->
+                                <div class="absolute top-12 left-4 right-4 flex items-center space-x-2">
+                                    <div class="h-1.5 w-12 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-8 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                    <div class="h-1.5 w-4 bg-white/40 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.3)]"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 flex items-center space-x-2">
+                                <i class="fas fa-calendar-alt text-white/90 text-lg"></i>
+                                <h3 class="text-sm font-medium text-white/90">Events</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const container = document.getElementById('cardContainer');
+                            const cards = document.querySelectorAll('.card-item');
+                            const indicators = document.querySelectorAll('[data-slide]');
+                            const cardWidth = cards[0].offsetWidth + 16; // Including gap
+                            let currentIndex = 0;
+                            let isAnimating = false;
+
+                            // Update indicators based on current card
+                            function updateIndicators() {
+                                indicators.forEach((indicator, index) => {
+                                    if (index === currentIndex % indicators.length) {
+                                        indicator.classList.add('bg-white/90', 'scale-125');
+                                        indicator.classList.remove('bg-white/30');
+                                    } else {
+                                        indicator.classList.remove('bg-white/90', 'scale-125');
+                                        indicator.classList.add('bg-white/30');
+                                    }
+                                });
+                            }
+
+                            // Define custom colors for each card
+                            const cardColors = [
+                                'from-blue-500/30 to-blue-600/30',
+                                'from-purple-500/30 to-purple-600/30',
+                                'from-green-500/30 to-green-600/30',
+                                'from-red-500/30 to-red-600/30',
+                                'from-yellow-500/30 to-yellow-600/30',
+                                'from-pink-500/30 to-pink-600/30'
+                            ];
+
+                            // Clone cards for infinite scroll
+                            const originalCards = Array.from(cards);
+                            // Add clones at both ends
+                            originalCards.forEach(card => {
+                                const cloneStart = card.cloneNode(true);
+                                const cloneEnd = card.cloneNode(true);
+                                container.insertBefore(cloneEnd, container.firstChild);
+                                container.appendChild(cloneStart);
+                            });
+
+                            // Calculate exact positions for each card
+                            function calculateCardPositions() {
+                                const allCards = container.querySelectorAll('.card-item');
+                                const parentContainer = container.parentElement;
+                                const parentRect = parentContainer.getBoundingClientRect();
+                                const parentCenter = parentRect.left + (parentRect.width / 2);
+                                const threshold = cardWidth * 0.5;
+
+                                allCards.forEach((card, index) => {
+                                    const cardRect = card.getBoundingClientRect();
+                                    const cardCenter = cardRect.left + (cardRect.width / 2);
+                                    const distanceFromCenter = Math.abs(parentCenter - cardCenter);
+
+                                    if (distanceFromCenter < threshold) {
+                                        if (!card.classList.contains('center')) {
+                                            card.classList.add('center');
+                                            card.style.transition = 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+                                            card.style.transform = 'scale(1.2)';
+                                            card.style.zIndex = '10';
+                                            // Enhanced glass morphism effect on center with custom color
+                                            card.style.backdropFilter = 'blur(30px)';
+                                            card.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                                            card.style.boxShadow = '0 8px 32px 0 rgba(31, 38, 135, 0.37)';
+                                            card.style.border = '1px solid rgba(255, 255, 255, 0.5)';
+                                            // Apply custom color gradient
+                                            const colorIndex = index % cardColors.length;
+                                            card.querySelector('div').className = `h-56 bg-gradient-to-br ${cardColors[colorIndex]} backdrop-blur-xl`;
+                                        }
+                                    } else {
+                                        if (card.classList.contains('center')) {
+                                            card.classList.remove('center');
+                                            card.style.transition = 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+                                            card.style.transform = 'scale(1)';
+                                            card.style.zIndex = '1';
+                                            // Reset to enhanced default glass morphism effect
+                                            card.style.backdropFilter = 'blur(20px)';
+                                            card.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                                            card.style.boxShadow = '0 8px 32px 0 rgba(31, 38, 135, 0.15)';
+                                            card.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+                                            // Reset to default gradient
+                                            card.querySelector('div').className = 'h-56 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl';
+                                        }
+                                    }
+                                });
+                            }
+
+                            function moveToNextCard() {
+                                if (isAnimating) return;
+                                isAnimating = true;
+
+                                currentIndex++;
+                                const translation = -cardWidth * currentIndex;
+                                
+                                container.style.transform = `translateX(${translation.toFixed(2)}px)`;
+
+                                // Update indicators
+                                updateIndicators();
+
+                                // Reset position when reaching the end
+                                if (currentIndex >= originalCards.length) {
+                                    setTimeout(() => {
+                                        container.style.transition = 'none';
+                                        currentIndex = 0;
+                                        container.style.transform = 'translateX(0)';
+                                        requestAnimationFrame(() => {
+                                            container.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+                                            calculateCardPositions();
+                                            updateIndicators();
+                                        });
+                                    }, 700);
+                                }
+
+                                calculateCardPositions();
+                                
+                                // Start next animation
+                                setTimeout(() => {
+                                    isAnimating = false;
+                                    moveToNextCard();
+                                }, 2000);
+                            }
+
+                            // Initialize center card and indicators
+                            calculateCardPositions();
+                            updateIndicators();
+
+                            // Start the animation
+                            moveToNextCard();
+
+                            // Update center card on window resize
+                            let resizeTimeout;
+                            window.addEventListener('resize', () => {
+                                clearTimeout(resizeTimeout);
+                                resizeTimeout = setTimeout(() => {
+                                    calculateCardPositions();
+                                    updateIndicators();
+                                }, 100);
+                            });
+
+                            // Add transition end listener
+                            container.addEventListener('transitionend', () => {
+                                calculateCardPositions();
+                                updateIndicators();
+                            });
+                        });
+                    </script>
+                </div>
+                
+             </div>
+         </div>
+
+        </div>
+
         <!-- Who We Are Section -->
-        <div class="relative px-4 md:px-12 py-8 md:py-16 bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 mx-4 md:mx-16 rounded-2xl overflow-hidden fade-in my-8 md:my-12">
-            <!-- Animated background elements -->
-            <div class="absolute inset-0">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full filter blur-3xl opacity-20 transform translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
-                <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl opacity-20 transform -translate-x-1/2 translate-y-1/2 animate-pulse" style="animation-delay: 1s;"></div>
-                <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-400 rounded-full filter blur-3xl opacity-10 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" style="animation-delay: 2s;"></div>
-            </div>
+        <div class="relative  overflow-hidden fade-in my-0 md:my-0 h-[500px]">
             
-            <!-- Floating shapes -->
-            <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-lg opacity-20 animate-float" style="animation-delay: 0s;"></div>
-                <div class="absolute top-20 right-20 w-16 h-16 bg-blue-300 rounded-full opacity-20 animate-float" style="animation-delay: 1s;"></div>
-                <div class="absolute bottom-20 left-20 w-24 h-24 bg-blue-400 rounded-lg opacity-20 animate-float" style="animation-delay: 2s;"></div>
-            </div>
             
-            <div class="relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+            <div class="absolute w-full flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
                 <!-- Left side: Image with enhanced effects -->
-                <div class="w-full md:w-1/2 transform hover:scale-105 transition-all duration-500 mb-6 md:mb-0">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/40 to-transparent z-10"></div>
-                        <img src="/assets/NIIH-Building.jpeg" alt="National ICT Innovation Hub" class="w-full h-[250px] md:h-[350px] object-cover transform group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute bottom-0 left-0 right-0 p-4 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <h3 class="text-white text-xl md:text-2xl font-bold mb-1">National ICT Innovation Hub</h3>
-                            <p class="text-blue-100 text-sm md:text-base">Nakawa Campus, UICT</p>
+                <div class="w-full md:w-1/3 space-y-4">
+                   
+                </div>
+
+                <!-- Right side: Content with enhanced styling -->
+                <div class="w-full md:w-2/3 transform hover:scale-105 transition-all duration-500 mb-0 md:mb-0">
+
+                    <div class="relative  overflow-hidden group">
+                        <video 
+                            class="w-full h-[500px] md:h-[500px] object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            autoplay
+                            loop
+                            muted
+                            playsinline
+                            preload="auto"
+                        >
+                            <source src="/assets/hub-video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-r from-white/10 via-white/0.5 to-transparent [background-size:102%_100%] z-10"></div>
+                        <div class="absolute inset-0">
+                            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent"></div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Right side: Content with enhanced styling -->
-                <div class="w-full md:w-1/2 space-y-4">
-                    <div class="inline-block animate-fade-in">
-                        <span class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-5 py-1.5 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-shadow duration-300">Who We Are</span>
-                    </div>
-                    
-                    <h2 class="text-2xl md:text-3xl font-bold text-blue-900 animate-slide-in-right">Empowering Digital Innovation in Uganda</h2>
+            </div>
+
+
+
+
+
+            <div class="relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 px-20 py-16">
+                <!-- Left side: Image with enhanced effects -->
+                <div class="w-full h-full md:w-1/2 space-y-4 flex flex-col justify-center pl-12">
+                   
+                    <h2 class="text-2xl md:text-3xl font-bold text-blue-900 animate-slide-in-right">Empowering Digital Innovation <br /> in Uganda</h2>
                     
                     <div class="space-y-3 text-gray-700">
-                        <p class="text-base md:text-lg leading-relaxed animate-fade-in" style="animation-delay: 0.2s;">
-                            Welcome to the National ICT Innovation Hub, your first destination for fostering homegrown digital solutions and promoting digital employment throughout Uganda.
-                        </p>
-                        
-                        <p class="text-base md:text-lg leading-relaxed animate-fade-in" style="animation-delay: 0.4s;">
+                       
+                        <p class="typed-text text-base md:text-lg leading-relaxed animate-fade-in typewriter" style="">
                             Situated within the Uganda Institute of Information and Communications Technology (UICT) Nakawa Campus, our hub serves as a dynamic environment for ICT innovators facing challenges with workspace, limited internet connectivity and searching for creative spaces that spur thinking.
                         </p>
                         
-                        <p class="text-base md:text-lg leading-relaxed animate-fade-in" style="animation-delay: 0.6s;">
-                            Join us at the National ICT Innovation Hub and be part of a vibrant community dedicated to driving digital innovation and economic growth in Uganda.
-                        </p>
                     </div>
                     
                     <div class="pt-2 animate-fade-in" style="animation-delay: 0.8s;">
@@ -628,170 +972,408 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Right side: Content with enhanced styling -->
+                <div class="w-full md:w-1/2 transform hover:scale-105 transition-all duration-500 mb-0 md:mb-0">
+
+                    
+                </div>
+                
             </div>
+          
         </div>
         
         <!-- Statistics Section -->
-        <div class="relative px-4 md:px-16 py-8 md:py-12 overflow-hidden flex flex-col md:flex-row fade-in" style="background-color: #d8d819;">
-            <div class="relative mt-6 md:mt-12 text-xl md:text-2xl font-bold bg-blue-900 text-white p-6 md:p-12 py-10 md:py-20 rounded-2xl flex-2 hover-scale slide-in-bottom mb-8 md:mb-0">
+        <div class="relative px-4 md:px-16 py-2 md:py-4 overflow-hidden flex flex-col md:flex-row fade-in" style="background-color: #d8d819;">
+            <!-- <div class="relative mt-6 md:mt-12 text-xl md:text-2xl font-bold bg-blue-900 text-white p-6 md:p-12 py-10 md:py-20 rounded-2xl flex-2 hover-scale slide-in-bottom mb-8 md:mb-0">
                 <h1 class="text-2xl md:text-4xl">Recognize your <br /><span class="text-yellow-400">success</span> and keep<br>
                 working to accomplish<br/>more.</h1>
-            </div>
+            </div> -->
 
-            <div class="flex-1 ml-0 md:ml-10">
+            <div class="flex-1 ml-0 md:ml-10 w-1/2 pr-5 py-10">
+                <h1 class="text-3xl font-bold py-5">Our Impact</h1>
                 <div class="relative grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
                     <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
                         <div class="text-3xl md:text-4xl font-bold text-blue-700 counter" data-target="50">0</div>
-                        <div class="text-sm mt-2 text-blue-400">Startups Impacted</div>
-                        <p class="text-gray-600 text-sm md:text-base">Total number of startups that have managed to strive through our eco-system.</p>
+                        <div class="text-lg mt-2 text-black">Startups Impacted</div>
+                        <!-- <p class="text-gray-600 text-sm md:text-base">Total number of startups that have managed to strive through our eco-system.</p> -->
                     </div>
                     <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
                         <div class="text-3xl md:text-4xl font-bold text-blue-700 counter" data-target="500">0</div>
-                        <div class="text-sm mt-2 text-blue-400">Events Hosted</div>
-                        <p class="text-gray-600 text-sm md:text-base">We have managed to host over more than 500 Tech-Events over the past few years</p>
+                        <div class="text-lg mt-2 text-black">Events Hosted</div>
+                        <!-- <p class="text-gray-600 text-sm md:text-base">We have managed to host over more than 500 Tech-Events over the past few years</p> -->
                     </div>
                     <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
                         <div class="text-3xl md:text-4xl font-bold text-blue-700 counter" data-target="1000">0</div>
-                        <div class="text-sm mt-2 text-blue-400">Trainings</div>
-                        <p class="text-gray-600 text-sm md:text-base">Over 1000 Trainning have been hosted through the hub to develope the mind of Innovators that the economy needs.</p>
+                        <div class="text-lg mt-2 text-black">Trainings</div>
+                        <!-- <p class="text-gray-600 text-sm md:text-base">Over 1000 Trainning have been hosted through the hub to develope the mind of Innovators that the economy needs.</p> -->
                     </div>
                     <div class="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl flex flex-col justify-center items-start hover-scale">
                         <div class="text-3xl md:text-4xl font-bold text-blue-700 counter" data-target="20">0</div>
-                        <div class="text-sm mt-2 text-blue-400">Programs</div>
-                        <p class="text-gray-600 text-sm md:text-base">Various kind of big programs that have been completed on time</p>
+                        <div class="text-lg mt-2 text-black">Programs</div>
+                        <!-- <p class="text-gray-600 text-sm md:text-base">Various kind of big programs that have been completed on time</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2">
+                <div class="h-full w-full rounded-2xl bg-white bg-[url('/assets/impact-bg.jpg')] bg-cover bg-center bg-no-repeat p-5">
+                    <div class="bg-white p-6 m-6 rounded-lg shadow-md">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                <h2 class="text-xl font-bold">Hub Calendar</h2>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="p-2 hover:bg-gray-100 rounded-full">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                    </svg>
+                                </button>
+                                <button class="p-2 hover:bg-gray-100 rounded-full">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="h-[2px] bg-gray-200 mb-4"></div>
+                        <div class="grid grid-cols-7 gap-2 text-center text-sm mb-2">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="grid grid-cols-7 gap-2 text-center">
+                            <div class="text-gray-400">30</div>
+                            <div class="text-gray-400">31</div>
+                            <div>1</div>
+                            <div>2</div>
+                            <div class="bg-blue-100 rounded-full">3</div>
+                            <div>4</div>
+                            <div>5</div>
+                            <div>6</div>
+                            <div class="bg-blue-100 rounded-full">7</div>
+                            <div>8</div>
+                            <div>9</div>
+                            <div>10</div>
+                            <div class="bg-blue-100 rounded-full">11</div>
+                            <div>12</div>
+                            <div>13</div>
+                            <div>14</div>
+                            <div>15</div>
+                            <div class="bg-blue-100 rounded-full">16</div>
+                            <div>17</div>
+                            <div>18</div>
+                            <div>19</div>
+                            <div>20</div>
+                            <div class="bg-blue-100 rounded-full">21</div>
+                            <div>22</div>
+                            <div>23</div>
+                            <div>24</div>
+                            <div>25</div>
+                            <div>26</div>
+                            <div>27</div>
+                            <div class="bg-blue-100 rounded-full">28</div>
+                            <div>29</div>
+                            <div>30</div>
+                            <div class="text-gray-400">1</div>
+                            <div class="text-gray-400">2</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300">Book Now</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Latest News Section -->
-        <div class="px-4 md:px-20 py-8 md:py-12 mx-2 md:mx-10 fade-in">
-            <div class="text-center mb-6 md:mb-12 slide-in-top">
-                <span class="bg-blue-600 text-white px-3 md:px-4 py-1 rounded-full text-xs md:text-sm">AI Robitics & Technology Website</span>
-                <h2 class="text-2xl md:text-4xl font-bold mt-2 md:mt-4">See Our Latest News!</h2>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
-                <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
-                    <img src="/assets/news2.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
-                    <div class="py-4 md:py-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">🇺🇬 Uganda's AI Revolution Begins!</h3>
-                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
-                            <div class="flex items-center">
-                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        <div class="my-5 mx-2 md:mx-10 fade-in bg-[url('/assets/news-bg.jpg')] bg-center bg-cover bg-no-repeat">
+            <div class="flex">
+                <div class="w-1/3 h-full flex flex-col items-center justify-center pt-20">
+                    <div class="bg-white p-6 my-4 rounded-lg shadow-md item ">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
-                                <span>March 10, 2025</span>
-                </div>
-                            <div class="flex items-center space-x-2 md:space-x-4">
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                                    <span>42</span>
-                        </div>
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                <h2 class="text-xl font-bold">Studio Calendar</h2>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="p-2 hover:bg-gray-100 rounded-full">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                                     </svg>
-                                    <span>12</span>
-                        </div>
-                    </div>
-                        </div>
-                        <hr class="my-2 md:my-4">
-                        <p class="text-gray-600 text-sm md:text-base">AI is shaping the future, and Uganda must be ready! 
-                            @OticUganda
-                            , in partnership with 
-                            @w3schoolsonline
-                             
-                            @MoICT_Ug
-                            , and the National ICT Innovation Hub, is launching the National AI Skilling Program, a free training initiative designed to equip Ugandans with the digital skills needed for tomorrow.</p>
-                    </div>
-                </div>
-
-                <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
-                    <img src="/assets/new1.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
-                    <div class="py-4 md:py-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Digital Skilling in Uganda</h3>
-                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
-                            <div class="flex items-center">
-                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                                <span>Mar 12, 2025</span>
-                        </div>
-                            <div class="flex items-center space-x-2 md:space-x-4">
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </button>
+                                <button class="p-2 hover:bg-gray-100 rounded-full">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                                     </svg>
-                                    <span>42</span>
-                        </div>
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                    </svg>
-                                    <span>12</span>
-                    </div>
+                                </button>
                             </div>
                         </div>
-                        <hr class="my-2 md:my-4">
-                        <p class="text-gray-600 text-sm md:text-base">Today we celebrated the graduation of the first phase of the Digital Skilling Program, an initiative by the 
-                            @MoICT_Ug
-                            , in partnership with 
-                            @MTNFoundation
-                            , 
-                            @CenteTech
-                            , 
-                            @HuaweiMobileUG
-                             and 
-                            @UICTug
-                             
-                            </p>
+                        <div class="h-[2px] bg-gray-200 mb-4"></div>
+                        <div class="grid grid-cols-7 gap-2 text-center text-sm mb-2">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="grid grid-cols-7 gap-2 text-center">
+                            <div class="text-gray-400">30</div>
+                            <div class="text-gray-400">31</div>
+                            <div>1</div>
+                            <div>2</div>
+                            <div class="bg-blue-100 rounded-full">3</div>
+                            <div>4</div>
+                            <div>5</div>
+                            <div>6</div>
+                            <div class="bg-blue-100 rounded-full">7</div>
+                            <div>8</div>
+                            <div>9</div>
+                            <div>10</div>
+                            <div class="bg-blue-100 rounded-full">11</div>
+                            <div>12</div>
+                            <div>13</div>
+                            <div>14</div>
+                            <div>15</div>
+                            <div class="bg-blue-100 rounded-full">16</div>
+                            <div>17</div>
+                            <div>18</div>
+                            <div>19</div>
+                            <div>20</div>
+                            <div class="bg-blue-100 rounded-full">21</div>
+                            <div>22</div>
+                            <div>23</div>
+                            <div>24</div>
+                            <div>25</div>
+                            <div>26</div>
+                            <div>27</div>
+                            <div class="bg-blue-100 rounded-full">28</div>
+                            <div>29</div>
+                            <div>30</div>
+                            <div class="text-gray-400">1</div>
+                            <div class="text-gray-400">2</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300">Book Now</button>
                     </div>
                 </div>
+                <div class="w-2/3 bg-white p-5">
+                    <div class="text-center mb-6 md:mb-12 slide-in-top">
+                        <h2 class="text-2xl md:text-4xl font-bold mt-2 md:mt-4">Latest News!</h2>
+                    </div>
+                    <div class="relative overflow-hidden">
+                        <div class="flex transition-transform duration-700 ease-in-out" id="newsSlider">
+                            <div class="min-w-[600px] px-4">
+                                <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
+                                    <img src="/assets/news2.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
+                                    <div class="py-4 md:py-6">
+                                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">🇺🇬 Uganda's AI Revolution Begins!</h3>
+                                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
+                                            <div class="flex items-center">
+                                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                </svg>
+                                                <span>March 10, 2025</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2 md:space-x-4">
+                                                <div class="flex items-center">
+                                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                                    </svg>
+                                                    <span>42</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                                    </svg>
+                                                    <span>12</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="my-2 md:my-4">
+                                        <p class="text-gray-600 text-sm md:text-base">AI is shaping the future, and Uganda must be ready! @OticUganda, in partnership with @w3schoolsonline @MoICT_Ug, and the National ICT Innovation Hub, is launching the National AI Skilling Program, a free training initiative designed to equip Ugandans with the digital skills needed for tomorrow.</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="rounded-xl overflow-hidden shadow-sm">
-                    <img src="/assets/news3.jpeg" alt="News 1" class="w-full h-[200px] md:h-[390px] object-cover">
-                    <div class="py-4 md:py-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Closing Ceremony for Girls in UICT</h3>
-                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
-                            <div class="flex items-center">
-                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                                <span>Apr 28, 2023</span>
+                            <div class="min-w-[600px] px-4">
+                                <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
+                                    <img src="/assets/new1.jpeg" alt="News 2" class="w-full h-[200px] md:h-[390px] object-cover">
+                                    <div class="py-4 md:py-6">
+                                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Digital Skilling in Uganda</h3>
+                                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
+                                            <div class="flex items-center">
+                                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                </svg>
+                                                <span>Mar 12, 2025</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2 md:space-x-4">
+                                                <div class="flex items-center">
+                                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                                    </svg>
+                                                    <span>42</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                                    </svg>
+                                                    <span>12</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="my-2 md:my-4">
+                                        <p class="text-gray-600 text-sm md:text-base">Today we celebrated the graduation of the first phase of the Digital Skilling Program, an initiative by the @MoICT_Ug, in partnership with @MTNFoundation, @CenteTech, @HuaweiMobileUG and @UICTug</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="min-w-[600px] px-4">
+                                <div class="rounded-xl overflow-hidden shadow-sm hover-scale">
+                                    <img src="/assets/news3.jpeg" alt="News 3" class="w-full h-[200px] md:h-[390px] object-cover">
+                                    <div class="py-4 md:py-6">
+                                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Closing Ceremony for Girls in UICT</h3>
+                                        <div class="flex items-center justify-between text-xs md:text-sm text-orange-500">
+                                            <div class="flex items-center">
+                                                <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                </svg>
+                                                <span>Apr 28, 2023</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2 md:space-x-4">
+                                                <div class="flex items-center">
+                                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                                    </svg>
+                                                    <span>42</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                                    </svg>
+                                                    <span>12</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="my-2 md:my-4">
+                                        <p class="text-gray-600 text-sm md:text-base">We were honored to have Hon @Hon_Ssebugwawo at the closing ceremony for the Girls in ICT Week at @MoICT_Ug. She encouraged all the young girls exploring the world of ICT that they have the potential to succeed and make a difference in this exciting field. @code_academy_ug</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                            <div class="flex items-center space-x-2 md:space-x-4">
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                    <span>42</span>
-                        </div>
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 md:w-4 md:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                    </svg>
-                                    <span>12</span>
                     </div>
                 </div>
             </div>
-                        <hr class="my-2 md:my-4">
-                        <p class="text-gray-600 text-sm md:text-base">We were honored to have Hon 
-                            @Hon_Ssebugwawo
-                             at the closing ceremony for the Girls in ICT Week at 
-                            @MoICT_Ug
-                            . She encouraged all the young girls exploring the world of ICT that they have the potential to succeed and make a difference in this exciting field. 
-                            @code_academy_ug
-                            </p>
-                    </div>
-                </div>
-            </div>
+
+            <script>
+                const slider = document.getElementById('newsSlider');
+                let currentSlide = 0;
+                const slides = slider.children;
+                let isAnimating = false;
+                const slideWidth = 600; // Width of each news item
+                
+                function nextSlide() {
+                    if (isAnimating) return;
+                    isAnimating = true;
+                    
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+                    
+                    // Reset position when reaching the end
+                    if (currentSlide === slides.length - 1) {
+                        setTimeout(() => {
+                            slider.style.transition = 'none';
+                            currentSlide = 0;
+                            slider.style.transform = 'translateX(0)';
+                            requestAnimationFrame(() => {
+                                slider.style.transition = 'transform 700ms cubic-bezier(0.4, 0, 0.2, 1)';
+                            });
+                        }, 700);
+                    }
+                    
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 700);
+                }
+                
+                // Add touch/swipe support
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                slider.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+                
+                slider.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, false);
+                
+                function handleSwipe() {
+                    if (touchEndX < touchStartX) {
+                        nextSlide();
+                    } else if (touchEndX > touchStartX) {
+                        prevSlide();
+                    }
+                }
+                
+                function prevSlide() {
+                    if (isAnimating) return;
+                    isAnimating = true;
+                    
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                    slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+                    
+                    // Reset position when reaching the start
+                    if (currentSlide === 0) {
+                        setTimeout(() => {
+                            slider.style.transition = 'none';
+                            currentSlide = slides.length - 1;
+                            slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+                            requestAnimationFrame(() => {
+                                slider.style.transition = 'transform 700ms cubic-bezier(0.4, 0, 0.2, 1)';
+                            });
+                        }, 700);
+                    }
+                    
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 700);
+                }
+                
+                // Pause on hover
+                let autoSlideInterval;
+                
+                function startAutoSlide() {
+                    autoSlideInterval = setInterval(nextSlide, 5000);
+                }
+                
+                function stopAutoSlide() {
+                    clearInterval(autoSlideInterval);
+                }
+                
+                slider.addEventListener('mouseenter', stopAutoSlide);
+                slider.addEventListener('mouseleave', startAutoSlide);
+                
+                // Start the auto-slide
+                startAutoSlide();
+            </script>
         </div>
 
         <!-- Gallery Section -->
-        <div class="relative px-4 md:px-16 py-12 md:py-20 bg-black overflow-hidden mb-12 md:mb-20">
+        <div class="hidden relative px-4 md:px-16 py-12 md:py-20 bg-black overflow-hidden mb-12 md:mb-20">
             <!-- Animated background elements -->
             <div class="absolute inset-0">
                 <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
@@ -879,56 +1461,188 @@
         </div>
 
         <!-- Startup Trust Section -->
-        <div class="px-4 md:px-16 py-8 md:py-20 bg-gradient-to-b from-blue-50/50 bg-blue-100 mx-4 md:mx-20 rounded-2xl slide-in-bottom">
-            <h1 class="text-3xl md:text-5xl font-bold text-center mb-6 md:mb-12 text-blue-800 animate__animated animate__pulse animate__infinite">Our Partners</h1>
-            <p class="text-center text-gray-600 mb-6 md:mb-12 max-w-2xl mx-auto text-sm md:text-base">
-                At <b>NiiH</b>, we collaborate with leading organizations to create an ecosystem of innovation and excellence. Our partners help us drive technological advancement and economic growth in Uganda.
-            </p>
-            <div class="overflow-hidden relative">
-                <div class="flex items-center space-x-4 md:space-x-8 partner-scroll">
-                    <img src="/assets/partners/UNDP-768x768.png" alt="UNDP" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/UICT-768x768.png" alt="UICT" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/SunBird-768x768.png" alt="SunBird" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/Refactory-768x768.png" alt="Refactory" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/MTN-768x768.png" alt="MTN" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/MinistryOfICT-768x768.png" alt="Ministry of ICT" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/Mastercard-768x768.png" alt="Mastercard" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/Jica-768x768.png" alt="Jica" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/JCSE-768x768.png" alt="JCSE" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/InnovationVillage-768x768.png" alt="Innovation Village" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/ICDL-768x768.png" alt="ICDL" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/Huawei-768x768.png" alt="Huawei" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/H3C-768x768.png" alt="H3C" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/Fundi-768x768.png" alt="Fundi" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/Enabel-768x768.png" alt="Enabel" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/Brahamam.png" alt="Brahamam" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/Coursera-768x768.png" alt="Coursera" class="h-12 md:h-20 hover-scale">
-                    <img src="/assets/partners/Centenary-768x768.png" alt="Centenary" class="h-12 md:h-20 hover-scale">
+        <div class="px-4 md:px-16 py-8 md:py-20  mx-4 md:mx-20  slide-in-bottom flex items-center bg-gray-100">
+            <div class="w-1/2 h-full pr-5">
+                <h1 class="text-blue-700 text-4xl font-bold mb-4">Our Partners</h1>
+                <div class="h-[4px] w-[150px] bg-gradient-to-r from-blue-500 to-blue-300 mb-6"></div>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">Trusted by leading companies in the field, we are here to foster the development of your startup. Our partners bring expertise, resources, and opportunities to help you succeed.</p>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                        <span class="text-sm text-gray-600">Active Partner</span>
+                    </div>
+                    <!-- <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                        <span class="text-sm text-gray-600">Previous/Next</span>
+                    </div> -->
                 </div>
             </div>
-        </div>
-
-        <!-- Join Section -->
-        <div class="px-4 md:px-16 py-8 md:py-12 flex flex-col md:flex-row items-start justify-between my-10 md:my-20 px-4 md:px-14 py-6 md:py-12 bg-black rounded-2xl mx-4 md:mx-20 slide-in-bottom">
-            <div class="flex-3 mb-6 md:mb-0">
-                <h2 class="text-2xl md:text-4xl mb-2 md:mb-4 text-white">Join the <br/><span class="text-blue-400 font-bold pulse">National&nbsp;ICT&nbsp;Innovation&nbsp;Hub</span></h2>
-                <h2 class="text-xl md:text-2xl mb-4 md:mb-8 font-bold text-white">and bring your ideas to life.</h2>
-            </div>
-            <div class="ml-0 md:ml-14 flex-2 w-full md:w-auto">
-                <p class="text-gray-300 mb-4 md:mb-8 max-w-2xl mx-auto text-sm md:text-base">
-                    Whether you're an entrepreneur, a startup or a tech enthusiast, we're here to help you bring your ideas to life.
-                </p>
-                <div class="flex relative max-w-2xl">
-                    <input type="email" placeholder="Enter your email" class="w-full px-4 md:px-6 py-2 md:py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500">
-                    <button class="absolute right-2 px-4 md:px-8 py-2 md:py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 font-semibold flex items-center text-sm md:text-base">
-                        Subscribe
-                        <svg class="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            
+            <div class="w-1/2 relative h-[400px] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-lg">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <!-- Navigation Arrows -->
+                    <button class="absolute left-0 z-20 p-4 text-blue-700 hover:text-blue-900 transition-colors duration-300 bg-white/80 rounded-full shadow-md hover:shadow-lg" id="prevPartner">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                         </svg>
                     </button>
+                    <button class="absolute right-0 z-20 p-4 text-blue-700 hover:text-blue-900 transition-colors duration-300 bg-white/80 rounded-full shadow-md hover:shadow-lg" id="nextPartner">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+
+                    <!-- Partner Stack Container -->
+                    <div class="relative w-full h-full" id="partnerStack">
+                        <!-- Partner items will be dynamically added here -->
+                    </div>
                 </div>
             </div>
+
+            <style>
+                .partner-item {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    perspective: 1000px;
+                }
+                
+                .partner-item img {
+                    max-width: 80%;
+                    max-height: 80%;
+                    object-fit: contain;
+                    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                    filter: grayscale(100%);
+                    transform-style: preserve-3d;
+                }
+                
+                .partner-item.active {
+                    z-index: 30;
+                }
+                
+                .partner-item.active img {
+                    border: 3px solid rgba(59, 130, 246, 0.8);
+                    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+                    padding: 8px;
+                    background-color: white;
+                    filter: grayscale(0%);
+                    transform: scale(1.1) translateZ(50px);
+                }
+                
+                .partner-item.prev {
+                    transform: translateX(-30%) scale(0.8) rotateY(-15deg);
+                    z-index: 20;
+                    opacity: 0.7;
+                }
+                
+                .partner-item.next {
+                    transform: translateX(30%) scale(0.8) rotateY(15deg);
+                    z-index: 20;
+                    opacity: 0.7;
+                }
+                
+                .partner-item.hidden {
+                    transform: translateX(100%) scale(0.6) translateZ(-50px);
+                    opacity: 0;
+                    z-index: 10;
+                }
+            </style>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const partners = [
+                        '/assets/partners/UNDP-768x768.png',
+                        '/assets/partners/UICT-768x768.png',
+                        '/assets/partners/SunBird-768x768.png',
+                        '/assets/partners/Refactory-768x768.png',
+                        '/assets/partners/MTN-768x768.png',
+                        '/assets/partners/MinistryOfICT-768x768.png',
+                        '/assets/partners/Mastercard-768x768.png',
+                        '/assets/partners/Jica-768x768.png',
+                        '/assets/partners/JCSE-768x768.png',
+                        '/assets/partners/InnovationVillage-768x768.png',
+                        '/assets/partners/ICDL-768x768.png',
+                        '/assets/partners/Huawei-768x768.png',
+                        '/assets/partners/H3C-768x768.png',
+                        '/assets/partners/Fundi-768x768.png',
+                        '/assets/partners/Enabel-768x768.png',
+                        '/assets/partners/Brahamam.png',
+                        '/assets/partners/Coursera-768x768.png',
+                        '/assets/partners/Centenary-768x768.png'
+                    ];
+
+                    const stack = document.getElementById('partnerStack');
+                    let currentIndex = 0;
+                    let autoSlideInterval;
+
+                    function createPartnerItems() {
+                        partners.forEach((partner, index) => {
+                            const item = document.createElement('div');
+                            item.className = 'partner-item';
+                            item.innerHTML = `<img src="${partner}" alt="Partner ${index + 1}">`;
+                            stack.appendChild(item);
+                        });
+                        updatePartnerPositions();
+                    }
+
+                    function updatePartnerPositions() {
+                        const items = document.querySelectorAll('.partner-item');
+                        items.forEach((item, index) => {
+                            item.classList.remove('active', 'prev', 'next', 'hidden');
+                            
+                            if (index === currentIndex) {
+                                item.classList.add('active');
+                            } else if (index === (currentIndex - 1 + partners.length) % partners.length) {
+                                item.classList.add('prev');
+                            } else if (index === (currentIndex + 1) % partners.length) {
+                                item.classList.add('next');
+                            } else {
+                                item.classList.add('hidden');
+                            }
+                        });
+                    }
+
+                    function nextPartner() {
+                        currentIndex = (currentIndex + 1) % partners.length;
+                        updatePartnerPositions();
+                    }
+
+                    function prevPartner() {
+                        currentIndex = (currentIndex - 1 + partners.length) % partners.length;
+                        updatePartnerPositions();
+                    }
+
+                    // Initialize
+                    createPartnerItems();
+
+                    // Event Listeners
+                    document.getElementById('nextPartner').addEventListener('click', nextPartner);
+                    document.getElementById('prevPartner').addEventListener('click', prevPartner);
+
+                    // Auto slide
+                    function startAutoSlide() {
+                        autoSlideInterval = setInterval(nextPartner, 3000);
+                    }
+
+                    function stopAutoSlide() {
+                        clearInterval(autoSlideInterval);
+                    }
+
+                    // Start auto slide
+                    startAutoSlide();
+
+                    // Pause on hover
+                    stack.addEventListener('mouseenter', stopAutoSlide);
+                    stack.addEventListener('mouseleave', startAutoSlide);
+                });
+            </script>
         </div>
+
+       
 
         <!-- Footer -->
         <footer class="bg-blue-900 text-white px-4 md:px-16 py-8 md:py-12 m-4 md:m-10 mx-4 md:mx-20 rounded-2xl relative overflow-hidden fade-in">
@@ -986,6 +1700,83 @@
                 const mobileMenuButton = document.getElementById('mobile-menu-button');
                 const mobileMenu = document.getElementById('mobile-menu');
                 const hamburger = document.querySelector('.hamburger');
+                const typedStr = "Situated within the Uganda Institute of Information and Communications Technology (UICT) Nakawa Campus, our hub serves as a dynamic environment for ICT innovators facing challenges with workspace, limited internet connectivity and searching for creative spaces that spur thinking.";
+                const typedText = document.querySelector('.typed-text');
+                typedText.textContent = "";
+                console.log(typedStr);
+                console.log("typedText: ", typedText);
+
+                var _index = 0;
+                
+                var isTyping = false;
+
+                function test() {
+                    console.log("test function called");
+                    if (typedText.textContent.length < typedStr.length) {
+                        isTyping = true;
+                        typedText.textContent += typedStr.charAt(_index);
+                        _index++;
+                        setTimeout(test,  100);
+                    }else{
+                        isTyping = false;
+                    }
+                }
+
+                test();
+
+                // Function to check if an element is in the viewport
+                function isInViewport(element) {
+                    const rect = element.getBoundingClientRect();
+                    
+                    return (
+                        rect.top >= 0 &&
+                        rect.left >= 0 &&
+                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                    );
+                }
+
+                // Function to check if element is partially in viewport
+                function isPartiallyInViewport(element) {
+                    const rect = element.getBoundingClientRect();
+                    
+                    return (
+                        rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.bottom > 0 &&
+                        rect.left < (window.innerWidth || document.documentElement.clientWidth) &&
+                        rect.right > 0
+                    );
+                }
+
+                // Example of using with a listener
+                function handleScroll() {
+                    const element = typedText;
+                    
+                    if (isInViewport(element)) {
+                        console.log("Element is fully in viewport");
+                        if(!isTyping){
+                            {element.textContent = "";
+                            _index = 0;
+                            test();}
+                        }
+                        // Do something when element is visible
+                    }
+                    
+                    if (isPartiallyInViewport(element)) {
+                        console.log("Element is partially in viewport");
+                        // element.textContent = "";
+                        // _index = 0;
+                        // test();
+                        // // Do something when element is partially visible
+                    }
+                }
+
+                // Add scroll event listener
+                window.addEventListener('scroll', handleScroll);
+
+                // Also check on page load
+                document.addEventListener('DOMContentLoaded', handleScroll);
+
                 
                 mobileMenuButton.addEventListener('click', function() {
                     mobileMenu.classList.toggle('open');
